@@ -358,8 +358,7 @@ function initSmoothScroll() {
 }
 
 /* ── Init everything ── */
-document.addEventListener('DOMContentLoaded', () => {
-  // Canvas background
+function initAll() {
   const canvas = document.getElementById('bg-canvas');
   if (canvas) new EnergyField(canvas);
 
@@ -373,4 +372,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initNeuralFlow();
   initChartTabs();
   initSmoothScroll();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
