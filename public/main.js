@@ -357,6 +357,166 @@ function initSmoothScroll() {
   });
 }
 
+/* ── Oracle Brain Animation ── */
+function initOracleBrain() {
+  const canvas = document.getElementById('oracle-brain-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const N = 130;
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  const points = [];
+
+  for (let i = 0; i < N; i++) {
+    const y   = 1 - (i / (N - 1)) * 2;
+    const r   = Math.sqrt(1 - y * y);
+    const th  = golden * i;
+    points.push({
+      x: Math.cos(th) * r, y, z: Math.sin(th) * r,
+      firing: false, fireTime: 0,
+      nextFire: Math.random() * 2000,
+    });
+  }
+
+  const conns = [];
+  for (let i = 0; i < N; i++) {
+    for (let j = i + 1; j < N; j++) {
+      const dx = points[i].x - points[j].x;
+      const dy = points[i].y - points[j].y;
+      const dz = points[i].z - points[j].z;
+      const d  = Math.sqrt(dx*dx + dy*dy + dz*dz);
+      if (d < 0.48) conns.push([i, j, d]);
+    }
+  }
+
+  let rotY = 0, rotX = 0.25, last = 0;
+
+  function project(p, rx, ry) {
+    const cy = Math.cos(ry), sy = Math.sin(ry);
+    const x1 = p.x * cy - p.z * sy;
+    const z1 = p.x * sy + p.z * cy;
+    const cx = Math.cos(rx), sx = Math.sin(rx);
+    const y1 = p.y * cx - z1 * sx;
+    const z2 = p.y * sx + z1 * cx;
+    const W = canvas.width, H = canvas.height;
+    const R = Math.min(W, H) * 0.3;
+    const fov = 2.8, s = fov / (fov + z2 + 1);
+    return { x: W/2 + x1*R*s, y: H/2 + y1*R*s, z: z2, s };
+  }
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    const dt = ts - last; last = ts;
+    rotY += 0.004;
+    rotX  = 0.25 + Math.sin(ts * 0.00018) * 0.14;
+
+    points.forEach((p, i) => {
+      if (!p.firing && ts > p.nextFire) {
+        p.firing   = true;
+        p.fireTime = ts;
+        p.nextFire = ts + 1200 + Math.random() * 2500;
+      }
+      if (p.firing && ts - p.fireTime > 700) p.firing = false;
+    });
+
+    const proj = points.map(p => project(p, rotX, rotY));
+
+    conns.forEach(([i, j, d]) => {
+      const a = proj[i], b = proj[j];
+      const bright = ((a.z + b.z) / 2 + 1) * 0.5;
+      const firing = points[i].firing || points[j].firing;
+      const base   = (0.48 - d) * 0.55 * bright;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      if (firing) {
+        ctx.strokeStyle = `rgba(20,253,253,${Math.min(base * 3.5, 0.65)})`;
+        ctx.lineWidth   = 0.9;
+      } else {
+        ctx.strokeStyle = `rgba(20,100,230,${base * 0.7})`;
+        ctx.lineWidth   = 0.4;
+      }
+      ctx.stroke();
+    });
+
+    proj.forEach((p, i) => {
+      const pt  = points[i];
+      const fp  = pt.firing ? Math.min((ts - pt.fireTime) / 700, 1) : 0;
+      const pulse = Math.sin(fp * Math.PI);
+      const r   = (1.8 + pulse * 3.5) * p.s;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, Math.max(r, 0.5), 0, Math.PI * 2);
+      if (pt.firing) {
+        ctx.shadowColor = '#14fdfd';
+        ctx.shadowBlur  = 12 * pulse;
+        ctx.fillStyle   = `rgba(20,253,253,${0.35 + pulse * 0.65})`;
+      } else {
+        ctx.shadowBlur  = 0;
+        ctx.fillStyle   = `rgba(20,85,230,${0.15 + ((p.z+1)*0.5) * 0.45})`;
+      }
+      ctx.fill();
+    });
+    ctx.shadowBlur = 0;
+  }
+
+  requestAnimationFrame(frame);
+}
+
+/* ── Chart Card Parallax + Autonomous Drift ── */
+function initChartParallax() {
+  const card = document.querySelector('.chart-card');
+  if (!card) return;
+
+  card.style.transition = 'none';
+
+  let tRY = -6, tRX = 2, tTY = 0;
+  let cRY = -6, cRX = 2, cTY = 0;
+  let hovering = false;
+  let mRY = -6, mRX = 2;
+
+  const hero = card.closest('section') || document.body;
+
+  hero.addEventListener('mousemove', e => {
+    const r  = hero.getBoundingClientRect();
+    const dx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+    const dy = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+    mRY = -3 + dx * 10;
+    mRX =  1 - dy * 6;
+    hovering = true;
+  });
+
+  hero.addEventListener('mouseleave', () => { hovering = false; });
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    const t = ts * 0.001;
+    if (hovering) {
+      tRY = mRY; tRX = mRX; tTY = 0;
+    } else {
+      tRY = -6 + Math.sin(t * 0.38) * 2.2;
+      tRX =  2 + Math.sin(t * 0.27 + 1.2) * 1.8;
+      tTY =      Math.sin(t * 0.45 + 0.5) * 7;
+    }
+    const spd = hovering ? 0.12 : 0.025;
+    cRY += (tRY - cRY) * spd;
+    cRX += (tRX - cRX) * spd;
+    cTY += (tTY - cTY) * spd;
+    card.style.transform =
+      `perspective(1000px) rotateY(${cRY.toFixed(3)}deg) rotateX(${cRX.toFixed(3)}deg) translateY(${cTY.toFixed(3)}px)`;
+  }
+  requestAnimationFrame(frame);
+}
+
 /* ── Init everything ── */
 function initAll() {
   const canvas = document.getElementById('bg-canvas');
@@ -372,6 +532,8 @@ function initAll() {
   initNeuralFlow();
   initChartTabs();
   initSmoothScroll();
+  initOracleBrain();
+  initChartParallax();
 }
 
 if (document.readyState === 'loading') {
