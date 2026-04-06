@@ -101,15 +101,27 @@ export default function Home() {
 
         <div className="hero-chart reveal">
           <div className="chart-card">
+            <a href="/products#claw-stealth" className="chart-hover-cta">
+              <span className="chc-glow" />
+              <span className="chc-text">
+                Explore CLAW Stealth
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </a>
             <div className="chart-header">
               <div className="chart-pair-info">
                 <span className="chart-pair">BTC / USDT</span>
                 <span className="chart-price">$67,420.00</span>
                 <span className="chart-change pos">▲ 3.24%</span>
               </div>
-              <div className="chart-signal-badge">
-                <span className="sig-pulse"></span>
-                AI Signal: LONG
+              <div className="chart-signal-col">
+                <div className="chart-signal-badge">
+                  <span className="sig-pulse"></span>
+                  AI Signal: LONG
+                </div>
+                <img src="/logo.png" alt="Eagle AI Labs" className="chart-eagle-logo" />
               </div>
               <div className="chart-tfs">
                 <span>1H</span><span className="tfa">4H</span><span>1D</span><span>1W</span>
@@ -238,13 +250,11 @@ export default function Home() {
               <div className="logo-slot"><img src="/logos/logo-1.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-2.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-3.png" alt="Partner" className="partner-logo" /></div>
-              <div className="logo-slot"><img src="/logos/logo-4.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-5.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-6.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-1.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-2.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-3.png" alt="Partner" className="partner-logo" /></div>
-              <div className="logo-slot"><img src="/logos/logo-4.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-5.png" alt="Partner" className="partner-logo" /></div>
               <div className="logo-slot"><img src="/logos/logo-6.png" alt="Partner" className="partner-logo" /></div>
             </div>
@@ -646,7 +656,9 @@ export default function Home() {
               rel="noopener noreferrer"
             >
               Try
-              <img src="/claw-logo.png" alt="CLAW" className="btn-claw-logo" />
+              <span className="btn-claw-logo-wrap">
+                <img src="/claw-logo.png" alt="CLAW" className="btn-claw-logo" />
+              </span>
             </a>
           </div>
         </div>
