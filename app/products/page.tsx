@@ -1,3 +1,6 @@
+import HeroIphoneMockup from "../components/hero-iphone-mockup";
+import MobileNavDrawer from "../components/mobile-nav-drawer";
+
 export default function ProductsPage() {
   return (
     <main className="products-page">
@@ -24,6 +27,8 @@ export default function ProductsPage() {
           </button>
         </div>
       </nav>
+
+      <MobileNavDrawer active="products" />
 
       {/* ── Hero Banner — split layout ── */}
       <section className="prod-banner">
@@ -112,8 +117,9 @@ export default function ProductsPage() {
           {/* Left — copy */}
           <div className="prod-copy reveal">
             <div className="prod-badge">FLAGSHIP TERMINAL</div>
-            <h2 className="prod-title">
-              <span className="gradient-text">CLAW Pro</span>
+            <h2 className="prod-title prod-title--claw-pro">
+              <span className="gradient-text">CLAW</span>
+              <span className="prod-title-pro">Pro</span>
             </h2>
             <p className="prod-subtitle">The Institutional Terminal</p>
             <p className="prod-desc">
@@ -195,184 +201,17 @@ export default function ProductsPage() {
             </a>
           </div>
 
-          {/* Right — CLAW Pro terminal animation */}
-          <div className="prod-visual reveal">
-            <div className="pcpt">
-
-              {/* ── Top nav bar ── */}
-              <div className="pcpt-topbar">
-                <div className="pcpt-topbar-left">
-                  <span className="pcpt-logo-clip">
-                    <img src="/claw-logo.png" alt="CLAW Pro" className="pcpt-logo" />
-                  </span>
-                  <div className="pcpt-nav-tabs">
-                    {['Pre-Trade','Trade','Post-Trade','Social','AutoTrade'].map((t,i) => (
-                      <span key={t} className={`pcpt-nav-tab${i===0?' pcpt-tab-on':''}`}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="pcpt-topbar-right">
-                  <span className="pcpt-live-badge"><span className="pcpt-live-dot"/>LIVE</span>
-                </div>
-              </div>
-
-              {/* ── Pair info bar ── */}
-              <div className="pcpt-pairbar">
-                <span className="pcpt-pair">BTC<span className="pcpt-slash">/</span>USDT</span>
-                <span className="pcpt-price pcpt-price-pulse">69,696.00</span>
-                <span className="pcpt-chg-pos">+0.04%</span>
-                <span className="pcpt-bar-sep"/>
-                <span className="pcpt-field">O <span className="pcpt-fv">69,668</span></span>
-                <span className="pcpt-field">H <span className="pcpt-fv">70,424</span></span>
-                <span className="pcpt-field">L <span className="pcpt-fv">69,081</span></span>
-                <span className="pcpt-field">VOL <span className="pcpt-fv">222,009</span></span>
-              </div>
-
-              {/* ── Body ── */}
-              <div className="pcpt-body">
-
-                {/* Chart column */}
-                <div className="pcpt-chart-col">
-                  <div className="pcpt-chart-toolbar">
-                    {['5','15','1H','4H','1D'].map((tf,i) => (
-                      <span key={tf} className={`pcpt-tf${i===0?' pcpt-tf-on':''}`}>{tf}</span>
-                    ))}
-                    <span className="pcpt-tdiv"/>
-                    <span className="pcpt-tchip">BB 8</span>
-                    <span className="pcpt-tchip pcpt-tchip-ind">Indicators 88</span>
-                  </div>
-
-                  <div className="pcpt-chart-wrap">
-                    <div className="pcpt-scanline"/>
-                    <svg viewBox="0 0 252 108" className="pcpt-chart-svg" preserveAspectRatio="none">
-                      <defs>
-                        <filter id="cg-glow">
-                          <feGaussianBlur stdDeviation="1.5" result="blur"/>
-                          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                        </filter>
-                      </defs>
-                      {/* Grid */}
-                      {[18,36,54,72,90].map(y=>(
-                        <line key={y} x1="0" y1={y} x2="252" y2={y} stroke="#1a2535" strokeWidth="0.5"/>
-                      ))}
-                      {/* Support levels */}
-                      <line x1="0" y1="51" x2="252" y2="51" stroke="#00e676" strokeWidth="0.8" strokeDasharray="5 3" opacity="0.75" className="pcpt-lvl"/>
-                      <line x1="0" y1="78" x2="252" y2="78" stroke="#00e676" strokeWidth="0.8" strokeDasharray="5 3" opacity="0.45"/>
-                      <text x="196" y="48" fill="#00e676" fontSize="5.5" fontFamily="monospace" opacity="0.9">69,762</text>
-                      <text x="196" y="75" fill="#00e676" fontSize="5.5" fontFamily="monospace" opacity="0.6">69,163</text>
-
-                      {/* Candles: [open_y, close_y, high_y, low_y, isGreen] */}
-                      {([
-                        [85,72,67,90,true ],[72,65,60,76,true ],[65,70,60,76,false],
-                        [70,55,48,73,true ],[55,49,44,58,true ],[49,54,45,58,false],
-                        [54,47,43,58,true ],[47,55,43,60,false],[55,49,46,62,true ],
-                        [49,57,46,62,false],[57,63,54,68,false],[63,56,52,68,true ],
-                        [56,63,52,68,false],[63,58,55,70,true ],[58,65,55,70,false],
-                        [65,72,62,78,false],[72,66,62,80,true ],
-                      ] as [number,number,number,number,boolean][]).map(([o,c,h,l,g],i) => {
-                        const x = i*14+3, cx = x+5;
-                        const col = g ? '#26a69a' : '#ef5350';
-                        return (
-                          <g key={i}>
-                            <line x1={cx} y1={h} x2={cx} y2={l} stroke={col} strokeWidth="1"/>
-                            <rect x={x} y={g?c:o} width={10} height={Math.max(Math.abs(o-c),1.5)} fill={col} opacity="0.92"/>
-                          </g>
-                        );
-                      })}
-
-                      {/* Forming candle — animated */}
-                      <g>
-                        <line x1="244" y1="61" x2="244" y2="79" stroke="#ef5350" strokeWidth="1"/>
-                        <rect x="239" y="67" width="10" height="6" fill="#ef5350" opacity="0.9" className="pcpt-forming"/>
-                      </g>
-
-                      {/* Current price dash */}
-                      <line x1="0" y1="69" x2="239" y2="69" stroke="#14fdfd" strokeWidth="0.6" strokeDasharray="3 2" opacity="0.4"/>
-                    </svg>
-
-                    <div className="pcpt-price-axis">
-                      <span className="pcpt-price-tag">69,696</span>
-                    </div>
-                  </div>
-
-                  {/* Volume */}
-                  <div className="pcpt-vol-wrap">
-                    <svg viewBox="0 0 252 22" className="pcpt-vol-svg" preserveAspectRatio="none">
-                      {[12,8,15,20,10,13,9,18,14,11,16,12,10,14,11,9,13,7].map((h,i)=>(
-                        <rect key={i} x={i*14+3} y={22-h} width={10} height={h}
-                          fill={[true,true,false,false,true,false,true,false,true,false,false,true,false,false,true,true,false,false][i]?'#26a69a':'#ef5350'}
-                          opacity="0.5"/>
-                      ))}
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Right panels */}
-                <div className="pcpt-right">
-
-                  {/* Whale walls */}
-                  <div className="pcpt-panel-block pcpt-walls-block">
-                    <div className="pcpt-wall pcpt-wall-long">
-                      <div className="pcpt-wall-lbl">LONG WALL <span className="pcpt-wall-pct">60%</span></div>
-                      <div className="pcpt-wall-val">76,475</div>
-                      <div className="pcpt-wall-bar"><div className="pcpt-wall-fill pcpt-wf-long" style={{width:'60%'}}/></div>
-                    </div>
-                    <div className="pcpt-wall pcpt-wall-short">
-                      <div className="pcpt-wall-lbl">SHORT WALL <span className="pcpt-wall-pct">40%</span></div>
-                      <div className="pcpt-wall-val">68,436</div>
-                      <div className="pcpt-wall-bar"><div className="pcpt-wall-fill pcpt-wf-short" style={{width:'40%'}}/></div>
-                    </div>
-                  </div>
-
-                  {/* Signal block */}
-                  <div className="pcpt-panel-block pcpt-sig-block">
-                    <div className="pcpt-sig-head">
-                      <span className="pcpt-sig-badge">SHORT</span>
-                      <span className="pcpt-sig-frac">L 0.67 · S 0.5</span>
-                    </div>
-                    <div className="pcpt-sig-sub">40% L $14.6M &nbsp;·&nbsp; 60% S $22.0M</div>
-                    {[['BTC','55%','#26a69a'],['ETH','70%','#ef5350'],['SOL','48%','#26a69a']].map(([lbl,w,col])=>(
-                      <div key={lbl} className="pcpt-sig-row">
-                        <span className="pcpt-sig-lbl">{lbl}</span>
-                        <div className="pcpt-sig-bar"><div className="pcpt-sig-fill" style={{width:w, background:col}}/></div>
-                        <span className="pcpt-sig-pct">{w}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Liquidation heatmap */}
-                  <div className="pcpt-panel-block pcpt-heat-block">
-                    <div className="pcpt-panel-lbl">Liq. Heatmap <span className="pcpt-panel-lbl-sub">12h</span></div>
-                    <svg viewBox="0 0 90 52" className="pcpt-heat-svg">
-                      {Array.from({length:6}).map((_,row)=>
-                        Array.from({length:10}).map((_,col)=>{
-                          const v = (Math.sin(row*1.6+col*0.7+1)*0.5+0.5);
-                          const hue = Math.round(185 - v*170);
-                          return (
-                            <rect key={`${row}-${col}`} x={col*9} y={row*9} width={8} height={8}
-                              fill={`hsl(${hue},85%,52%)`} opacity={0.35+v*0.55}
-                              className={`pcpt-hc pcpt-hc${(row+col)%4}`}/>
-                          );
-                        })
-                      )}
-                    </svg>
-                  </div>
-
-                </div>
-              </div>
-
-              {/* ── Bot strip ── */}
-              <div className="pcpt-bot-strip">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="pcpt-bot-icon">
-                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="url(#bg1)" strokeLinejoin="round"/>
-                  <defs><linearGradient id="bg1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                </svg>
-                <span className="pcpt-bot-name">Breakout Bot</span>
-                <span className="pcpt-bot-status"><span className="pcpt-bot-dot"/>Actively testing different setups...</span>
-                <span className="pcpt-bot-exp">EXPERIMENTAL</span>
-              </div>
-
-            </div>
+          {/* Right — CLAW Pro product screenshot */}
+          <div className="prod-visual prod-visual--claw-pro reveal">
+            <figure className="prod-claw-pro-figure">
+              <img
+                src="/products-claw-pro-dashboard.png"
+                alt="CLAW Pro trading terminal with charts, whale activity, prediction, and breakout bot"
+                className="prod-claw-pro-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
           </div>
         </div>
       </section>
@@ -382,42 +221,9 @@ export default function ProductsPage() {
       ══════════════════════════════════════════ */}
       <section className="prod-section prod-section-alt" id="claw-stealth">
         <div className="section-wrap prod-section-inner prod-section-inner-rev">
-          {/* Left — visual */}
-          <div className="prod-visual reveal">
-            <div className="prod-stealth-mock">
-              <div className="psm-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#sg1)" strokeWidth="1.5" strokeLinejoin="round"/>
-                  <path d="M2 17L12 22L22 17" stroke="url(#sg1)" strokeWidth="1.5" strokeLinejoin="round"/>
-                  <path d="M2 12L12 17L22 12" stroke="url(#sg1)" strokeWidth="1.5" strokeLinejoin="round"/>
-                  <defs><linearGradient id="sg1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                </svg>
-                <span>CLAW Stealth</span>
-              </div>
-              <div className="psm-agent-feed">
-                <div className="psm-agent-msg psm-agent-active">
-                  <span className="psm-agent-label">AI Agent</span>
-                  <p>BTC entering high-conviction long zone. Model confidence: 88%</p>
-                  <span className="psm-agent-time">2 min ago</span>
-                </div>
-                <div className="psm-agent-msg">
-                  <span className="psm-agent-label">Alert Triggered</span>
-                  <p>ETH 4H signal flipped LONG. Your alert has fired.</p>
-                  <span className="psm-agent-time">14 min ago</span>
-                </div>
-                <div className="psm-agent-msg">
-                  <span className="psm-agent-label">AI Agent</span>
-                  <p>SOL short setup weakening — model uncertainty rising. Stand aside.</p>
-                  <span className="psm-agent-time">31 min ago</span>
-                </div>
-              </div>
-              <div className="psm-alerts">
-                <span className="psm-alert-label">Your Alerts</span>
-                <div className="psm-alert-chip psm-chip-on">BTC 1H LONG · Active</div>
-                <div className="psm-alert-chip">ETH Confidence &gt; 80% · Waiting</div>
-                <div className="psm-alert-chip">SOL 4H flip · Waiting</div>
-              </div>
-            </div>
+          {/* Left — same iPhone + chart mock as homepage hero */}
+          <div className="prod-visual prod-visual--stealth-iphone reveal">
+            <HeroIphoneMockup />
           </div>
 
           {/* Right — copy */}

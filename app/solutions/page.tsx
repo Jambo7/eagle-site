@@ -1,3 +1,5 @@
+import MobileNavDrawer from "../components/mobile-nav-drawer";
+
 export default function SolutionsPage() {
   return (
     <main className="sol-page">
@@ -24,6 +26,8 @@ export default function SolutionsPage() {
           </button>
         </div>
       </nav>
+
+      <MobileNavDrawer active="solutions" />
 
       {/* ══════════════════════════════════════════
           HERO

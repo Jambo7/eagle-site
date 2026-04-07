@@ -47,13 +47,13 @@ class EnergyField {
   }
 
   buildParticles() {
-    this.particles = Array.from({ length: 75 }, () => ({
+    this.particles = Array.from({ length: 55 }, () => ({
       x:  Math.random() * this.W,
       y:  Math.random() * this.H,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      r:  0.8 + Math.random() * 1.6,
-      op: 0.15 + Math.random() * 0.5,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      r:  0.6 + Math.random() * 1.2,
+      op: 0.08 + Math.random() * 0.22,
     }));
   }
 
@@ -95,7 +95,7 @@ class EnergyField {
       // Pulse
       o.phase += o.pulseSpeed;
       const pulse = 1 + Math.sin(o.phase) * 0.13;
-      const alpha = 0.038 + Math.sin(o.phase) * 0.016;
+      const alpha = 0.026 + Math.sin(o.phase) * 0.01;
       const radius = o.r * pulse;
 
       const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, radius);
@@ -156,13 +156,13 @@ class EnergyField {
         const ex = p.x - q.x;
         const ey = p.y - q.y;
         const ed = ex * ex + ey * ey;
-        if (ed < 130 * 130) {
-          const lineAlpha = (1 - Math.sqrt(ed) / 130) * 0.14;
+        if (ed < 110 * 110) {
+          const lineAlpha = (1 - Math.sqrt(ed) / 110) * 0.07;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(q.x, q.y);
           ctx.strokeStyle = `rgba(20, 100, 215, ${lineAlpha})`;
-          ctx.lineWidth = 0.6;
+          ctx.lineWidth = 0.5;
           ctx.stroke();
         }
       }
@@ -307,30 +307,8 @@ function initSignalRows() {
   if (pui) io.observe(pui);
 }
 
-/* ── Neural SVG data-flow animation ── */
-function initNeuralFlow() {
-  const svg = document.querySelector('.neural-svg');
-  if (!svg) return;
-
-  // Pulse random nodes over time
-  const nodes = svg.querySelectorAll('circle');
-  if (!nodes.length) return;
-
-  function pulseNode() {
-    const idx = Math.floor(Math.random() * nodes.length);
-    const node = nodes[idx];
-    const origFill = node.getAttribute('fill');
-    node.style.transition = 'fill 0.3s ease, filter 0.3s ease';
-    node.style.fill = 'rgba(20, 253, 253, 0.35)';
-    node.style.filter = 'drop-shadow(0 0 6px rgba(20,253,253,0.6))';
-    setTimeout(() => {
-      node.style.fill = origFill;
-      node.style.filter = '';
-    }, 500);
-    setTimeout(pulseNode, 600 + Math.random() * 800);
-  }
-  setTimeout(pulseNode, 1500);
-}
+/* ── Neural / data-flow SVG — motion is CSS-only (no random neon pulses) ── */
+function initNeuralFlow() {}
 
 /* ── Active chart timeframe tab ── */
 function initChartTabs() {
@@ -417,8 +395,8 @@ function initOracleBrain() {
     ctx.clearRect(0, 0, W, H);
 
     const dt = ts - last; last = ts;
-    rotY += 0.004;
-    rotX  = 0.25 + Math.sin(ts * 0.00018) * 0.14;
+    rotY += 0.0025;
+    rotX  = 0.25 + Math.sin(ts * 0.00012) * 0.08;
 
     points.forEach((p, i) => {
       if (!p.firing && ts > p.nextFire) {
@@ -440,11 +418,11 @@ function initOracleBrain() {
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
       if (firing) {
-        ctx.strokeStyle = `rgba(20,253,253,${Math.min(base * 3.5, 0.65)})`;
-        ctx.lineWidth   = 0.9;
+        ctx.strokeStyle = `rgba(20,120,220,${Math.min(base * 2.2, 0.38)})`;
+        ctx.lineWidth   = 0.75;
       } else {
-        ctx.strokeStyle = `rgba(20,100,230,${base * 0.7})`;
-        ctx.lineWidth   = 0.4;
+        ctx.strokeStyle = `rgba(20,85,200,${base * 0.45})`;
+        ctx.lineWidth   = 0.35;
       }
       ctx.stroke();
     });
@@ -453,16 +431,16 @@ function initOracleBrain() {
       const pt  = points[i];
       const fp  = pt.firing ? Math.min((ts - pt.fireTime) / 700, 1) : 0;
       const pulse = Math.sin(fp * Math.PI);
-      const r   = (1.8 + pulse * 3.5) * p.s;
+      const r   = (1.5 + pulse * 2.2) * p.s;
       ctx.beginPath();
       ctx.arc(p.x, p.y, Math.max(r, 0.5), 0, Math.PI * 2);
       if (pt.firing) {
-        ctx.shadowColor = '#14fdfd';
-        ctx.shadowBlur  = 12 * pulse;
-        ctx.fillStyle   = `rgba(20,253,253,${0.35 + pulse * 0.65})`;
+        ctx.shadowColor = 'rgba(20,85,230,0.5)';
+        ctx.shadowBlur  = 4 * pulse;
+        ctx.fillStyle   = `rgba(20,120,220,${0.22 + pulse * 0.35})`;
       } else {
         ctx.shadowBlur  = 0;
-        ctx.fillStyle   = `rgba(20,85,230,${0.15 + ((p.z+1)*0.5) * 0.45})`;
+        ctx.fillStyle   = `rgba(20,75,200,${0.12 + ((p.z+1)*0.5) * 0.32})`;
       }
       ctx.fill();
     });
@@ -470,6 +448,40 @@ function initOracleBrain() {
   }
 
   requestAnimationFrame(frame);
+}
+
+/* ── Platform section: candle-chart background drift on scroll (hero-style depth) ── */
+function initPlatformBgParallax() {
+  const section = document.getElementById('platform');
+  const img = section && section.querySelector('.platform-bg-img');
+  if (!section || !img) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    /* Normalized progress through viewport: 0 when below, 1 when above */
+    const span = rect.height + vh;
+    const t = (vh - rect.top) / span;
+    const clamped = Math.max(0, Math.min(1, t));
+    /* Subtle vertical drift — image moves slower than the section (parallax) */
+    const px = (clamped - 0.5) * 32;
+    img.style.transform = `translate3d(-50%, calc(-50% + ${px.toFixed(2)}px), 0)`;
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
 }
 
 /* ── Chart Card Parallax + Autonomous Drift ── */
@@ -534,6 +546,7 @@ function initAll() {
   initSmoothScroll();
   initOracleBrain();
   initChartParallax();
+  initPlatformBgParallax();
 }
 
 if (document.readyState === 'loading') {

@@ -1,3 +1,5 @@
+import MobileNavDrawer from "../components/mobile-nav-drawer";
+
 export default function HedgeFundPage() {
   return (
     <main className="hf-page">
@@ -24,6 +26,8 @@ export default function HedgeFundPage() {
           </button>
         </div>
       </nav>
+
+      <MobileNavDrawer active="hedge-fund" />
 
       {/* ── Hero Banner — split layout ── */}
       <section className="hf-banner">

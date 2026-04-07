@@ -1,4 +1,6 @@
-import type { CSSProperties } from "react";
+import DataFlowDiagram from "./components/data-flow-diagram";
+import HeroIphoneMockup from "./components/hero-iphone-mockup";
+import MobileNavDrawer from "./components/mobile-nav-drawer";
 
 export default function Home() {
   return (
@@ -26,31 +28,21 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className="mobile-nav" id="mobile-nav">
-        <ul>
-          <li><a href="#platform">Platform</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#technology">Technology</a></li>
-          <li><a href="#how-it-works">Process</a></li>
-          <li><a href="#cta">Pricing</a></li>
-        </ul>
-        <div className="mobile-nav-btns">
-          <a href="#" className="btn btn-ghost">Sign In</a>
-          <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Try Now</a>
-        </div>
-      </div>
+      <MobileNavDrawer active="home" />
 
       <section id="hero">
-        <div className="hero-floaters" aria-hidden="true">
-          <div className="hf hf1"></div>
-          <div className="hf hf2"></div>
-          <div className="hf hf3"></div>
-          <div className="hf hf4"></div>
-          <div className="hf hf5"></div>
-          <div className="hf hf6"></div>
-          <div className="hero-grid-overlay"></div>
+        <div className="hero-bg" aria-hidden="true">
+          <video
+            className="hero-bg-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="https://assets.mixkit.co/videos/47016/47016-thumb-720-2.jpg"
+          >
+            <source src="https://assets.mixkit.co/videos/47016/47016-720.mp4" type="video/mp4" />
+          </video>
         </div>
-
         <div className="hero-content">
           <p className="hero-eyebrow reveal">AI Prediction Models for Markets</p>
 
@@ -100,108 +92,7 @@ export default function Home() {
         </div>
 
         <div className="hero-chart reveal">
-          <div className="chart-card">
-            <a href="/products#claw-stealth" className="chart-hover-cta">
-              <span className="chc-glow" />
-              <span className="chc-text">
-                Explore CLAW Stealth
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </a>
-            <div className="chart-header">
-              <div className="chart-pair-info">
-                <span className="chart-pair">BTC / USDT</span>
-                <span className="chart-price">$67,420.00</span>
-                <span className="chart-change pos">▲ 3.24%</span>
-              </div>
-              <div className="chart-signal-col">
-                <div className="chart-signal-badge">
-                  <span className="sig-pulse"></span>
-                  AI Signal: LONG
-                </div>
-                <img src="/logo.png" alt="Eagle AI Labs" className="chart-eagle-logo" />
-              </div>
-              <div className="chart-tfs">
-                <span>1H</span><span className="tfa">4H</span><span>1D</span><span>1W</span>
-              </div>
-            </div>
-
-            <div className="chart-body">
-              <div className="scan-line"></div>
-              <svg className="chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" overflow="visible">
-                <defs>
-                  <linearGradient id="lg-area" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#1455e6" stopOpacity="0.35"/>
-                    <stop offset="100%" stopColor="#1455e6" stopOpacity="0"/>
-                  </linearGradient>
-                  <linearGradient id="lg-pred-area" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#14fdfd" stopOpacity="0.15"/>
-                    <stop offset="100%" stopColor="#14fdfd" stopOpacity="0"/>
-                  </linearGradient>
-                  <linearGradient id="lg-line" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#1455e6"/>
-                    <stop offset="100%" stopColor="#14c8e8"/>
-                  </linearGradient>
-                  <linearGradient id="lg-pred-line" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#14c8e8"/>
-                    <stop offset="100%" stopColor="#14fdfd"/>
-                  </linearGradient>
-                  <filter id="glow-dot">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
-                  <filter id="glow-line">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
-                  <clipPath id="chart-clip">
-                    <rect x="0" y="0" width="800" height="240"/>
-                  </clipPath>
-                </defs>
-                <g stroke="#1455e6" strokeWidth="0.5" opacity="0.12">
-                  <line x1="0" y1="48" x2="800" y2="48"/>
-                  <line x1="0" y1="96" x2="800" y2="96"/>
-                  <line x1="0" y1="144" x2="800" y2="144"/>
-                  <line x1="0" y1="192" x2="800" y2="192"/>
-                  <line x1="133" y1="0" x2="133" y2="240"/>
-                  <line x1="266" y1="0" x2="266" y2="240"/>
-                  <line x1="400" y1="0" x2="400" y2="240"/>
-                  <line x1="533" y1="0" x2="533" y2="240"/>
-                  <line x1="666" y1="0" x2="666" y2="240"/>
-                </g>
-                <path d="M0,210 C40,200 80,215 110,192 C140,169 175,182 200,158 C225,134 255,148 285,122 C315,96 345,112 375,88 C405,64 435,78 465,54 C495,30 520,44 540,38 L540,240 L0,240 Z" fill="url(#lg-area)" clipPath="url(#chart-clip)"/>
-                <path d="M0,210 C40,200 80,215 110,192 C140,169 175,182 200,158 C225,134 255,148 285,122 C315,96 345,112 375,88 C405,64 435,78 465,54 C495,30 520,44 540,38" fill="none" stroke="url(#lg-line)" strokeWidth="2.5" filter="url(#glow-line)" clipPath="url(#chart-clip)"/>
-                <line x1="540" y1="0" x2="540" y2="240" stroke="#14fdfd" strokeWidth="1" strokeDasharray="5,4" opacity="0.35"/>
-                <rect x="540" y="0" width="260" height="240" fill="rgba(20,253,253,0.025)" clipPath="url(#chart-clip)"/>
-                <path d="M540,38 C570,28 610,15 650,8 C690,1 740,-3 800,-5 L800,28 C740,22 690,28 650,35 C610,42 570,45 540,38 Z" fill="url(#lg-pred-area)" clipPath="url(#chart-clip)"/>
-                <path d="M540,38 C570,28 610,14 650,7 C690,-1 740,-4 800,-6" fill="none" stroke="#14fdfd" strokeWidth="1" strokeDasharray="4,3" opacity="0.3" clipPath="url(#chart-clip)"/>
-                <path d="M540,38 C570,45 610,42 650,35 C690,28 740,22 800,18" fill="none" stroke="#14fdfd" strokeWidth="1" strokeDasharray="4,3" opacity="0.3" clipPath="url(#chart-clip)"/>
-                <path d="M540,38 C570,30 615,18 660,10 C705,2 750,-2 800,0" fill="none" stroke="url(#lg-pred-line)" strokeWidth="2.5" filter="url(#glow-line)" clipPath="url(#chart-clip)"/>
-                <circle cx="540" cy="38" r="12" fill="#14fdfd" opacity="0.1" className="pulse-ring"/>
-                <circle cx="540" cy="38" r="5.5" fill="#14fdfd" filter="url(#glow-dot)"/>
-                <text x="810" y="42" fill="#5a7090" fontSize="11" fontFamily="Inter">$67.4k</text>
-                <text x="810" y="100" fill="#5a7090" fontSize="11" fontFamily="Inter">$64.2k</text>
-                <text x="810" y="148" fill="#5a7090" fontSize="11" fontFamily="Inter">$61.0k</text>
-                <text x="810" y="196" fill="#5a7090" fontSize="11" fontFamily="Inter">$57.8k</text>
-                <text x="548" y="26" fill="#14fdfd" fontSize="10" fontFamily="Inter" opacity="0.8">AI Forecast ▲ +12.4%</text>
-              </svg>
-            </div>
-
-            <div className="chart-footer">
-              <div className="chart-inds">
-                <span className="ci active">RSI 68.2</span>
-                <span className="ci">MACD ▲</span>
-                <span className="ci">Vol 2.3B</span>
-              </div>
-              <div className="chart-conf">
-                <span className="cc-label">Confidence</span>
-                <div className="cc-bar"><div className="cc-fill" style={{ '--w': '87%' } as CSSProperties}></div></div>
-                <span className="cc-val">87%</span>
-              </div>
-            </div>
-          </div>
+          <HeroIphoneMockup />
         </div>
 
         <div className="hero-scroll-hint">
@@ -238,11 +129,6 @@ export default function Home() {
       </div>
 
       <section id="trusted">
-        <div className="trusted-energy" aria-hidden="true">
-          <div className="te-orb te-orb1"></div>
-          <div className="te-orb te-orb2"></div>
-          <div className="te-orb te-orb3"></div>
-        </div>
         <div className="trusted-wrap">
           <p className="trusted-headline">Trusted by the best brands around the world</p>
           <div className="logo-marquee-outer">
@@ -263,11 +149,6 @@ export default function Home() {
       </section>
 
       <section id="technology">
-        <div className="tech-energy" aria-hidden="true">
-          <div className="tech-orb tech-orb1"></div>
-          <div className="tech-orb tech-orb2"></div>
-          <div className="tech-orb tech-orb3"></div>
-        </div>
         <div className="section-wrap">
           <div className="tech-layout">
             <div className="tech-text">
@@ -308,76 +189,7 @@ export default function Home() {
             </div>
 
             <div className="tech-visual reveal">
-              <div className="neural-wrap">
-                <svg className="neural-svg" viewBox="0 0 460 400">
-                  <defs>
-                    <linearGradient id="lg-nn-in" x1="0" y1="0" x2="1" y2="0">
-                      <stop stopColor="#1455e6"/>
-                      <stop offset="1" stopColor="#1470e0"/>
-                    </linearGradient>
-                    <linearGradient id="lg-nn-out" x1="0" y1="0" x2="1" y2="0">
-                      <stop stopColor="#14c0e8"/>
-                      <stop offset="1" stopColor="#14fdfd"/>
-                    </linearGradient>
-                    <filter id="nn-glow">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
-                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                    <filter id="nn-glow-strong">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
-                      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                  </defs>
-                  <g className="nn-conn-1" stroke="#1455e6" strokeWidth="0.6">
-                    <line x1="65" y1="80" x2="165" y2="100"/><line x1="65" y1="80" x2="165" y2="175"/>
-                    <line x1="65" y1="80" x2="165" y2="250"/><line x1="65" y1="145" x2="165" y2="100"/>
-                    <line x1="65" y1="145" x2="165" y2="175"/><line x1="65" y1="145" x2="165" y2="250"/>
-                    <line x1="65" y1="210" x2="165" y2="100"/><line x1="65" y1="210" x2="165" y2="175"/>
-                    <line x1="65" y1="210" x2="165" y2="250"/><line x1="65" y1="210" x2="165" y2="325"/>
-                    <line x1="65" y1="275" x2="165" y2="175"/><line x1="65" y1="275" x2="165" y2="250"/>
-                    <line x1="65" y1="275" x2="165" y2="325"/><line x1="65" y1="340" x2="165" y2="250"/>
-                    <line x1="65" y1="340" x2="165" y2="325"/>
-                  </g>
-                  <g className="nn-conn-2" stroke="#147ae0" strokeWidth="0.8">
-                    <line x1="165" y1="100" x2="265" y2="118"/><line x1="165" y1="100" x2="265" y2="205"/>
-                    <line x1="165" y1="175" x2="265" y2="118"/><line x1="165" y1="175" x2="265" y2="205"/>
-                    <line x1="165" y1="175" x2="265" y2="293"/><line x1="165" y1="250" x2="265" y2="205"/>
-                    <line x1="165" y1="250" x2="265" y2="293"/><line x1="165" y1="325" x2="265" y2="205"/>
-                    <line x1="165" y1="325" x2="265" y2="293"/>
-                  </g>
-                  <g className="nn-conn-3" stroke="#14b8e8" strokeWidth="1">
-                    <line x1="265" y1="118" x2="355" y2="160"/><line x1="265" y1="118" x2="355" y2="245"/>
-                    <line x1="265" y1="205" x2="355" y2="160"/><line x1="265" y1="205" x2="355" y2="245"/>
-                    <line x1="265" y1="293" x2="355" y2="160"/><line x1="265" y1="293" x2="355" y2="245"/>
-                  </g>
-                  <g className="nn-nodes-in" fill="none" stroke="url(#lg-nn-in)" strokeWidth="1.5">
-                    <circle cx="65" cy="80" r="14"/><circle cx="65" cy="145" r="14"/>
-                    <circle cx="65" cy="210" r="14"/><circle cx="65" cy="275" r="14"/>
-                    <circle cx="65" cy="340" r="14"/>
-                  </g>
-                  <g fill="#5a7090" fontSize="10" fontFamily="Inter" textAnchor="middle">
-                    <text x="65" y="83.5">OHLC</text><text x="65" y="148.5">Vol</text>
-                    <text x="65" y="213.5">Flow</text><text x="65" y="278.5">Chain</text>
-                    <text x="65" y="343.5">News</text>
-                  </g>
-                  <g className="nn-nodes-h1" fill="rgba(20,85,230,0.15)" stroke="#1455e6" strokeWidth="1.5">
-                    <circle cx="165" cy="100" r="14"/><circle cx="165" cy="175" r="14"/>
-                    <circle cx="165" cy="250" r="14"/><circle cx="165" cy="325" r="14"/>
-                  </g>
-                  <g className="nn-nodes-h2" fill="rgba(20,140,230,0.2)" stroke="#14a0e8" strokeWidth="1.5">
-                    <circle cx="265" cy="118" r="14"/><circle cx="265" cy="205" r="14"/>
-                    <circle cx="265" cy="293" r="14"/>
-                  </g>
-                  <circle className="nn-out-node" cx="355" cy="160" r="18" fill="rgba(20,220,245,0.12)" stroke="url(#lg-nn-out)" strokeWidth="2" filter="url(#nn-glow)"/>
-                  <circle className="nn-out-node" cx="355" cy="245" r="18" fill="rgba(20,220,245,0.12)" stroke="url(#lg-nn-out)" strokeWidth="2" filter="url(#nn-glow)"/>
-                  <text x="383" y="163.5" fill="#14fdfd" fontSize="12" fontFamily="Inter" fontWeight="600">LONG</text>
-                  <text x="383" y="248.5" fill="#14fdfd" fontSize="12" fontFamily="Inter" fontWeight="600">SHORT</text>
-                  <text x="65" y="372" fill="#2a3a50" fontSize="10" fontFamily="Inter" textAnchor="middle">Input</text>
-                  <text x="165" y="372" fill="#2a3a50" fontSize="10" fontFamily="Inter" textAnchor="middle">Hidden</text>
-                  <text x="265" y="372" fill="#2a3a50" fontSize="10" fontFamily="Inter" textAnchor="middle">Hidden</text>
-                  <text x="355" y="372" fill="#2a3a50" fontSize="10" fontFamily="Inter" textAnchor="middle">Output</text>
-                </svg>
-              </div>
+              <DataFlowDiagram />
             </div>
           </div>
         </div>
@@ -385,43 +197,45 @@ export default function Home() {
 
       <section id="features">
         <div className="section-wrap">
-          <div className="section-eyebrow reveal">Core Capabilities</div>
-          <h2 className="section-title reveal">
-            The Intelligence Layer<br />
-            <span className="gradient-text">Crypto Has Been Waiting For</span>
-          </h2>
-          <p className="section-sub reveal">
-            Our multi-modal AI architecture fuses on-chain analytics, market microstructure,
-            and sentiment data to generate high-probability directional forecasts.
-          </p>
+          <div className="feat-header">
+            <div className="section-eyebrow reveal">Core Capabilities</div>
+            <h2 className="feat-main-title reveal">
+              Six edges.<br />
+              <span className="gradient-text">One platform.</span>
+            </h2>
+          </div>
 
-          <div className="features-grid">
-            <div className="feat-card reveal">
-              <div className="fc-icon-wrap">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <div className="feat-list">
+
+            <div className="feat-row reveal">
+              <span className="feat-num">01</span>
+              <div className="feat-row-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
                   <defs>
                     <linearGradient id="lg-fi1" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient>
                     <filter id="fi1-glow"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                   </defs>
-                  <line x1="4" y1="27" x2="28" y2="27" stroke="#1455e6" strokeWidth="0.4" opacity="0.25"/>
-                  <line x1="4" y1="19" x2="28" y2="19" stroke="#1455e6" strokeWidth="0.4" opacity="0.12"/>
-                  <path d="M4,26 C7,24 10,21 13,18 C15,16 16,14 17,13" stroke="url(#lg-fi1)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4,26 C7,24 10,21 13,18 C15,16 16,14 17,13" stroke="url(#lg-fi1)" strokeWidth="1.8" strokeLinecap="round"/>
                   <circle cx="17" cy="13" r="2" fill="#14b8e8" filter="url(#fi1-glow)"/>
                   <path className="feat-forecast-dash" d="M17,13 C21,9 24,7 28,5" fill="none" stroke="#14fdfd" strokeWidth="1.5" strokeLinecap="round"/>
                   <circle className="feat-tip-pulse" cx="28" cy="5" r="2.2" fill="#14fdfd" filter="url(#fi1-glow)"/>
                 </svg>
               </div>
-              <h3>Predictive Price Forecasting</h3>
-              <p>Know not just where price might go — but how likely it is to get there. Every signal is backed by a calibrated confidence score, so you trade with conviction, not guesswork.</p>
+              <div className="feat-row-content">
+                <h3 className="feat-row-title">Predictive Price Forecasting</h3>
+                <p className="feat-row-desc">Know not just where price might go — but how likely it is to get there. Every signal is backed by a calibrated confidence score, so you trade with conviction, not guesswork.</p>
+              </div>
               <span className="fc-tag">Core Engine</span>
+              <div className="feat-row-photo">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80&fit=crop" alt="Multi-screen trading terminal showing live price charts" loading="lazy"/>
+              </div>
             </div>
 
-            <div className="feat-card reveal">
-              <div className="fc-icon-wrap">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <defs>
-                    <linearGradient id="lg-fi2" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient>
-                  </defs>
+            <div className="feat-row reveal">
+              <span className="feat-num">02</span>
+              <div className="feat-row-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                  <defs><linearGradient id="lg-fi2" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
                   <rect x="3" y="4"  width="26" height="6" rx="1.5" stroke="url(#lg-fi2)" strokeWidth="1" opacity="0.5"/>
                   <rect x="3" y="13" width="26" height="6" rx="1.5" stroke="url(#lg-fi2)" strokeWidth="1" opacity="0.5"/>
                   <rect x="3" y="22" width="26" height="6" rx="1.5" stroke="url(#lg-fi2)" strokeWidth="1" opacity="0.5"/>
@@ -430,14 +244,20 @@ export default function Home() {
                   <rect className="feat-infra-fill-3" x="3" y="22" width="26" height="6" rx="1.5" fill="#14fdfd"/>
                 </svg>
               </div>
-              <h3>Institutional AI Infrastructure</h3>
-              <p>Trained on NVIDIA DGX GPU clusters and cross-validated across two independent model seeds — the same calibre of infrastructure hedge funds build, delivered to you via a single API call.</p>
+              <div className="feat-row-content">
+                <h3 className="feat-row-title">Institutional AI Infrastructure</h3>
+                <p className="feat-row-desc">Trained on NVIDIA DGX GPU clusters and cross-validated across two independent model seeds — the same calibre of infrastructure hedge funds build, delivered via a single API call.</p>
+              </div>
               <span className="fc-tag">Infrastructure</span>
+              <div className="feat-row-photo">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=80&fit=crop" alt="NVIDIA GPU server racks in a high-performance data centre" loading="lazy"/>
+              </div>
             </div>
 
-            <div className="feat-card reveal">
-              <div className="fc-icon-wrap">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <div className="feat-row reveal">
+              <span className="feat-num">03</span>
+              <div className="feat-row-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
                   <defs>
                     <linearGradient id="lg-fi3" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient>
                     <filter id="fi3-glow"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -449,14 +269,20 @@ export default function Home() {
                   <circle cx="16" cy="16" r="2" fill="#14fdfd"/>
                 </svg>
               </div>
-              <h3>Real-Time Signal Delivery</h3>
-              <p>Each signal tells you the direction, the probability, and the strength — Strong, Moderate, or Uncertain. Full transparency into every call the model makes, so you decide with complete information, never in the dark.</p>
+              <div className="feat-row-content">
+                <h3 className="feat-row-title">Real-Time Signal Delivery</h3>
+                <p className="feat-row-desc">Each signal delivers direction, probability, and strength rating — Strong, Moderate, or Uncertain. Full transparency into every model call. You decide with complete information, never in the dark.</p>
+              </div>
               <span className="fc-tag">Signals</span>
+              <div className="feat-row-photo">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80&fit=crop" alt="Real-time trading data feed on professional monitor" loading="lazy"/>
+              </div>
             </div>
 
-            <div className="feat-card reveal">
-              <div className="fc-icon-wrap">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <div className="feat-row reveal">
+              <span className="feat-num">04</span>
+              <div className="feat-row-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
                   <circle className="feat-mkt-dot" cx="5"  cy="11" r="2.5" fill="#1455e6" style={{animationDelay:'0s'}}/>
                   <circle className="feat-mkt-dot" cx="11" cy="11" r="2.5" fill="#1468e8" style={{animationDelay:'0.4s'}}/>
                   <circle className="feat-mkt-dot" cx="17" cy="11" r="2.5" fill="#1490e8" style={{animationDelay:'1.1s'}}/>
@@ -469,17 +295,21 @@ export default function Home() {
                   <circle className="feat-mkt-dot" cx="29" cy="21" r="2.5" fill="#14d0f2" style={{animationDelay:'1.6s'}}/>
                 </svg>
               </div>
-              <h3>Top 10 Liquidity Coverage</h3>
-              <p>Dedicated models across BTC, ETH, SOL, XRP, BNB, DOGE, ADA, AVAX, LINK, and TON — on the 30m, 1H, 4H, and daily. Fewer markets, deeper insight. We go all-in on the pairs that actually move money.</p>
+              <div className="feat-row-content">
+                <h3 className="feat-row-title">Top 10 Liquidity Coverage</h3>
+                <p className="feat-row-desc">Dedicated models for BTC, ETH, SOL, XRP, BNB, DOGE, ADA, AVAX, LINK, and TON across 30m, 1H, 4H, and daily timeframes. Fewer markets, deeper insight. We go all-in on the pairs that move money.</p>
+              </div>
               <span className="fc-tag">Coverage</span>
+              <div className="feat-row-photo">
+                <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=400&q=80&fit=crop" alt="Cryptocurrency market depth and order book data" loading="lazy"/>
+              </div>
             </div>
 
-            <div className="feat-card reveal">
-              <div className="fc-icon-wrap">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <defs>
-                    <linearGradient id="lg-fi5" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#14fdfd"/><stop offset="1" stopColor="#1455e6"/></linearGradient>
-                  </defs>
+            <div className="feat-row reveal">
+              <span className="feat-num">05</span>
+              <div className="feat-row-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                  <defs><linearGradient id="lg-fi5" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#14fdfd"/><stop offset="1" stopColor="#1455e6"/></linearGradient></defs>
                   <line x1="3" y1="28" x2="29" y2="28" stroke="#1455e6" strokeWidth="0.5" opacity="0.3"/>
                   <rect className="feat-flow-bar" x="4"  y="14" width="3" height="14" rx="1" fill="url(#lg-fi5)" style={{animationDelay:'0s'}}/>
                   <rect className="feat-flow-bar" x="10" y="8"  width="3" height="20" rx="1" fill="url(#lg-fi5)" style={{animationDelay:'0.3s'}}/>
@@ -488,17 +318,21 @@ export default function Home() {
                   <rect className="feat-flow-bar" x="28" y="12" width="3" height="16" rx="1" fill="url(#lg-fi5)" style={{animationDelay:'0.45s'}}/>
                 </svg>
               </div>
-              <h3>Order Flow Intelligence</h3>
-              <p>Most models only see candles. Ours reads the tape. By analysing trade-level flow data, we detect institutional activity and momentum shifts happening inside each candle — before they show up in price.</p>
+              <div className="feat-row-content">
+                <h3 className="feat-row-title">Order Flow Intelligence</h3>
+                <p className="feat-row-desc">Most models only see candles. Ours reads the tape. By analysing trade-level flow data, we detect institutional activity and momentum shifts happening inside each candle — before they show up in price.</p>
+              </div>
               <span className="fc-tag">Order Flow</span>
+              <div className="feat-row-photo">
+                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&q=80&fit=crop" alt="Institutional trading floor with Bloomberg terminal and order flow data" loading="lazy"/>
+              </div>
             </div>
 
-            <div className="feat-card feat-card-glow reveal">
-              <div className="fc-icon-wrap">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <defs>
-                    <linearGradient id="lg-fi6" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient>
-                  </defs>
+            <div className="feat-row reveal">
+              <span className="feat-num">06</span>
+              <div className="feat-row-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                  <defs><linearGradient id="lg-fi6" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
                   <circle cx="16" cy="16" r="11" stroke="#1455e6" strokeWidth="1.5" fill="none" opacity="0.18"/>
                   <g className="feat-retrain-g">
                     <circle cx="16" cy="16" r="11" stroke="url(#lg-fi6)" strokeWidth="2" fill="none" strokeDasharray="50 19" strokeLinecap="round"/>
@@ -507,15 +341,31 @@ export default function Home() {
                   <circle cx="16" cy="16" r="1.8" fill="#14fdfd"/>
                 </svg>
               </div>
-              <h3>Weekly Adaptive Retraining</h3>
-              <p>Markets change. Our models keep up. Every week, a new model is trained on two years of fresh data — and only replaces the current one if it performs better. You always get the sharpest version, automatically.</p>
+              <div className="feat-row-content">
+                <h3 className="feat-row-title">Weekly Adaptive Retraining</h3>
+                <p className="feat-row-desc">Markets change. Our models keep up. Every week, a new model trains on two years of fresh data — and only goes live if it outperforms the current one. You always get the sharpest version, automatically.</p>
+              </div>
               <span className="fc-tag">AI Core</span>
+              <div className="feat-row-photo">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80&fit=crop" alt="Macro circuit board with intricate high-tech chip architecture" loading="lazy"/>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      <section id="platform">
+      <section id="platform" className="platform-section">
+        <div className="platform-bg" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1920&q=80&fit=crop"
+            alt=""
+            className="platform-bg-img"
+            decoding="async"
+            loading="lazy"
+          />
+          <div className="platform-bg-scrim" />
+        </div>
         <div className="section-wrap">
           <div className="section-eyebrow reveal">The Platform</div>
           <h2 className="section-title reveal">
@@ -617,10 +467,10 @@ export default function Home() {
             </div>
 
             <div className="annotation ann-tl">
-              <span className="ann-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <defs><linearGradient id="lg-ann1" x1="0" y1="0" x2="24" y2="24"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="url(#lg-ann1)" strokeWidth="1.8" strokeLinejoin="round" fill="none"/>
+              <span className="ann-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3.5 2" />
                 </svg>
               </span>
               <div>
@@ -629,16 +479,10 @@ export default function Home() {
               </div>
             </div>
             <div className="annotation ann-br">
-              <span className="ann-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <defs><linearGradient id="lg-ann2" x1="0" y1="0" x2="24" y2="24"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  <circle cx="12" cy="12" r="9" stroke="url(#lg-ann2)" strokeWidth="1.6"/>
-                  <circle cx="12" cy="12" r="4.5" stroke="url(#lg-ann2)" strokeWidth="1.4"/>
-                  <circle cx="12" cy="12" r="1.5" fill="url(#lg-ann2)"/>
-                  <line x1="12" y1="2" x2="12" y2="6" stroke="url(#lg-ann2)" strokeWidth="1.4"/>
-                  <line x1="12" y1="18" x2="12" y2="22" stroke="url(#lg-ann2)" strokeWidth="1.4"/>
-                  <line x1="2" y1="12" x2="6" y2="12" stroke="url(#lg-ann2)" strokeWidth="1.4"/>
-                  <line x1="18" y1="12" x2="22" y2="12" stroke="url(#lg-ann2)" strokeWidth="1.4"/>
+              <span className="ann-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M8.3 12.3l2.2 2.2 5.2-5.2" />
                 </svg>
               </span>
               <div>
