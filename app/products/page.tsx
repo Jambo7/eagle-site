@@ -121,11 +121,12 @@ export default function ProductsPage() {
               <span className="gradient-text">CLAW</span>
               <span className="prod-title-pro">Pro</span>
             </h2>
-            <p className="prod-subtitle">The Institutional Terminal</p>
+            <p className="prod-subtitle">The full institutional trading terminal, built for active crypto traders.</p>
             <p className="prod-desc">
-              CLAW is the full-spectrum trading terminal built for serious edge. Every layer of
-              Eagle AI Labs' predictive infrastructure is surfaced here — raw signals, model
-              confidence, order flow analytics, and live heatmaps — all in one professional interface.
+              CLAW Pro is the complete Eagle AI workstation — every signal, every timeframe, every
+              model output, surfaced in one professional interface. Raw signals, model confidence,
+              order flow analytics, and live heatmaps in a single terminal designed for traders who
+              want the complete picture.
             </p>
             <ul className="prod-features">
               <li>
@@ -232,11 +233,12 @@ export default function ProductsPage() {
             <h2 className="prod-title">
               CLAW <span className="gradient-text">Stealth</span>
             </h2>
-            <p className="prod-subtitle">AI-Powered. Action-Ready.</p>
+            <p className="prod-subtitle">AI signals for traders who don&apos;t have time to watch charts.</p>
             <p className="prod-desc">
               All the intelligence of Eagle AI Labs — stripped down, surfaced through AI agents,
-              and designed for traders who want serious edge without the complexity. Stealth watches
-              the markets for you. You act when it matters.
+              and delivered the moment it matters. Stealth watches the markets 24/7 and only
+              pings you when a high-conviction signal fires. You get the call, the confidence,
+              and the levels. You decide whether to trade.
             </p>
             <ul className="prod-features">
               <li>
@@ -303,11 +305,12 @@ export default function ProductsPage() {
           <h2 className="oracle-title reveal">
             The <span className="gradient-text oracle-title-glow">Oracle</span>
           </h2>
-          <p className="oracle-tagline reveal">Eagle AI Labs' most powerful intelligence — unified.</p>
+          <p className="oracle-tagline reveal">The multi-model consensus engine for serious capital — every Eagle AI model, voting in real time.</p>
           <p className="oracle-desc reveal">
-            The Oracle runs every Eagle AI model simultaneously, in real time. It scores each model's
-            live performance, tracks market state, and surfaces the highest-conviction signal at any
-            given moment. You don't choose a model. The Oracle does.
+            The Oracle runs every Eagle AI model simultaneously and scores each one against live
+            market conditions. It tracks which models are winning right now, weighs their conviction,
+            and surfaces the single highest-confidence call at any moment. You don&apos;t pick a
+            model — The Oracle picks the one you should be listening to.
           </p>
 
           <div className="oracle-pillars reveal">
