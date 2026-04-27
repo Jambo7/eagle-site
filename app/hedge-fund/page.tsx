@@ -1,4 +1,5 @@
 import MobileNavDrawer from "../components/mobile-nav-drawer";
+import SiteFooter from "../components/site-footer";
 
 export default function HedgeFundPage() {
   return (
@@ -309,6 +310,8 @@ export default function HedgeFundPage() {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

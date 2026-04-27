@@ -1,5 +1,6 @@
 import DataFlowDiagram from "../components/data-flow-diagram";
 import MobileNavDrawer from "../components/mobile-nav-drawer";
+import SiteFooter from "../components/site-footer";
 
 export default function TechnologyPage() {
   return (
@@ -270,6 +271,8 @@ export default function TechnologyPage() {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

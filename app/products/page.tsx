@@ -1,5 +1,6 @@
 import HeroIphoneMockup from "../components/hero-iphone-mockup";
 import MobileNavDrawer from "../components/mobile-nav-drawer";
+import SiteFooter from "../components/site-footer";
 
 export default function ProductsPage() {
   return (
@@ -397,6 +398,8 @@ export default function ProductsPage() {
           </a>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

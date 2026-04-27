@@ -1,4 +1,5 @@
 import MobileNavDrawer from "../components/mobile-nav-drawer";
+import SiteFooter from "../components/site-footer";
 
 export default function SolutionsPage() {
   return (
@@ -404,6 +405,8 @@ export default function SolutionsPage() {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

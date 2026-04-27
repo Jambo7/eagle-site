@@ -1,4 +1,4 @@
-export type MobileNavActive = "home" | "solutions" | "products" | "technology" | "hedge-fund";
+export type MobileNavActive = "home" | "solutions" | "products" | "technology" | "hedge-fund" | "legal";
 
 const NAV_ITEMS: { key: Exclude<MobileNavActive, "home">; href: string; label: string }[] = [
   { key: "solutions", href: "/solutions", label: "Solutions" },
