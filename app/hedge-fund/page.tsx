@@ -302,7 +302,9 @@ export default function HedgeFundPage() {
               >
                 Try Eagle AI Free
               </a>
-              <a href="/" className="btn btn-ghost">Back to Eagle AI Labs</a>
+              <a href="/#sample-signal" className="btn btn-outline">View Example Signals</a>
+              {/* TODO: swap mailto for calendar booking URL (Calendly / cal.com) once provisioned */}
+              <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20%E2%80%94%20Eagle%20AI%20Labs" className="btn btn-ghost">Book a Demo</a>
             </div>
           </div>
         </div>

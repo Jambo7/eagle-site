@@ -62,9 +62,9 @@ export default function Home() {
               Start Free Trial
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
-            <a href="#" className="btn btn-outline btn-lg">
+            <a href="#how-it-works" className="btn btn-outline btn-lg">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8 5L19 12L8 19V5Z" fill="currentColor"/></svg>
-              Watch Demo
+              See How It Works
             </a>
           </div>
 
@@ -585,11 +585,18 @@ export default function Home() {
             Institutional infrastructure, built for every type of trader.
           </p>
           <div className="cta-btns reveal">
-            <a href="#" className="btn btn-primary btn-lg">
+            <a
+              href="https://app.eagleailabs.com/claw/pretrade?utm_source=owned-eagle&utm_medium=website&utm_campaign=Claw&business_line=Claw-All&start=start-evergreen&end=end-evergreen&objective=registration&tactic=none+selected"
+              className="btn btn-primary btn-lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Start Free — No Card Required
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
             </a>
-            <a href="#" className="btn btn-outline btn-lg">Schedule a Demo</a>
+            <a href="#sample-signal" className="btn btn-outline btn-lg">View Example Signals</a>
+            {/* TODO: swap mailto for calendar booking URL (Calendly / cal.com) once provisioned */}
+            <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20%E2%80%94%20Eagle%20AI%20Labs" className="btn btn-ghost btn-lg">Book a Demo</a>
           </div>
           <p className="cta-fine reveal">14-day free trial &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; Cancel anytime</p>
         </div>
