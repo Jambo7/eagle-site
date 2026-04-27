@@ -148,6 +148,124 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ══════════════════════════════════════════
+          SAMPLE SIGNAL — concrete example of what a signal looks like.
+          Builds trust earlier in the journey; landing target for
+          "View Example Signals" CTAs elsewhere on the site.
+      ══════════════════════════════════════════ */}
+      <section id="sample-signal">
+        <div className="section-wrap">
+          <div className="ss-header">
+            <div className="section-eyebrow reveal">What You Actually Get</div>
+            <h2 className="section-title reveal">
+              Every Signal,<br />
+              <span className="gradient-text">Decoded</span>
+            </h2>
+            <p className="section-sub reveal">
+              No black box. No hype. Each Eagle AI signal arrives with four things you can act on the moment it fires.
+            </p>
+          </div>
+
+          <div className="ss-split reveal">
+            <div className="ss-card">
+              <div className="ss-card-head">
+                <span className="ss-card-badge"><span className="live-blink" /> Sample Signal · 4H</span>
+                <span className="ss-card-time">BTC / USDT</span>
+              </div>
+
+              <div className="ss-card-dir">
+                <span className="ss-field-label">Direction</span>
+                <span className="ss-dir-val ss-dir-long">LONG</span>
+              </div>
+
+              <div className="ss-card-conf">
+                <div className="ss-conf-head">
+                  <span className="ss-field-label">Confidence</span>
+                  <span className="ss-conf-val">89%</span>
+                </div>
+                <div className="ss-conf-bar">
+                  <div className="ss-conf-fill" style={{ width: '89%' }} />
+                </div>
+                <div className="ss-conf-tier">Strong</div>
+              </div>
+
+              <div className="ss-card-levels">
+                <div className="ss-level">
+                  <span className="ss-field-label">Entry</span>
+                  <span className="ss-level-val">$67,240</span>
+                </div>
+                <div className="ss-level">
+                  <span className="ss-field-label">Target</span>
+                  <span className="ss-level-val ss-level-target">$71,800</span>
+                </div>
+                <div className="ss-level">
+                  <span className="ss-field-label">Stop</span>
+                  <span className="ss-level-val ss-level-stop">$65,100</span>
+                </div>
+              </div>
+
+              <div className="ss-card-why">
+                <span className="ss-field-label ss-why-heading">Why this call fired</span>
+                <div className="ss-why-chips">
+                  <span className="ss-why-chip">Order flow divergence</span>
+                  <span className="ss-why-chip">4H MACD bullish cross</span>
+                  <span className="ss-why-chip">Funding rate trend</span>
+                  <span className="ss-why-chip">On-chain accumulation</span>
+                </div>
+              </div>
+
+              <p className="ss-card-footnote">Illustrative only. Live signals update every 30 minutes inside CLAW.</p>
+            </div>
+
+            <div className="ss-anatomy">
+              <ol className="ss-anatomy-list">
+                <li className="ss-anatomy-item">
+                  <span className="ss-anatomy-num">01</span>
+                  <div>
+                    <h4>Direction</h4>
+                    <p>Long, short, or hold. A probabilistic call on the next meaningful move — not a price prediction.</p>
+                  </div>
+                </li>
+                <li className="ss-anatomy-item">
+                  <span className="ss-anatomy-num">02</span>
+                  <div>
+                    <h4>Calibrated Confidence</h4>
+                    <p>A 0–100% probability plus a quality tier — Strong, Moderate, or Uncertain. When the model is unsure, it says so.</p>
+                  </div>
+                </li>
+                <li className="ss-anatomy-item">
+                  <span className="ss-anatomy-num">03</span>
+                  <div>
+                    <h4>Entry, Target, Stop</h4>
+                    <p>Actionable levels sized against the model&apos;s historical hit rate at this confidence tier.</p>
+                  </div>
+                </li>
+                <li className="ss-anatomy-item">
+                  <span className="ss-anatomy-num">04</span>
+                  <div>
+                    <h4>The Reasoning</h4>
+                    <p>Every signal shows the features that triggered it — order flow, momentum, funding, on-chain activity. Never a black box.</p>
+                  </div>
+                </li>
+              </ol>
+
+              <div className="ss-anatomy-cta">
+                <a
+                  href="https://app.eagleailabs.com/claw/pretrade?utm_source=owned-eagle&utm_medium=website&utm_campaign=Claw&business_line=Claw-All&start=start-evergreen&end=end-evergreen&objective=registration&tactic=none+selected"
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  See Live Signals
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+                </a>
+                <a href="#how-it-works" className="btn btn-ghost">How the models work →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="technology">
         <div className="section-wrap">
           <div className="tech-layout">

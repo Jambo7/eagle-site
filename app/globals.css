@@ -14,9 +14,11 @@
   --mid:          #1890d4;
   --border:       rgba(255, 255, 255, 0.08);
   --border-h:     rgba(255, 255, 255, 0.16);
-  --text:         #dce6f5;
-  --text-2:       #6b88a4;
-  --text-3:       #344e68;
+  /* Text ramp — slightly whiter for readability on dark bg */
+  --text-1:       #f2f5fa;
+  --text:         #e9eef6;
+  --text-2:       #9eb2c6;
+  --text-3:       #8499b0;
   --gradient:     linear-gradient(135deg, #1455e6 0%, #14c8f0 100%);
   --glow-b:       none;
   --glow-c:       none;
@@ -1120,6 +1122,205 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 .logo-slot:hover .partner-logo {
   opacity: 0.85;
+}
+
+/* ════════════════════════════════════
+   SAMPLE SIGNAL — "What You Actually Get"
+   Concrete example of a signal, built to land trust early.
+════════════════════════════════════ */
+#sample-signal {
+  position: relative;
+  border-top: 1px solid var(--border);
+}
+#sample-signal .ss-header {
+  max-width: 680px;
+  margin-bottom: 56px;
+}
+.ss-split {
+  display: grid;
+  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+/* Signal card (left) */
+.ss-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+}
+.ss-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20, 85, 230, 0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ss-card > * { position: relative; z-index: 1; }
+
+.ss-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.ss-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ss-card-time {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.ss-field-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ss-card-dir {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 22px;
+}
+.ss-dir-val {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.ss-dir-long { color: var(--cyan); }
+.ss-dir-short { color: #ff7a90; }
+
+.ss-card-conf { margin-bottom: 22px; }
+.ss-conf-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.ss-conf-val {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+.ss-conf-bar {
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.ss-conf-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--cyan) 100%);
+  border-radius: 3px;
+}
+.ss-conf-tier {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--mid);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ss-card-levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px 0;
+  margin-bottom: 18px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.ss-level { display: flex; flex-direction: column; gap: 4px; }
+.ss-level-val {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+.ss-level-target { color: var(--cyan); }
+.ss-level-stop { color: var(--text-2); }
+
+.ss-why-heading { display: block; margin-bottom: 10px; }
+.ss-why-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ss-why-chip {
+  padding: 5px 11px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: rgba(20, 85, 230, 0.08);
+  border: 1px solid rgba(20, 85, 230, 0.20);
+  border-radius: 20px;
+}
+
+.ss-card-footnote {
+  margin-top: 18px;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  font-style: italic;
+}
+
+/* Anatomy (right) */
+.ss-anatomy-list { display: flex; flex-direction: column; }
+.ss-anatomy-item {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.ss-anatomy-item:first-child { padding-top: 0; }
+.ss-anatomy-item:last-child { border-bottom: none; padding-bottom: 24px; }
+.ss-anatomy-num {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mid);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  padding-top: 3px;
+}
+.ss-anatomy-item h4 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 6px;
+}
+.ss-anatomy-item p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.ss-anatomy-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .ss-split { grid-template-columns: 1fr; gap: 40px; }
+  #sample-signal .ss-header { margin-bottom: 40px; }
+  .ss-card { padding: 20px; }
 }
 
 /* ════════════════════════════════════
