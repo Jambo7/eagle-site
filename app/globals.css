@@ -1,5 +1,5 @@
 /* =========================================================
-   Eagle AI Labs — styles.css
+   Eagle AI Labs, styles.css
    Dark theme · Electric blue gradient #1455e6 → #14fdfd
    ========================================================= */
 
@@ -14,7 +14,7 @@
   --mid:          #1890d4;
   --border:       rgba(255, 255, 255, 0.08);
   --border-h:     rgba(255, 255, 255, 0.16);
-  /* Text ramp — slightly whiter for readability on dark bg */
+  /* Text ramp, slightly whiter for readability on dark bg */
   --text-1:       #f2f5fa;
   --text:         #e9eef6;
   --text-2:       #9eb2c6;
@@ -57,12 +57,12 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   z-index: 1;
 }
 
-/* ── Utility: gradient text — single accent, not a gradient ── */
+/* ── Utility: gradient text, single accent, not a gradient ── */
 .gradient-text {
   color: var(--mid);
 }
 
-/* Hero "Before They Move" — the ONE gradient moment on the page */
+/* Hero "Before They Move", the ONE gradient moment on the page */
 .hero-gradient-line {
   display: inline-block;
   white-space: nowrap;
@@ -76,7 +76,11 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .section-wrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px var(--pad-x);
+  /* Tightened from 96px to 72px for a denser, more institutional rhythm.
+     Home sections that manage their own vertical padding strip this
+     inside their scoped overrides (see `.home-who .section-wrap`,
+     `.home-claw-suite .section-wrap`). */
+  padding: 72px var(--pad-x);
 }
 #technology .section-wrap {
   max-width: 1400px;
@@ -113,33 +117,59 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 10px 22px;
   border-radius: var(--r);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  transition: background 0.15s var(--ease), border-color 0.15s var(--ease), opacity 0.15s;
+  transition:
+    background 0.18s var(--ease),
+    border-color 0.18s var(--ease),
+    color 0.18s var(--ease),
+    transform 0.18s var(--ease),
+    box-shadow 0.18s var(--ease);
   white-space: nowrap;
+  cursor: pointer;
 }
+.btn:active { transform: translateY(1px); }
 .btn-primary {
   background: #1455e6;
   color: #fff;
+  border: 1px solid #2968f0;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 1px 0 rgba(0,0,0,0.25);
 }
-.btn-primary:hover { background: #1962f5; }
+.btn-primary:hover {
+  background: #1962f5;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 1px 0 rgba(0,0,0,0.25),
+    0 0 0 3px rgba(20,85,230,0.18);
+}
 .btn-ghost {
   background: transparent;
   color: var(--text-2);
   border: 1px solid var(--border);
 }
-.btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+.btn-ghost:hover {
+  color: var(--text-1);
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.025);
+}
 .btn-outline {
-  background: transparent;
-  color: var(--text-2);
+  background: rgba(10,16,32,0.35);
+  color: var(--text-1);
   border: 1px solid var(--border);
 }
-.btn-outline:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
-.btn-lg { padding: 11px 26px; font-size: 0.9rem; }
+.btn-outline:hover {
+  color: var(--text-1);
+  border-color: rgba(20,85,230,0.5);
+  background: rgba(20,85,230,0.08);
+}
+.btn-lg { padding: 12px 26px; font-size: 0.9rem; }
 
 /* ── Reveal animations ── */
 .reveal {
@@ -221,20 +251,37 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 .nav-links {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   flex: 1;
   justify-content: center;
 }
 .nav-links a {
-  padding: 6px 14px;
-  font-size: 0.835rem;
+  position: relative;
+  padding: 8px 14px;
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--text-2);
-  letter-spacing: 0.005em;
-  border-radius: 6px;
-  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.01em;
+  border-radius: 2px;
+  transition: color 0.18s var(--ease);
 }
-.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+/* Sharp institutional underline instead of rounded hover pill. */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 2px;
+  height: 1px;
+  background: var(--mid);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.22s var(--ease);
+}
+.nav-links a:hover { color: var(--text-1); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a[aria-current="page"] { color: var(--text-1); }
+.nav-links a[aria-current="page"]::after { transform: scaleX(1); }
 .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .nav-burger {
   display: none;
@@ -286,7 +333,10 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 #hero {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 0.52fr;
+  /* Right column sized so the iPhone mock always hits its max-width cap
+     (and matches the Products page rendering) across common desktop widths.
+     Previously 0.52fr made the phone shrink below 312px on ~1000–1200px screens. */
+  grid-template-columns: 1fr 0.72fr;
   align-items: center;
   gap: 64px;
   max-width: 1320px;
@@ -295,7 +345,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   position: relative;
 }
 
-/* Full-bleed hero background — breaks out of the 1320px max-width container
+/* Full-bleed hero background, breaks out of the 1320px max-width container
    by centering on the viewport with 100vw width */
 .hero-bg {
   position: absolute;
@@ -309,32 +359,119 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   z-index: 0;
 }
 
-/* Video covers the full viewport width */
-.hero-bg-video {
+/* Institutional hero backdrop, replaces the old video/terminal-screenshot
+   background. Three layers, all pure CSS:
+     1. A base radial gradient for depth (set on .hero-bg via ::before)
+     2. A subtle grid mesh (.hero-bg-grid) that dissolves at the edges
+     3. A soft blue stage glow behind the device (.hero-bg-glow)
+   Net effect: static, sharp, fintech. Bloomberg / Stripe / Linear family
+   rather than consumer product marketing. */
+
+/* Subtle 1px grid overlay, masked so it doesn't distract from copy. */
+.hero-bg-grid {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  opacity: 0.38;
-  filter: brightness(0.72) saturate(0.9);
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 35%, transparent 85%);
 }
 
-/* Gradient overlay — strong on the left to keep text legible,
-   opens up toward the right so the chart video breathes */
-.hero-bg::after {
+/* Soft blue stage glow behind the iPhone mock. Anchors the device and
+   gives the composition a subtle focal point. */
+.hero-bg-glow {
+  position: absolute;
+  top: 50%;
+  right: 12%;
+  transform: translate(30%, -50%);
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(20, 85, 230, 0.18) 0%,
+    rgba(20, 85, 230, 0.08) 35%,
+    rgba(20, 253, 253, 0.04) 60%,
+    transparent 75%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Base depth gradient, subtle radial from top-right. */
+.hero-bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(105deg,
-      rgba(4,8,15,0.82) 0%,
-      rgba(4,8,15,0.60) 35%,
-      rgba(4,8,15,0.28) 62%,
-      rgba(4,8,15,0.14) 100%
-    );
+    radial-gradient(1100px 520px at 80% -5%, rgba(20,85,230,0.10), transparent 60%),
+    radial-gradient(900px 420px at 0% 110%, rgba(20,200,240,0.045), transparent 60%),
+    linear-gradient(180deg, rgba(4,8,15,0) 0%, rgba(4,8,15,0.6) 100%);
   pointer-events: none;
+  z-index: 0;
+}
+
+/* Bottom fade, seamless transition into the marquee strip below. */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(4, 8, 15, 0.85) 75%,
+    var(--bg) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Status strip at the top of the hero, institutional "systems live"
+   signal. Tiny monospace readout, subtle dot, no motion beyond the
+   pulse. */
+.hero-status-bar {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: rgba(10,16,32,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  color: var(--text-2);
+  width: fit-content;
+}
+.hero-status-bar .hs-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ac6d6;
+  box-shadow: 0 0 8px rgba(74,198,214,0.7);
+  animation: hsPulse 2.4s ease-in-out infinite;
+}
+.hero-status-bar .hs-label {
+  font-weight: 700;
+  color: #9be3ee;
+}
+.hero-status-bar .hs-sep {
+  color: rgba(255,255,255,0.2);
+}
+@keyframes hsPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(74,198,214,0.7); }
+  50%      { opacity: 0.55; box-shadow: 0 0 4px rgba(74,198,214,0.35); }
 }
 
 .hero-floaters { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: -1; }
@@ -353,7 +490,14 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 
 .hero-grid-overlay { display: none; }
 
-.hero-content { display: flex; flex-direction: column; gap: 0; }
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* Sit above the layered hero background (image, glow, gradient, bottom fade) */
+  position: relative;
+  z-index: 3;
+}
 
 .hero-eyebrow {
   display: inline-flex;
@@ -484,9 +628,90 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .hero-chart {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 0;
+  /* Sit above the layered hero background (image, glow, gradient, bottom fade) */
   position: relative;
+  z-index: 3;
+}
+
+/* ─── "AI at the core" editorial overline above the hero device ───
+   A confident chapter-title lockup that sits flush on top of the iPhone
+   and frames it as a deliberate product shot. Three-row stack:
+     1. Hairline rule (gradient fade, ~80px)
+     2. Bold display headline with gradient accent on "core"
+     3. Tiny mono caption underneath
+   Width is capped to match the iPhone bezel (340px) so the typography
+   "fits masterfully" within the same vertical column. */
+.hero-device-overline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  /* Sized off the headline rather than the iPhone bezel so "AI at the core"
+     stays on one line at the headline's full clamp. The rule and caption
+     still center against this width. */
+  max-width: 420px;
+  margin: 0 auto 26px;
+  text-align: center;
+}
+.hdo-rule {
+  display: block;
+  width: 96px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 30%,
+    rgba(58, 161, 207, 0.55) 50%,
+    rgba(255, 255, 255, 0.18) 70%,
+    transparent 100%
+  );
+}
+.hdo-text {
+  font-family: var(--font-h);
+  font-size: clamp(2rem, 3.4vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+}
+.hdo-text-accent {
+  display: inline-block;
+  font-style: oblique 8deg;
+  font-weight: 700;
+  background: linear-gradient(90deg, #2d6df2 0%, #3aa1cf 55%, #4ac6d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Fine optical correction so the slanted letterforms sit flush with
+     the upright "AI at the" lead-in at the same baseline. */
+  margin-left: 0.06em;
+  padding-right: 0.04em;
+}
+.hdo-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .hero-device-overline {
+    max-width: 340px;
+    margin-bottom: 22px;
+    gap: 12px;
+  }
+  .hdo-text { font-size: clamp(1.8rem, 6vw, 2.3rem); }
+  .hdo-rule { width: 78px; }
+  .hdo-tag { font-size: 0.58rem; letter-spacing: 0.2em; }
+}
+@media (max-width: 380px) {
+  .hdo-text { font-size: 1.65rem; letter-spacing: -0.03em; }
 }
 /* ═══════════════════════════════════════════════
    Realistic Portrait iPhone 15 Mockup
@@ -495,36 +720,76 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .iphone-frame {
   position: relative;
   width: 100%;
-  max-width: 312px;
+  max-width: 340px;
   margin: 0 auto;
   aspect-ratio: 393 / 852;
 
-  /* Space Black — slight metallic recovery at bottom edge mimics real anodised finish */
+  /* Space Black, slight metallic recovery at bottom edge mimics real anodised finish */
   background: linear-gradient(160deg, #1d1d1f 0%, #121214 38%, #080809 68%, #0d0d0f 100%);
   /* Slightly tighter radius = more "engineered", less "puffy" */
   border-radius: 46px;
   padding: 9px 8px 10px;
 
+  /* Cinematic, grounded pose. The device used to drift / bob in a
+     `iphoneFloatSway` loop, which read as "playful render". For the new
+     editorial hero we want a deliberate, anchored product shot: deeper
+     perspective (1400px), shallower tilt (rotateY -3.5deg / rotateX 1deg),
+     denser contact shadow directly under the device, and a softer ambient
+     bleed that places it in a room instead of a void. The motion lives in
+     a separate `.iphone-frame::after` pedestal glow that breathes very
+     slowly, not in the device itself. */
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.11),
-    inset 1px 0 0 rgba(255,255,255,0.05),
+    /* Top highlight, light from above catches the upper bezel */
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    /* Right rim light, the leading edge that's tilted toward the camera
+       picks up studio fill, giving the chassis a tangible side */
+    inset -1px 0 0 rgba(255,255,255,0.09),
+    /* Left side recedes into shadow, slight darkening on the far edge */
+    inset 1px 0 0 rgba(255,255,255,0.03),
+    /* Subtle bottom shadow inside chassis */
+    inset 0 -1px 0 rgba(0,0,0,0.5),
     inset 0 0 0 1px rgba(255,255,255,0.05),
     0 0 0 1px rgba(0,0,0,0.92),
-    /* contact shadow — physically grounds the device */
-    0 2px 5px  rgba(0,0,0,0.65),
-    /* mid diffused */
-    0 14px 32px rgba(0,0,0,0.45),
-    /* far soft shadow — wide bleed */
-    0 32px 64px rgba(0,0,0,0.28),
-    /* very far ambient — makes it feel placed in a scene */
-    0 48px 90px rgba(0,0,0,0.12);
+    /* tight contact shadow directly beneath the chassis */
+    0 4px 10px rgba(0,0,0,0.78),
+    /* mid diffused, slight side-offset matches the light direction */
+    -2px 18px 38px rgba(0,0,0,0.5),
+    /* far soft shadow, wide bleed */
+    -4px 40px 80px rgba(0,0,0,0.32),
+    /* very far ambient, makes it feel placed in a scene */
+    -6px 60px 120px rgba(0,0,0,0.14);
+    /* Removed the decorative blue halo (`0 0 28px rgba(80,120,190,...)`).
+       Anodised aluminium doesn't emit light; the screen content already
+       gives the device a believable glow without a coloured corona. */
+  /* A touch more dimensional. -8deg / 2deg reads as a real product shot
+     under a 3/4 studio key light without tipping back into "playful render". */
+  transform: perspective(1400px) rotateY(-8deg) rotateX(2deg);
+  transform-style: preserve-3d;
+  will-change: auto;
+}
 
-  /* faint ambient edge light — phone picks up a hint of screen colour */
-  filter: drop-shadow(0 0 18px rgba(80,120,190,0.07));
-  /* Resting pose — overridden by iphoneFloatSway while animating; kept for reduced-motion */
-  transform: perspective(1000px) rotateY(-9deg) rotateX(2deg);
-  animation: iphoneFloatSway 10s ease-in-out infinite;
-  will-change: transform;
+/* Pedestal: a wide elliptical glow that sits under the device on the hero
+   stage, grounding it to a "floor" instead of letting it float in space.
+   Static. The previous slow 16s breath was removed — institutional product
+   shots don't pulse, and the device's own screen content provides all the
+   "life" the composition needs. */
+.iphone-frame::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -42px;
+  width: 130%;
+  height: 60px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse at center,
+      rgba(20, 85, 230, 0.20) 0%,
+      rgba(20, 85, 230, 0.07) 35%,
+      transparent 70%);
+  filter: blur(14px);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* ── Physical buttons (portrait: vertical on the sides) ── */
@@ -542,34 +807,50 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 
 /* ── Screen ── */
 .iphone-screen {
-  /* Neutral near-black, no blue tint — glass sitting against dark display panel */
+  /* Neutral near-black, no blue tint, glass sitting against dark display panel */
   background: #07080b;
-  /* outer(46) minus bezel(8) = 38px — keeps ratio consistent */
+  /* outer(46) minus bezel(8) = 38px, keeps ratio consistent */
   border-radius: 38px;
   overflow: hidden;
   position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* Glass depth: inner shadow where screen panel meets the frame edge */
+  /* Glass depth: inner shadow where screen panel meets the frame edge.
+     Slightly deeper top well (0.62 vs 0.50) reproduces the small dark
+     recess you see on real iPhones where the cover glass meets the
+     bezel — the eye reads this micro-detail as physical realism. */
   box-shadow:
-    inset 0 0 0 0.5px rgba(255,255,255,0.05),
-    inset 0 1px 5px  rgba(0,0,0,0.50),
-    inset 0 -1px 3px rgba(0,0,0,0.30);
+    inset 0 0 0 0.5px rgba(255,255,255,0.06),
+    inset 0 1px 5px  rgba(0,0,0,0.62),
+    inset 0 -1px 3px rgba(0,0,0,0.32);
 }
-/* Ambient glass reflection — very faint highlight toward top-left
-   (consistent with the rotateY(-9deg) tilt catching overhead light) */
+/* Glass reflection. Two layered highlights suggest the screen is real glass
+   sitting under a 3/4 studio key light from upper-right (matches the device
+   tilt). Primary specular sweeps further across the top half (stops eased
+   from 18%/40% to 26%/55%) for a more believable wrap, the way real cover
+   glass distributes a directional key light rather than spotting it in a
+   single corner. */
 .iphone-screen::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(
-    168deg,
-    rgba(255,255,255,0.038) 0%,
-    rgba(255,255,255,0.012) 22%,
-    transparent 48%
-  );
+  background:
+    /* Primary specular streak from upper-right */
+    linear-gradient(
+      205deg,
+      rgba(255,255,255,0.085) 0%,
+      rgba(255,255,255,0.028) 26%,
+      transparent 55%
+    ),
+    /* Secondary fill from upper-left */
+    linear-gradient(
+      165deg,
+      rgba(255,255,255,0.045) 0%,
+      rgba(255,255,255,0.012) 22%,
+      transparent 50%
+    );
   z-index: 32;
   pointer-events: none;
 }
@@ -584,13 +865,13 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   left: 50%;
   transform: translateX(-50%);
   width: 88px;
-  height: 24px;           /* flat pill — matches real DI proportion */
+  height: 24px;           /* flat pill, matches real DI proportion */
   background: #000;
   border-radius: 12px;   /* = height/2, fully rounded ends */
   z-index: 30;
   pointer-events: none;
 }
-/* Front camera dot — sits right of center inside the pill */
+/* Front camera dot, sits right of center inside the pill */
 .iphone-island::after {
   content: '';
   position: absolute;
@@ -631,8 +912,11 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* Very slight dimming — real phone screens aren't at max brightness */
-  filter: brightness(0.90);
+  /* NOTE: `filter: brightness(...)` was removed here. Filters create a new
+     rasterization context that, when combined with the frame's 3D perspective
+     transform, caused the app screenshots to render at CSS resolution instead
+     of device resolution, producing visibly soft/pixelated output. The phone
+     screenshots already look natural at full brightness. */
 }
 
 /* Chart header: tighter for narrow portrait layout */
@@ -669,8 +953,230 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .iphone-screen .cc-val     { font-size: 0.6rem; }
 .iphone-screen .cc-bar     { width: 56px; height: 3px; }
 
+/* ═══════════════════════════════════════════════════════════════════
+   Floating Display Mockup
+   Premium-display product showcase — the screen is presented floating
+   above its own soft shadow, with no stand. Read as "studio product
+   shot, clean white-room key light from above-right".
+
+   Anatomy (top → bottom):
+     .monitor-mockup        ← outer container + soft floor shadow
+       .monitor-frame       ← anodised chassis around the display
+         .monitor-bezel     ← black inset bezel (16:10 aspect)
+           .monitor-screen  ← dark glass cavity holding the screenshot
+             img.monitor-img
+             .monitor-glass ← directional specular reflection
+         .monitor-chin      ← small bezel band below the screen
+       .monitor-caption     ← optional monospace caption
+
+   Lighting matches the iPhone: 3/4 key from upper-right, soft fill from
+   upper-left, side-offset cast shadows fall to the left.
+   ═══════════════════════════════════════════════════════════════════ */
+.monitor-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  /* Room only for the soft floor shadow — no stand */
+  padding-bottom: 26px;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The frame: ultra-thin anodised aluminium chassis around the display.
+   Refined for premium-display realism — bezel proportions tightened
+   (6px sides, 7px top, ~13px chin), highlight intensities reduced ~30%
+   so the chassis stops shouting "rendered" and starts reading as a flat
+   anodised surface under soft studio lighting. */
+.monitor-frame {
+  position: relative;
+  width: 100%;
+  background:
+    /* Single soft top sheen — no harsh bottom band, the box-shadow
+       already provides the lower edge definition. */
+    linear-gradient(180deg,
+      rgba(255,255,255,0.028) 0%,
+      transparent 14%),
+    /* Cleaner three-stop body gradient (was four). Real anodised black
+       has a smoother falloff than aggressive multi-stop renders. */
+    linear-gradient(165deg, #1a1a1c 0%, #121214 50%, #0b0b0d 100%);
+  border-radius: 10px;
+  padding: 7px 6px 0;
+  box-shadow:
+    /* Top highlight, softened */
+    inset 0 1px 0 rgba(255,255,255,0.085),
+    /* Right rim catches the studio key — toned down */
+    inset -1px 0 0 rgba(255,255,255,0.05),
+    /* Left edge recedes */
+    inset 1px 0 0 rgba(255,255,255,0.02),
+    /* Inner hairline ring */
+    inset 0 0 0 1px rgba(255,255,255,0.025),
+    /* Outer edge — softer than before so it stops looking "stamped" */
+    0 0 0 1px rgba(0,0,0,0.7),
+    /* Tight contact shadow */
+    0 3px 9px rgba(0,0,0,0.6),
+    /* Mid diffused, side-offset matches light direction */
+    -2px 14px 32px rgba(0,0,0,0.4),
+    /* Far soft */
+    -4px 32px 70px rgba(0,0,0,0.25),
+    /* Very far ambient places it in a room */
+    -6px 52px 110px rgba(0,0,0,0.1);
+}
+
+/* Bezel: the inset matte-black surround that frames the display.
+   Tighter radius (4px vs 5px) reads as more "engineered". */
+.monitor-bezel {
+  position: relative;
+  background: #000;
+  border-radius: 4px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,255,255,0.045),
+    inset 0 1px 3px rgba(0,0,0,0.5),
+    inset 0 -1px 2px rgba(0,0,0,0.25);
+}
+
+/* Screen: holds the actual screenshot */
+.monitor-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #07080b;
+  overflow: hidden;
+}
+.monitor-img {
+  width: 100%;
+  height: 100%;
+  /* Source is now the real 16:10 CLAW Pro terminal (1024×640) which
+     matches the bezel's aspect ratio exactly, so contain prevents any
+     crop while cover would have hidden the bottom token rail. */
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  image-rendering: high-quality;
+  -ms-interpolation-mode: bicubic;
+  /* Promote to its own compositor layer so the browser uses higher
+     quality scaling on retina screens when the image is enlarged. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Glass reflection — softer than before. Drops the primary specular
+   from 0.07 to 0.05 so the screen content stays the visual focus
+   instead of competing with a "shiny render" sheen. */
+.monitor-glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      205deg,
+      rgba(255,255,255,0.05) 0%,
+      rgba(255,255,255,0.018) 28%,
+      transparent 58%
+    ),
+    linear-gradient(
+      165deg,
+      rgba(255,255,255,0.025) 0%,
+      rgba(255,255,255,0.008) 24%,
+      transparent 52%
+    );
+  z-index: 5;
+}
+
+/* Chin: small aluminium band below the screen. Same chassis material,
+   the bezel is intentionally taller at the bottom than the top/sides
+   so the device reads as a real-world monitor (every desktop monitor
+   has a chin — it's where the brand wordmark lives). */
+.monitor-chin {
+  height: 12px;
+  width: 100%;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.018) 0%,
+    transparent 50%,
+    rgba(0,0,0,0.22) 100%);
+}
+
+/* Floating shadow under the display.
+   No stand — the display floats with only a soft directional shadow
+   underneath it, like a premium product hero shot in a white-room
+   studio (Apple Pro Display XDR product page reference).
+
+   Two stacked layers:
+     1. Tighter near-shadow — defines the bottom edge of the device,
+        slightly side-offset so the cast falls naturally to the left
+        in line with the established 3/4 upper-right key light.
+     2. Wider ambient soft-shadow — gives the floor that "deep room"
+        falloff so the device doesn't appear to be hovering against
+        a flat backdrop.
+
+   Pure neutral black, no colour tint — institutional product shots
+   never colour their floor shadows. */
+.monitor-mockup::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 75%;
+  height: 32px;
+  transform: translateX(-50%);
+  background:
+    /* Tighter near-shadow, slightly offset to match light direction */
+    radial-gradient(ellipse at 48% 0%,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.25) 25%,
+      rgba(0, 0, 0, 0.08) 55%,
+      transparent 80%);
+  filter: blur(14px);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: -1;
+}
+/* Wider ambient floor-shadow for atmospheric depth */
+.monitor-mockup::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 95%;
+  height: 50px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse at center,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.06) 45%,
+      transparent 75%);
+  filter: blur(28px);
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Optional caption sits below the device, monospace, restrained */
+.monitor-caption {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+}
+
+/* Responsive: shrink chassis + floor shadow proportionally on small screens */
+@media (max-width: 768px) {
+  .monitor-mockup { padding-bottom: 18px; }
+  .monitor-frame { padding: 5px 4px 0; border-radius: 8px; }
+  .monitor-chin { height: 10px; }
+  .monitor-mockup::after { height: 26px; width: 70%; }
+  .monitor-mockup::before { height: 40px; width: 90%; bottom: -8px; }
+}
+
 /* ════════════════════════════════════════════════════
-   Phone App UI  —  inside the iPhone screen
+   Phone App UI ,  inside the iPhone screen
    Hierarchy:  topbar → signal card → chart → metrics
 ════════════════════════════════════════════════════ */
 .iphone-screen .chart-card {
@@ -678,6 +1184,92 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   flex-direction: column;
   gap: 0;
   overflow: hidden;
+}
+
+/* ── App screenshot slideshow inside the iPhone screen ──
+   Six CLAW Stealth / Ask Claw screens cross-fade on a 30s loop.
+   Timing is driven entirely by CSS, each slide has the same keyframe
+   and a staggered `animation-delay` set inline in the component.
+
+   Layer stack (bottom → top):
+     .iphone-slides (z:1) → .chart-hover-cta (z:20) → glass reflection (z:32)
+   The decorative island and home bar are intentionally NOT rendered
+   around the slideshow because the screenshots already include their
+   own app chrome. */
+.iphone-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  background: #07080b;
+}
+.iphone-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* `contain` preserves the full screenshot, previously `cover` was cropping
+     the edges of the app UI. The slides container background (#07080b)
+     already matches the screen colour, so any tiny letterbox blends in. */
+  object-fit: contain;
+  object-position: center center;
+  opacity: 0;
+  animation: phoneSlideCycle 30s ease-in-out infinite;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  will-change: opacity;
+  /* Hint to modern Chrome/Safari to use the highest quality downscaling
+     filter (Lanczos / bicubic) rather than the cheaper bilinear default
+     used inside a 3D-transformed subtree. Helps recover a touch of
+     sharpness when the iPhone is rotated in 3D space.
+     NOTE: this is only a hint, the 3D rotation still rasterises children
+     at CSS density. The real fix for sharpness is higher-DPI source
+     screenshots (Chrome DevTools at DPR 3, or a real iPhone). */
+  image-rendering: high-quality;
+  -ms-interpolation-mode: bicubic;
+  /* Force its own compositor layer so the browser keeps it as a separate
+     texture instead of merging it into the rasterised 3D parent layer. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+/* 30s cycle, 6 slides × 5s each, with fades aligned so each outgoing slide
+   cross-fades through the same 0.6s window as the next slide's fade-in
+   (no dark gap between slides).
+
+   Per-slide internal timing:
+     0s   → 0.6s   fade in
+     0.6s → 5.0s   hold (4.4s)  ← slide N+1 begins fading in at 5.0s
+     5.0s → 5.6s   fade out (perfectly overlaps slide N+1's fade in)
+     5.6s → 30s   invisible
+
+   Tighter than the previous 1s fade because institutional dashboards
+   (Bloomberg, FactSet, TradeStation) use decisive ~0.5–0.7s transitions
+   rather than slow marketing dissolves.
+
+   Percentages of the 30s cycle:
+     0%      → opacity 0  (fade in start)
+     2%      → opacity 1  (fade in done, 0.6s)
+     16.67%  → opacity 1  (hold end, fade out start, 5.0s)
+     18.67%  → opacity 0  (fade out done, 5.6s)
+     100%    → opacity 0  (invisible) */
+@keyframes phoneSlideCycle {
+  0%      { opacity: 0; }
+  2%      { opacity: 1; }
+  16.67%  { opacity: 1; }
+  18.67%  { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+/* Respect users who prefer reduced motion, show the first slide only. */
+@media (prefers-reduced-motion: reduce) {
+  .iphone-slide {
+    animation: none !important;
+    opacity: 0;
+  }
+  .iphone-slide:first-child {
+    opacity: 1;
+  }
 }
 
 /* Pair/price subtitle row inside the signal card */
@@ -696,7 +1288,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .pui-change.pos { color: #1eb87a; }
 .pui-change.neg { color: #d94060; }
 
-/* ── AI Signal card — main focus ── */
+/* ── AI Signal card, main focus ── */
 /* island top(10) + height(24) + comfortable gap(14) = 48px safe zone */
 .pui-signal {
   margin: 48px 12px 0;
@@ -788,7 +1380,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 .pui-trade-btn:hover { background: #22cc88; }
 
-/* ── Chart — fills remaining space, muted ── */
+/* ── Chart, fills remaining space, muted ── */
 .pui-chart {
   flex: 1;
   min-height: 0;
@@ -902,7 +1494,6 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   opacity: 1;
   pointer-events: auto;
 }
-.chc-glow { display: none; }
 .chc-text {
   position: relative;
   display: inline-flex;
@@ -1125,7 +1716,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 
 /* ════════════════════════════════════
-   SAMPLE SIGNAL — "What You Actually Get"
+   SAMPLE SIGNAL, "What You Actually Get"
    Concrete example of a signal, built to land trust early.
 ════════════════════════════════════ */
 #sample-signal {
@@ -1328,7 +1919,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 ════════════════════════════════════ */
 #features { background: linear-gradient(180deg, transparent 0%, rgba(20, 85, 230, 0.03) 50%, transparent 100%); }
 
-/* Legacy grid hidden — replaced by feat-list */
+/* Legacy grid hidden, replaced by feat-list */
 .features-grid { display: none; }
 
 /* ── Numbered feature rows ── */
@@ -1512,7 +2103,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   overflow: hidden;
 }
 
-/* Candle / terminal texture — same asset as products hero; scroll parallax via main.js */
+/* Candle / terminal texture, same asset as products hero; scroll parallax via main.js */
 .platform-bg {
   position: absolute;
   inset: 0;
@@ -1538,7 +2129,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .platform-bg-scrim {
   position: absolute;
   inset: 0;
-  /* Single strong vignette + one directional wash — avoids stacked competing glows */
+  /* Single strong vignette + one directional wash, avoids stacked competing glows */
   background:
     radial-gradient(
       ellipse 115% 95% at 50% 48%,
@@ -1777,7 +2368,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   50%       { opacity: 0.7; transform: scale(1.15); }
 }
 
-/* Data-flow schematic — slow, low-amplitude drift (reads as load / throughput, not strobing) */
+/* Data-flow schematic, slow, low-amplitude drift (reads as load / throughput, not strobing) */
 .nn-conn-1 { animation: nnDataFlow 20s ease-in-out infinite; }
 .nn-conn-2 { animation: nnDataFlow 20s ease-in-out infinite -6.5s; }
 .nn-conn-3 { animation: nnDataFlow 20s ease-in-out infinite -13s; }
@@ -1826,7 +2417,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   }
 }
 
-/* Forward curve — technology page product screenshot (static, institutional framing) */
+/* Forward curve, technology page product screenshot (static, institutional framing) */
 .fc-wrap {
   margin-top: 56px;
   background: #06090f;
@@ -1852,7 +2443,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
    CTA SECTION
 ════════════════════════════════════ */
 #cta { text-align: left; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
-.cta-wrap { max-width: 1200px; margin: 0 auto; padding: 100px var(--pad-x); position: relative; }
+.cta-wrap { max-width: 1200px; margin: 0 auto; padding: 76px var(--pad-x); position: relative; }
 .cta-glow { display: none; }
 .cta-wrap > * { position: relative; z-index: 1; }
 .cta-title { font-size: clamp(2.4rem, 5vw, 4.4rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 16px; color: #fff; }
@@ -1976,14 +2567,63 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   transition: all 0.2s;
 }
 .footer-socials a:hover { color: var(--cyan); border-color: rgba(20, 253, 253, 0.3); background: rgba(20, 253, 253, 0.06); }
-.footer-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+/* 3 link columns mirror the existing eagleailabs.com footer structure
+   (Products / Resources / Other). Previous layout was 4 columns, dropping
+   to 3 gives each column a bit more breathing room and matches the old site. */
+.footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 .fl-col { display: flex; flex-direction: column; gap: 10px; }
-.fl-head { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-2); margin-bottom: 6px; }
-.fl-col a { font-size: 0.85rem; color: var(--text-3); transition: color 0.2s; }
-.fl-col a:hover { color: var(--text); }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 28px; border-top: 1px solid var(--border); }
-.footer-bottom p { font-size: 0.8rem; color: var(--text-3); }
+.fl-head {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+.fl-col a {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  transition: color 0.18s var(--ease);
+  text-decoration: none;
+}
+.fl-col a:hover { color: var(--text-1); }
+
+/* Bottom legal bar, two-row layout on desktop:
+   Left: copyright + AI disclaimer
+   Right: inline nav (Privacy | Cookies | Terms | Risk Disclaimer | Conflict of Interest | Changelog)
+   Mirrors the existing eagleailabs.com footer pattern. */
+.footer-bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.footer-bottom-copy { display: flex; flex-direction: column; gap: 6px; }
+.footer-bottom p { font-size: 0.8rem; color: var(--text-3); margin: 0; }
 .footer-disclaimer { max-width: 500px; opacity: 0.6; }
+
+.footer-legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+  font-size: 0.8rem;
+}
+.footer-legal-nav a {
+  color: var(--text-3);
+  transition: color 0.2s;
+}
+.footer-legal-nav a:hover { color: var(--text); }
+.fln-sep {
+  color: var(--text-3);
+  opacity: 0.4;
+  user-select: none;
+}
 
 /* ════════════════════════════════════
    KEYFRAME ANIMATIONS
@@ -2031,7 +2671,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   50% { transform: translateY(-8px); }
 }
 
-/* Subtle float + sway — desktop (3D tilt preserved) */
+/* Subtle float + sway, desktop (3D tilt preserved) */
 @keyframes iphoneFloatSway {
   0%, 100% {
     transform: perspective(1000px) rotateY(-9deg) rotateX(2deg) translateY(0) rotateZ(0deg);
@@ -2047,7 +2687,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   }
 }
 
-/* Flat layout on small screens — gentle vertical bob + tiny roll */
+/* Flat layout on small screens, gentle vertical bob + tiny roll */
 @keyframes iphoneFloatSwayMobile {
   0%, 100% { transform: translateY(0) rotateZ(0deg); }
   25% { transform: translateY(-4px) rotateZ(0.5deg); }
@@ -2066,17 +2706,23 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 ════════════════════════════════════ */
 @media (max-width: 1100px) {
   .footer-top { grid-template-columns: 1fr; gap: 48px; }
-  .footer-links { grid-template-columns: repeat(2, 1fr); }
+  .footer-links { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .footer-bottom { flex-direction: column; gap: 16px; }
+  .footer-legal-nav { justify-content: flex-start; }
 }
 @media (max-width: 900px) {
   #hero { grid-template-columns: 1fr; gap: 32px; padding: 100px var(--pad-x) 56px; }
   .chart-card { transform: none !important; }
   .iphone-frame {
-    transform: none;
-    animation: iphoneFloatSwayMobile 10s ease-in-out infinite;
+    transform: perspective(1400px) rotateY(0deg) rotateX(0deg);
     border-radius: 44px;
-    max-width: 280px;
+    max-width: 300px;
     padding: 8px 7px 9px;
+  }
+  .iphone-frame::after {
+    bottom: -36px;
+    width: 110%;
+    height: 50px;
   }
   .iphone-screen { border-radius: 38px; }
   .ib-silent, .ib-vol-up, .ib-vol-dn, .ib-power { display: none; }
@@ -2118,7 +2764,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
     min-height: 46px;
     flex: none;
   }
-  /* Snappier scroll reveals — same easing, shorter travel (desktop .reveal unchanged above 768px) */
+  /* Snappier scroll reveals, same easing, shorter travel (desktop .reveal unchanged above 768px) */
   .reveal {
     transform: translateY(10px);
     transition: opacity 0.42s var(--ease), transform 0.42s var(--ease);
@@ -2410,7 +3056,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 ══════════════════════════════════════════ */
 .hf-page { overflow-x: hidden; }
 
-/* Strip section-wrap vertical padding — sections control their own spacing */
+/* Strip section-wrap vertical padding, sections control their own spacing */
 .hf-page .section-wrap {
   padding-top: 0;
   padding-bottom: 0;
@@ -2902,7 +3548,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .products-page { position: relative; min-height: 100vh; background: var(--bg); color: var(--text-1); overflow-x: hidden; }
 .products-page #bg-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
-/* ── Banner hero — split ── */
+/* ── Banner hero, split ── */
 .prod-banner {
   display: grid;
   grid-template-columns: 52% 48%;
@@ -3005,7 +3651,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   margin: 0 24px;
 }
 
-/* ── Right — 3D chart ── */
+/* ── Right, 3D chart ── */
 .prod-banner-right {
   position: relative;
   overflow: hidden;
@@ -3123,7 +3769,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   letter-spacing: inherit;
 }
 
-/* CLAW Pro — full dashboard screenshot */
+/* CLAW Pro, full dashboard screenshot */
 .prod-visual--claw-pro {
   display: flex;
   justify-content: center;
@@ -3148,7 +3794,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   vertical-align: middle;
 }
 
-/* CLAW Stealth — homepage iPhone mock aligned in product grid */
+/* CLAW Stealth, homepage iPhone mock aligned in product grid */
 .prod-visual--stealth-iphone {
   display: flex;
   justify-content: center;
@@ -3595,7 +4241,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   pointer-events: none;
   opacity: 0.32;
 }
-/* Glow rings — subdued, institutional */
+/* Glow rings, subdued, institutional */
 .oracle-glow-ring {
   position: absolute;
   left: 50%;
@@ -4246,4 +4892,2855 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   .sol-pillar-sep { margin: 0 16px; height: 30px; }
   .sol-card       { padding: 28px 20px; }
   .sol-cta-section { padding: 60px 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CLAW SUITE  (/products)
+   Institutional fintech product page, sharp, typographic, restrained.
+   Prefix: .cs-*  (enterprise form uses .ef-*)
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Page wrapper ───────────────────────────────────────────────── */
+.claw-suite-page {
+  position: relative;
+  padding-top: var(--nav-h);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Shared utilities ───────────────────────────────────────────── */
+.cs-mono {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, 'SF Mono',
+    Consolas, monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+  letter-spacing: -0.01em;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   HERO, typographic, institutional, suite-first
+   ─────────────────────────────────────────────────────────────── */
+.cs-hero {
+  position: relative;
+  padding: clamp(72px, 12vh, 140px) var(--pad-x) clamp(56px, 8vh, 96px);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(1100px 520px at 80% -15%, rgba(20,85,230,0.14), transparent 60%),
+    radial-gradient(900px 420px at 0% 110%, rgba(20,200,240,0.07), transparent 60%),
+    var(--bg);
+}
+.cs-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%);
+}
+.cs-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.cs-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(20,85,230,0.25);
+  border-radius: 2px;
+  background: rgba(20,85,230,0.04);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+}
+.cs-eyebrow-ticker { color: var(--mid); }
+.cs-eyebrow-sep { color: rgba(255,255,255,0.2); font-weight: 400; }
+.cs-eyebrow-label { color: var(--text-1); }
+
+.cs-hero-title {
+  font-family: var(--font-h);
+  font-size: clamp(2.4rem, 5.6vw, 4.8rem);
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--text-1);
+  margin-bottom: 28px;
+  max-width: 17ch;
+}
+.cs-hero-title-accent {
+  display: inline-block;
+  background: linear-gradient(90deg, #2d6df2 0%, #3aa1cf 55%, #4ac6d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  /* Subtle slant instead of full italic, restraint over flourish. */
+  font-style: oblique 6deg;
+  letter-spacing: -0.04em;
+}
+.cs-hero-sub {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--text-2);
+  max-width: 60ch;
+  margin-bottom: 44px;
+}
+
+.cs-hero-quicknav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: rgba(10,16,32,0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  margin-bottom: 44px;
+}
+.cs-qn-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 22px;
+  border-right: 1px solid var(--border);
+  transition: background 0.2s var(--ease), transform 0.3s var(--ease);
+  position: relative;
+}
+.cs-qn-item:last-child { border-right: none; }
+.cs-qn-item::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+.cs-qn-item:hover { background: rgba(20,85,230,0.05); }
+.cs-qn-item:hover::after { transform: scaleX(1); }
+.cs-qn-num {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+}
+.cs-qn-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.015em;
+}
+.cs-qn-cat {
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+.cs-hero-rail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.cs-rail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 20px 0 0;
+}
+.cs-rail-val {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.cs-rail-unit {
+  font-size: 0.7em;
+  color: var(--text-2);
+  margin-left: 2px;
+}
+.cs-rail-label {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cs-rail-sep {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  margin-right: 20px;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   SECTION HEAD, shared eyebrow + big title
+   ─────────────────────────────────────────────────────────────── */
+.cs-section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 48px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.cs-section-eyebrow {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--mid);
+  font-weight: 500;
+}
+.cs-section-title {
+  font-size: clamp(1.6rem, 2.6vw, 2.25rem);
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  max-width: 38ch;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   THE SUITE, at-a-glance overview grid
+   ─────────────────────────────────────────────────────────────── */
+.cs-suite-overview {
+  padding: clamp(72px, 10vh, 120px) 0;
+  border-bottom: 1px solid var(--border);
+}
+.cs-suite-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.cs-suite-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px 28px;
+  background: var(--surface);
+  transition: background 0.25s var(--ease), transform 0.3s var(--ease);
+  position: relative;
+  min-height: 420px;
+}
+.cs-suite-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(20,85,230,0.035) 100%);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.cs-suite-card:hover { background: var(--surface-2); }
+.cs-suite-card:hover::before { opacity: 1; }
+.cs-suite-card:hover .cs-sc-link { color: var(--cyan); gap: 10px; }
+.cs-suite-card--enterprise {
+  background: linear-gradient(180deg, var(--surface) 0%, rgba(20,85,230,0.04) 100%);
+}
+
+.cs-sc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.cs-sc-tier {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+.cs-sc-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+}
+.cs-sc-status-live {
+  color: var(--cyan);
+  background: rgba(20,253,253,0.08);
+  border-color: rgba(20,253,253,0.25);
+}
+.cs-sc-status-live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(20,253,253,0.7);
+  animation: blink 2s infinite;
+}
+.cs-sc-status-contact {
+  color: var(--text-2);
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.cs-sc-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+  line-height: 1;
+}
+.cs-sc-name-sub {
+  color: var(--mid);
+  font-weight: 600;
+}
+.cs-sc-name-sub-stealth { color: var(--cyan); }
+
+.cs-sc-tagline {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.cs-sc-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cs-platform-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+.cs-sc-bullets {
+  list-style: none;
+  padding: 0;
+  margin: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cs-sc-bullets li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.cs-sc-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.6em;
+  width: 6px;
+  height: 1px;
+  background: var(--mid);
+}
+
+.cs-sc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-1);
+  transition: gap 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   PRODUCT SECTION, 01 · 02
+   One product = one viewport. Content is centered vertically so each
+   section fits a standard laptop screen without the need to scroll
+   inside it.
+   ─────────────────────────────────────────────────────────────── */
+.cs-product {
+  min-height: 100vh;
+  padding: clamp(32px, 4vh, 56px) 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* Kill the global section-wrap's 96px vertical padding inside product
+   sections, the section itself already handles vertical rhythm. */
+.cs-product > .section-wrap,
+.cs-suite-overview > .section-wrap,
+.cs-enterprise > .cs-ent-wrap.section-wrap {
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 100%;
+}
+.cs-product-alt {
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(20,85,230,0.03) 50%, transparent 100%);
+}
+
+.cs-product-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 16px;
+  margin-bottom: clamp(24px, 3vh, 36px);
+  border-bottom: 1px solid var(--border);
+}
+.cs-ph-index {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--text-1);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cs-ph-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.cs-ph-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: 0.01em;
+}
+.cs-ph-divider {
+  width: 24px;
+  height: 1px;
+  background: rgba(20,85,230,0.4);
+}
+.cs-ph-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+}
+.cs-ph-platform-sep { color: rgba(255,255,255,0.18); }
+.cs-ph-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+}
+.cs-ph-badge-live {
+  color: var(--cyan);
+  background: rgba(20,253,253,0.08);
+  border: 1px solid rgba(20,253,253,0.3);
+}
+.cs-ph-badge-ent {
+  color: var(--text-1);
+  background: rgba(20,85,230,0.12);
+  border: 1px solid rgba(20,85,230,0.4);
+}
+
+.cs-product-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.cs-product-body-rev {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+}
+
+/* Copy column ----------------------------------------------------- */
+.cs-product-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cs-product-title {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.cs-product-title-brand { color: var(--text-1); }
+.cs-product-title-variant {
+  color: var(--mid);
+  font-weight: 600;
+  font-style: oblique 5deg;
+}
+.cs-product-title-variant-stealth { color: var(--cyan); }
+.cs-product-lead {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 56ch;
+}
+
+/* 2-column grid with column-first flow: left column holds items 1→N/2,
+   right column holds the rest. So with 4 items the display is
+   [01 | 03] / [02 | 04], and with 6 items it's [01|04] / [02|05] /
+   [03|06]. Halves the vertical space vs a stacked list.
+   Modifier classes set the row count per product:
+     .cs-feat-list--r2  → 4 items / 2 rows (Stealth)
+     .cs-feat-list--r3  → 6 items / 3 rows (Pro)                     */
+.cs-feat-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: column;
+  column-gap: clamp(20px, 2.4vw, 36px);
+  border-top: 1px solid var(--border);
+}
+.cs-feat-list--r2 { grid-template-rows: repeat(2, auto); }
+.cs-feat-list--r3 { grid-template-rows: repeat(3, auto); }
+.cs-feat-list li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.cs-feat-num {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--mid);
+  letter-spacing: 0.08em;
+  padding-top: 2px;
+}
+.cs-feat-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cs-feat-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.005em;
+}
+.cs-feat-desc {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.cs-product-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 4px;
+}
+.cs-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.cs-cta-secondary {
+  padding: 12px 22px;
+  font-size: 0.9rem;
+  border-radius: var(--r);
+}
+
+/* Stealth store chips */
+.cs-store-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cs-store-chip {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.cs-store-chip:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--border-h);
+}
+.cs-store-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.cs-store-name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+
+/* Visual column, CLAW Pro dashboard ------------------------------ */
+.cs-product-visual { position: relative; }
+.cs-product-visual--pro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cs-pro-figure {
+  position: relative;
+  margin: 0;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(20,85,230,0.06),
+    0 30px 80px -30px rgba(20,85,230,0.4),
+    0 20px 60px -20px rgba(0,0,0,0.6);
+}
+.cs-pro-figure-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #060b14;
+  border-bottom: 1px solid var(--border);
+}
+.cs-pf-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+.cs-pro-figure-bar .cs-pf-dot:nth-child(1) { background: #ff5f57; opacity: 0.5; }
+.cs-pro-figure-bar .cs-pf-dot:nth-child(2) { background: #ffbd2e; opacity: 0.5; }
+.cs-pro-figure-bar .cs-pf-dot:nth-child(3) { background: #28c840; opacity: 0.5; }
+.cs-pf-url {
+  margin-left: 14px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+.cs-pro-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.cs-pro-figure-caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+.cs-caption-sep { color: rgba(255,255,255,0.2); }
+
+/* Visual column, CLAW Stealth iPhone ----------------------------- */
+.cs-product-visual--stealth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Shrink the phone on the products page so the whole Stealth section
+   (iPhone + headline + Ask Claw + features + CTAs) fits one viewport. */
+.cs-product-visual--stealth .iphone-frame {
+  max-width: 280px;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ASK CLAW callout card (Stealth), compact, fits one viewport
+   ─────────────────────────────────────────────────────────────── */
+.cs-ask-claw {
+  position: relative;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(20,85,230,0.08) 0%, rgba(20,200,240,0.04) 100%);
+  border: 1px solid rgba(20,85,230,0.25);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.cs-ask-claw::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gradient);
+}
+.cs-ac-head { margin-bottom: 8px; }
+.cs-ac-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 9px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+  background: rgba(10,16,32,0.7);
+  border: 1px solid rgba(20,85,230,0.3);
+  border-radius: 2px;
+}
+.cs-ac-desc {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.cs-ac-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.cs-ac-prompt {
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  color: var(--text-1);
+  background: rgba(10,16,32,0.5);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 2px;
+  font-style: oblique 4deg;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   CLAW ENTERPRISE, Oracle, arsenal, contact
+   ─────────────────────────────────────────────────────────────── */
+.cs-enterprise {
+  position: relative;
+  padding: clamp(80px, 12vh, 140px) 0 clamp(80px, 10vh, 120px);
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(20,85,230,0.12), transparent 60%),
+    radial-gradient(900px 500px at 50% 100%, rgba(20,200,240,0.06), transparent 60%),
+    var(--bg);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.cs-enterprise .oracle-brain-canvas {
+  opacity: 0.5;
+}
+.cs-ent-wrap {
+  position: relative;
+  z-index: 2;
+}
+.cs-ent-header { margin-bottom: 64px; }
+
+.cs-ent-lede {
+  max-width: 900px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+.cs-ent-title {
+  font-size: clamp(2.2rem, 4.8vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--text-1);
+  margin-bottom: 20px;
+}
+.cs-ent-sub {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--text-2);
+  max-width: 64ch;
+  margin: 0 auto;
+}
+
+/* Arsenal grid --------------------------------------------------- */
+.cs-arsenal { margin-bottom: 80px; }
+.cs-arsenal-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.cs-arsenal-eyebrow {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--mid);
+  font-weight: 500;
+}
+.cs-arsenal-divider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(20,85,230,0.3), transparent);
+}
+.cs-arsenal-hint {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+
+.cs-arsenal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.cs-arsenal-card {
+  background: rgba(7,12,24,0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 28px 26px;
+  transition: background 0.25s var(--ease);
+  position: relative;
+}
+.cs-arsenal-card::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: 24px;
+  height: 1px;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), width 0.3s var(--ease);
+}
+.cs-arsenal-card:hover { background: rgba(20,85,230,0.06); }
+.cs-arsenal-card:hover::after { opacity: 1; width: 100%; }
+
+.cs-ars-num {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--mid);
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+.cs-ars-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.cs-ars-desc {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* Oracle live preview ------------------------------------------- */
+.cs-oracle-preview {
+  max-width: 860px;
+  margin: 0 auto 80px;
+  padding: 28px 32px;
+  background:
+    linear-gradient(180deg, rgba(10,16,32,0.85) 0%, rgba(7,12,24,0.85) 100%);
+  border: 1px solid rgba(20,85,230,0.25);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 0 1px rgba(20,85,230,0.05),
+    0 40px 100px -40px rgba(20,85,230,0.4);
+}
+.cs-oracle-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.cs-oracle-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+}
+.cs-oracle-live .cs-mono { color: var(--cyan); }
+.cs-oracle-pair {
+  color: var(--text-3);
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+.cs-oracle-preview-meta {
+  font-size: 0.74rem;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+}
+
+.cs-oracle-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.cs-oracle-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.5fr 0.7fr 1fr 0.5fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid transparent;
+  font-size: 0.82rem;
+}
+.cs-oracle-row-best {
+  background: rgba(20,85,230,0.08);
+  border-color: rgba(20,85,230,0.3);
+}
+.cs-or-name {
+  color: var(--text-1);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.cs-or-tf {
+  color: var(--text-3);
+  font-size: 0.74rem;
+  padding: 2px 6px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 2px;
+  text-align: center;
+}
+.cs-or-dir {
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+}
+.cs-or-bar-wrap {
+  height: 4px;
+  background: rgba(20,85,230,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.cs-or-bar {
+  height: 100%;
+  background: var(--gradient);
+  border-radius: 2px;
+}
+.cs-oracle-row-best .cs-or-bar { background: var(--cyan); }
+.cs-or-conf {
+  color: var(--text-1);
+  font-weight: 600;
+  text-align: right;
+  font-size: 0.82rem;
+}
+.cs-or-best {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--bg);
+  background: var(--cyan);
+  padding: 3px 7px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+.cs-oracle-verdict {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.cs-ov-label {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+}
+.cs-ov-sep {
+  width: 20px;
+  height: 1px;
+  background: rgba(20,85,230,0.4);
+}
+.cs-ov-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ENTERPRISE CONTACT
+   ─────────────────────────────────────────────────────────────── */
+.cs-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(40px, 5vw, 80px);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px;
+  background: rgba(7,12,24,0.7);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.cs-contact-head { display: flex; flex-direction: column; gap: 14px; }
+.cs-contact-eyebrow {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--mid);
+  font-weight: 500;
+}
+.cs-contact-title {
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--text-1);
+}
+.cs-contact-sub {
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 42ch;
+}
+.cs-contact-assurances {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cs-contact-assurances li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--text-2);
+}
+.cs-ca-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(20,253,253,0.4);
+  flex-shrink: 0;
+}
+
+/* Form styles ---------------------------------------------------- */
+.enterprise-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.ef-meta-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+.ef-meta-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(20,253,253,0.6);
+  animation: blink 2s infinite;
+}
+.ef-meta-label { color: var(--text-1); }
+.ef-meta-muted { color: var(--text-3); }
+.ef-meta-sep { color: rgba(255,255,255,0.2); }
+
+.ef-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.ef-field { display: flex; flex-direction: column; gap: 6px; }
+.ef-field-full { grid-column: 1 / -1; }
+.ef-field-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ef-field-hint {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-3);
+}
+
+.ef-field input,
+.ef-field select,
+.ef-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text-1);
+  font-family: var(--font);
+  font-size: 0.92rem;
+  letter-spacing: -0.005em;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.ef-field textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.55;
+}
+.ef-field select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20' fill='none'><path d='M5 8L10 13L15 8' stroke='%238499b0' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.ef-field select option {
+  background: var(--surface-2);
+  color: var(--text-1);
+}
+
+.ef-field input::placeholder,
+.ef-field textarea::placeholder {
+  color: var(--text-3);
+  opacity: 0.75;
+}
+.ef-field input:hover,
+.ef-field select:hover,
+.ef-field textarea:hover {
+  border-color: var(--border-h);
+  background: rgba(255,255,255,0.035);
+}
+.ef-field input:focus,
+.ef-field select:focus,
+.ef-field textarea:focus {
+  border-color: rgba(20,200,240,0.6);
+  background: rgba(20,85,230,0.04);
+  box-shadow: 0 0 0 3px rgba(20,200,240,0.12);
+}
+
+.ef-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.ef-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  align-self: flex-start;
+}
+.ef-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.ef-fineprint {
+  font-size: 0.74rem;
+  color: var(--text-3);
+  line-height: 1.55;
+  max-width: 62ch;
+}
+
+/* Success state -------------------------------------------------- */
+.ef-success {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px 32px;
+  background: rgba(20,253,253,0.04);
+  border: 1px solid rgba(20,253,253,0.2);
+  border-radius: var(--r-lg);
+  align-items: flex-start;
+}
+.ef-success-icon {
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(20,253,253,0.12);
+  color: var(--cyan);
+  border: 1px solid rgba(20,253,253,0.3);
+}
+.ef-success h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+}
+.ef-success p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+.ef-success p strong { color: var(--text-1); font-weight: 600; }
+.ef-reset { align-self: flex-start; margin-top: 6px; }
+
+/* ─────────────────────────────────────────────────────────────────
+   RESPONSIVE, /products CLAW Suite
+   ─────────────────────────────────────────────────────────────── */
+/* Release the 100vh constraint when the viewport is too short or
+   narrow for everything to fit comfortably. Content flows naturally. */
+@media (max-height: 780px), (max-width: 1100px) {
+  .cs-product {
+    min-height: 0;
+    padding: clamp(56px, 8vh, 88px) 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .cs-suite-grid { grid-template-columns: 1fr; }
+  .cs-suite-card { min-height: 0; }
+  .cs-product-body,
+  .cs-product-body-rev {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .cs-product-body-rev > *:first-child { order: 2; }
+  .cs-product-body-rev > *:last-child { order: 1; }
+  .cs-product-visual--stealth .iphone-frame { max-width: 300px; }
+  .cs-arsenal-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-contact {
+    grid-template-columns: 1fr;
+    padding: 36px 28px;
+  }
+}
+
+@media (max-width: 780px) {
+  .cs-hero-quicknav { grid-template-columns: 1fr; }
+  .cs-qn-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .cs-qn-item:last-child { border-bottom: none; }
+
+  .cs-feat-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    column-gap: 0;
+  }
+
+  .cs-hero-rail {
+    gap: 0;
+    padding-top: 20px;
+  }
+  .cs-rail-item {
+    flex: 1 1 calc(50% - 14px);
+    padding: 10px 0;
+  }
+  .cs-rail-sep { display: none; }
+
+  .cs-product-header {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 14px 18px;
+  }
+  .cs-ph-badge { grid-column: 1 / -1; justify-self: flex-start; }
+
+  .cs-arsenal-grid { grid-template-columns: 1fr; }
+
+  .cs-oracle-row {
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+  }
+  .cs-or-tf,
+  .cs-or-dir { grid-column: 1; font-size: 0.7rem; }
+  .cs-or-bar-wrap { grid-column: 1 / -1; order: 5; }
+  .cs-or-best { grid-column: 2; grid-row: 1; }
+
+  .ef-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .cs-hero { padding-top: 48px; padding-bottom: 40px; }
+  .cs-hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .cs-product-title { font-size: clamp(2rem, 8vw, 2.6rem); }
+  .cs-ent-title { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  .cs-contact { padding: 28px 20px; }
+  .cs-oracle-preview { padding: 22px 18px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SHARED PAGE UTILITIES
+   Small hero variant + a tighter wrap for sections where the content
+   does its own framing. Used by /pricing, /about, /blog.
+   ══════════════════════════════════════════════════════════════════ */
+
+.cs-hero-compact {
+  padding: clamp(56px, 9vh, 110px) var(--pad-x) clamp(40px, 6vh, 72px);
+}
+.cs-hero-compact .cs-hero-title {
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  margin-bottom: 22px;
+}
+.cs-hero-compact .cs-hero-sub {
+  margin-bottom: 0;
+}
+
+.cs-tight-wrap {
+  padding-top: clamp(56px, 9vh, 104px);
+  padding-bottom: clamp(56px, 9vh, 104px);
+}
+
+.cs-section-head-minor {
+  margin-bottom: 24px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.cs-section-head-minor .cs-section-eyebrow { margin-bottom: 0; }
+
+.cs-section-head-inline {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.cs-section-head-inline > div:first-child { flex: 1 1 360px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   /pricing, plan cards + billing toggle + comparison + FAQ
+   ══════════════════════════════════════════════════════════════════ */
+
+.cs-pricing-plans {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Billing toggle ------------------------------------------------- */
+.cs-billing-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(10,16,32,0.5);
+  backdrop-filter: blur(6px);
+  margin: 0 auto 40px;
+  width: fit-content;
+}
+.cs-bt-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font-b);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.cs-bt-opt:hover { color: var(--text-1); }
+.cs-bt-opt.is-active {
+  background: rgba(20,85,230,0.16);
+  color: var(--text-1);
+  box-shadow: inset 0 0 0 1px rgba(20,85,230,0.35);
+}
+.cs-bt-save {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(74,198,214,0.14);
+  color: #7cdbe6;
+}
+
+/* Plan grid ------------------------------------------------------ */
+.cs-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: rgba(10,16,32,0.35);
+}
+.cs-plans-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.cs-plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 30px 30px;
+  border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(10,16,32,0.4), rgba(10,16,32,0.15));
+  transition: background 0.25s var(--ease);
+}
+.cs-plan:last-child { border-right: none; }
+.cs-plan:hover { background: linear-gradient(180deg, rgba(20,85,230,0.06), rgba(10,16,32,0.2)); }
+
+.cs-plan-featured {
+  background: linear-gradient(180deg, rgba(20,85,230,0.12), rgba(20,85,230,0.03));
+  box-shadow: inset 0 0 0 1px rgba(20,85,230,0.45);
+  z-index: 1;
+}
+.cs-plan-featured:hover {
+  background: linear-gradient(180deg, rgba(20,85,230,0.18), rgba(20,85,230,0.05));
+}
+.cs-plan-ribbon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 4px 8px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #cfe1ff;
+  background: rgba(20,85,230,0.3);
+  border: 1px solid rgba(20,85,230,0.55);
+  border-radius: 3px;
+}
+/* "Coming soon" state: desaturated, amber accent so it reads as a
+   future offering rather than a regular plan. */
+.cs-plan-coming {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 12px,
+      rgba(255,255,255,0.015) 12px 13px
+    ),
+    linear-gradient(180deg, rgba(10,16,32,0.4), rgba(10,16,32,0.15));
+}
+.cs-plan-coming:hover {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 12px,
+      rgba(255,255,255,0.022) 12px 13px
+    ),
+    linear-gradient(180deg, rgba(10,16,32,0.5), rgba(10,16,32,0.2));
+}
+.cs-plan-ribbon-coming {
+  color: #ffd99a;
+  background: rgba(230, 165, 60, 0.18);
+  border-color: rgba(230, 165, 60, 0.45);
+}
+.cs-plan-price-val-soft {
+  color: var(--text-3);
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.cs-plan-head {
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cs-plan-name {
+  font-family: var(--font-h);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin: 16px 0 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1.1;
+}
+.cs-plan-name-sub {
+  color: var(--mid);
+  font-weight: 600;
+  font-style: oblique 5deg;
+}
+
+.cs-plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.cs-plan-price-val {
+  font-family: var(--font-h);
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-1);
+  line-height: 1;
+}
+.cs-plan-price-unit {
+  font-size: 0.85rem;
+  color: var(--text-3);
+}
+.cs-plan-price-note {
+  flex-basis: 100%;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+}
+
+.cs-plan-tagline {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.cs-plan-includes-label {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.cs-plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cs-plan-features li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+.cs-plan-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M5 12.5L10 17.5L19 8' stroke='%233aa1cf' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.cs-plan-cta {
+  margin-top: 24px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Comparison table ----------------------------------------------- */
+.cs-compare {
+  border-bottom: 1px solid var(--border);
+}
+.cs-compare-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: rgba(10,16,32,0.3);
+}
+.cs-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+.cs-compare-table thead th {
+  position: sticky;
+  top: 0;
+  padding: 20px 18px;
+  text-align: left;
+  vertical-align: bottom;
+  background: rgba(10,16,32,0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.cs-compare-table thead th:last-child { border-right: none; }
+.cs-compare-table th.cs-ct-col-featured {
+  background: rgba(20,85,230,0.14);
+  box-shadow: inset 0 -2px 0 rgba(20,85,230,0.55);
+}
+.cs-ct-col-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.cs-ct-col-price {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--mid);
+}
+.cs-ct-col-price-soft { color: var(--text-3); font-size: 0.72rem; }
+.cs-ct-col-unit { color: var(--text-3); font-size: 0.72rem; }
+
+/* 4-column compare: slightly tighter padding to fit 5 total cols */
+.cs-compare-table-4 thead th { padding: 18px 14px; }
+.cs-compare-table-4 tbody th,
+.cs-compare-table-4 tbody td { padding: 12px 14px; font-size: 0.85rem; }
+.cs-compare-table-4 { min-width: 840px; }
+.cs-ct-group-label {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+}
+
+.cs-compare-table tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+.cs-compare-table tbody tr:last-child { border-bottom: none; }
+.cs-compare-table tbody th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-1);
+  border-right: 1px solid var(--border);
+  background: rgba(10,16,32,0.2);
+}
+.cs-compare-table tbody td {
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: var(--text-2);
+  border-right: 1px solid var(--border);
+  text-align: center;
+  white-space: nowrap;
+}
+.cs-compare-table tbody td:last-child { border-right: none; }
+.cs-compare-table tbody td.cs-ct-col-featured {
+  background: rgba(20,85,230,0.06);
+  color: var(--text-1);
+}
+
+.cs-ct-section td {
+  background: rgba(255,255,255,0.02) !important;
+  padding: 12px 18px !important;
+  border-top: 1px solid var(--border);
+}
+
+.cs-ct-check { color: #4ac6d6; }
+.cs-ct-dash { color: var(--text-3); opacity: 0.5; }
+
+/* FAQ ------------------------------------------------------------ */
+.cs-faq-section {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.cs-faq {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: rgba(10,16,32,0.3);
+  overflow: hidden;
+}
+.cs-faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.cs-faq-item:last-child { border-bottom: none; }
+.cs-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-1);
+  font-family: var(--font-b);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.cs-faq-q:hover { background: rgba(20,85,230,0.05); }
+.cs-faq-q-icon {
+  display: inline-flex;
+  color: var(--mid);
+  transition: transform 0.25s var(--ease);
+}
+.cs-faq-item.is-open .cs-faq-q-icon { transform: rotate(180deg); }
+.cs-faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s var(--ease);
+}
+.cs-faq-item.is-open .cs-faq-a { max-height: 480px; }
+.cs-faq-a p {
+  padding: 0 28px 22px;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-2);
+  max-width: 70ch;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Shared stat-rail, institutional at-a-glance metric strip.
+   Used on /about below the hero; reusable wherever you want a
+   credentials-style row.
+   ══════════════════════════════════════════════════════════════════ */
+.cs-stat-rail {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-top: 40px;
+  padding: 18px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: rgba(10,16,32,0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  width: fit-content;
+  max-width: 100%;
+}
+.cs-sr-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 26px;
+  min-width: 120px;
+}
+.cs-sr-item:first-child { padding-left: 0; }
+.cs-sr-item:last-child { padding-right: 0; }
+.cs-sr-num {
+  font-family: var(--font-h);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.cs-sr-label {
+  font-size: 0.65rem;
+  color: var(--text-3);
+  letter-spacing: 0.14em;
+}
+.cs-sr-divider {
+  width: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+@media (max-width: 780px) {
+  .cs-stat-rail {
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 12px;
+    padding: 14px 18px;
+  }
+  .cs-sr-item { padding: 8px 16px; min-width: 110px; flex: 1 1 auto; }
+  .cs-sr-item:first-child { padding-left: 16px; }
+  .cs-sr-divider { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   /about, manifesto, values grid, team roster
+   ══════════════════════════════════════════════════════════════════ */
+
+.cs-about-manifesto {
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(700px 320px at 90% 20%, rgba(20,85,230,0.06), transparent 60%),
+    var(--bg);
+}
+.cs-about-manifesto-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.cs-about-manifesto-label {
+  position: sticky;
+  top: 100px;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+  padding-top: 6px;
+  border-top: 1px solid var(--mid);
+}
+.cs-about-manifesto-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 64ch;
+}
+.cs-about-manifesto-body p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-1);
+  margin: 0;
+}
+.cs-about-manifesto-body p:first-child {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.cs-about-values {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.cs-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: rgba(10,16,32,0.3);
+}
+.cs-value-card {
+  padding: 26px 26px 28px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(10,16,32,0.4), rgba(10,16,32,0.15));
+  transition: background 0.2s var(--ease);
+}
+.cs-value-card:hover { background: rgba(20,85,230,0.06); }
+.cs-value-card:nth-child(3n) { border-right: none; }
+.cs-value-card:nth-last-child(-n+3) { border-bottom: none; }
+.cs-value-num {
+  font-size: 0.75rem;
+  color: var(--mid);
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+.cs-value-title {
+  font-family: var(--font-h);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+  margin: 0 0 10px;
+}
+.cs-value-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.cs-about-team {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.cs-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.cs-team-card {
+  display: flex;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--r) - 4px);
+  background: rgba(10,16,32,0.4);
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.cs-team-card:hover {
+  background: rgba(20,85,230,0.05);
+  border-color: rgba(20,85,230,0.35);
+  transform: translateY(-2px);
+}
+.cs-team-avatar {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(20,85,230,0.35);
+  background: linear-gradient(135deg, rgba(20,85,230,0.25), rgba(74,198,214,0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-h);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-1);
+}
+.cs-team-initials { font-size: 1rem; }
+.cs-team-meta { min-width: 0; flex: 1; }
+.cs-team-name {
+  font-family: var(--font-h);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+  margin-bottom: 2px;
+}
+.cs-team-role {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.cs-team-bio {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   /blog, featured card, article grid, newsletter
+   ══════════════════════════════════════════════════════════════════ */
+
+.cs-blog-featured {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.cs-blog-featured-card {
+  display: block;
+  position: relative;
+  padding: 38px 40px 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background:
+    radial-gradient(600px 260px at 90% 10%, rgba(20,85,230,0.18), transparent 60%),
+    linear-gradient(180deg, rgba(20,85,230,0.1), rgba(10,16,32,0.4));
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-1);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.cs-blog-featured-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to right, black 10%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to right, black 10%, transparent 90%);
+}
+.cs-blog-featured-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(20,85,230,0.5);
+}
+.cs-blog-featured-meta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-size: 0.78rem;
+}
+.cs-blog-cat {
+  padding: 4px 10px;
+  border: 1px solid rgba(20,85,230,0.35);
+  border-radius: 3px;
+  background: rgba(20,85,230,0.1);
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #cfe1ff;
+  text-transform: uppercase;
+}
+.cs-blog-dot { color: var(--text-3); }
+.cs-blog-featured-title {
+  position: relative;
+  font-family: var(--font-h);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--text-1);
+  margin: 0 0 16px;
+  max-width: 30ch;
+}
+.cs-blog-featured-excerpt {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-2);
+  margin: 0 0 24px;
+  max-width: 70ch;
+}
+.cs-blog-featured-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mid);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: gap 0.25s var(--ease);
+}
+.cs-blog-featured-card:hover .cs-blog-featured-cta { gap: 14px; }
+
+.cs-blog-grid-section {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.cs-blog-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 0;
+}
+.cs-blog-cat-chip {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(10,16,32,0.5);
+  font-size: 0.78rem;
+  color: var(--text-2);
+  letter-spacing: 0.01em;
+  cursor: default;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.cs-blog-cat-chip.is-active {
+  border-color: rgba(20,85,230,0.5);
+  background: rgba(20,85,230,0.12);
+  color: var(--text-1);
+}
+.cs-blog-cat-chip:not(.is-active):hover { color: var(--text-1); border-color: var(--mid); }
+
+.cs-blog-grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: rgba(10,16,32,0.3);
+}
+.cs-blog-card {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 26px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(10,16,32,0.4), rgba(10,16,32,0.15));
+  text-decoration: none;
+  color: var(--text-1);
+  transition: background 0.25s var(--ease);
+}
+.cs-blog-card:hover { background: rgba(20,85,230,0.06); }
+.cs-blog-card:nth-child(3n) { border-right: none; }
+.cs-blog-card:nth-last-child(-n+3) { border-bottom: none; }
+.cs-blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 0.72rem;
+}
+.cs-blog-card-title {
+  font-family: var(--font-h);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--text-1);
+  margin: 0 0 10px;
+}
+.cs-blog-card-excerpt {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0 0 18px;
+  flex: 1;
+}
+.cs-blog-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--mid);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: gap 0.25s var(--ease);
+}
+.cs-blog-card:hover .cs-blog-card-cta { gap: 10px; color: var(--text-1); }
+
+/* Newsletter ----------------------------------------------------- */
+.cs-blog-newsletter {
+  background: var(--bg);
+}
+.cs-newsletter-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 40px 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background:
+    radial-gradient(500px 260px at 0% 50%, rgba(20,85,230,0.1), transparent 60%),
+    linear-gradient(180deg, rgba(10,16,32,0.55), rgba(10,16,32,0.35));
+}
+.cs-newsletter-title {
+  font-family: var(--font-h);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin: 8px 0 12px;
+}
+.cs-newsletter-sub {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 46ch;
+}
+.cs-newsletter-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.cs-newsletter-input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--r) - 6px);
+  background: rgba(10,16,32,0.6);
+  color: var(--text-1);
+  font-family: var(--font-b);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.cs-newsletter-input:focus {
+  outline: none;
+  border-color: rgba(20,85,230,0.5);
+  background: rgba(10,16,32,0.9);
+}
+.cs-newsletter-submit {
+  padding: 14px 22px;
+  white-space: nowrap;
+}
+.cs-newsletter-sent {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(74,198,214,0.35);
+  border-radius: calc(var(--r) - 6px);
+  background: rgba(74,198,214,0.07);
+}
+.cs-newsletter-sent-dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #4ac6d6;
+  box-shadow: 0 0 10px rgba(74,198,214,0.6);
+}
+.cs-newsletter-sent-title {
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 2px;
+}
+.cs-newsletter-sent-sub {
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Responsive collapses for /pricing, /about, /blog
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .cs-plans-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cs-plans-grid-4 .cs-plan:nth-child(even) { border-right: none; }
+  .cs-plans-grid-4 .cs-plan:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+}
+
+@media (max-width: 960px) {
+  .cs-plans-grid,
+  .cs-plans-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .cs-plan {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-plan:last-child { border-bottom: none; }
+
+  .cs-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cs-value-card:nth-child(3n) { border-right: 1px solid var(--border); }
+  .cs-value-card:nth-child(2n) { border-right: none; }
+  .cs-value-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+  .cs-value-card:nth-last-child(-n+2) { border-bottom: none; }
+
+  .cs-team-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .cs-blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-blog-card:nth-child(3n) { border-right: 1px solid var(--border); }
+  .cs-blog-card:nth-child(2n) { border-right: none; }
+  .cs-blog-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+  .cs-blog-card:nth-last-child(-n+2) { border-bottom: none; }
+
+  .cs-newsletter-card { grid-template-columns: 1fr; padding: 32px 28px; }
+
+  .cs-about-manifesto-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cs-about-manifesto-label { position: static; }
+}
+
+@media (max-width: 640px) {
+  .cs-values-grid { grid-template-columns: 1fr; }
+  .cs-value-card { border-right: none !important; }
+  .cs-value-card:not(:last-child) { border-bottom: 1px solid var(--border) !important; }
+
+  .cs-team-grid { grid-template-columns: 1fr; }
+
+  .cs-blog-grid { grid-template-columns: 1fr; }
+  .cs-blog-card { border-right: none !important; }
+  .cs-blog-card:not(:last-child) { border-bottom: 1px solid var(--border) !important; }
+
+  .cs-newsletter-form { flex-direction: column; align-items: stretch; }
+  .cs-newsletter-submit { width: 100%; }
+
+  .cs-blog-featured-card { padding: 28px 24px; }
+
+  .cs-billing-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+  .cs-bt-opt { padding: 10px 16px; font-size: 0.8rem; }
+
+  .cs-plan { padding: 28px 24px; }
+  .cs-plan-price-val { font-size: 2rem; }
+
+  .cs-faq-q { padding: 18px 20px; font-size: 0.95rem; }
+  .cs-faq-a p { padding: 0 20px 18px; font-size: 0.9rem; }
+
+  .cs-section-head-inline { flex-direction: column; align-items: flex-start; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO, Status-style metrics (LIVE / ACTIVE with pulsing dot)
+   Adds a qualitative variant to .hm-val for capabilities that aren't
+   numeric. Used on home hero for "AI Regime Analysis" and
+   "Oracle Optimisation".
+   ═══════════════════════════════════════════════════════════════════════ */
+.hm-val-status {
+  gap: 9px;
+}
+.hm-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.65);
+  display: inline-block;
+  flex-shrink: 0;
+  animation: hm-dot-pulse 1.9s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes hm-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.82); }
+}
+.hm-status-txt {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SHARED, Institutional section title accent + lead paragraph
+   The accent span pairs with .cs-section-title; .cs-section-lead is the
+   paragraph that follows it. Deliberately low-contrast from the title
+   to keep a clean editorial hierarchy.
+   ═══════════════════════════════════════════════════════════════════════ */
+.cs-section-title-accent {
+  display: inline-block;
+  background: linear-gradient(90deg, #2d6df2 0%, #3aa1cf 55%, #4ac6d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  font-style: oblique 5deg;
+  letter-spacing: -0.035em;
+}
+.cs-section-lead {
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--text-2);
+  max-width: 68ch;
+  margin: 16px 0 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HOME, WHO WE ARE
+   Three-card spec-sheet: bespoke AI architectures for institutional
+   partners, production-grade infrastructure and retail predictive
+   engines. Same infrastructure, different surface area.
+   ═══════════════════════════════════════════════════════════════════════ */
+.home-who {
+  padding: clamp(72px, 10vh, 120px) 0;
+  border-bottom: 1px solid var(--border);
+}
+.home-who .cs-section-head {
+  max-width: 920px;
+  margin-bottom: 48px;
+}
+.home-who-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r, 2px);
+  overflow: hidden;
+}
+.home-who-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px 30px;
+  background: var(--surface, #0b0e13);
+  transition: background 0.25s var(--ease, ease);
+  position: relative;
+  min-height: 360px;
+}
+.home-who-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(20,85,230,0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.home-who-card:hover { background: var(--surface-2, #12161d); }
+.home-who-card:hover::before { opacity: 1; }
+.home-who-card-featured {
+  background: linear-gradient(180deg, rgba(20, 85, 230, 0.07), var(--surface, #0b0e13) 60%);
+}
+.home-who-num {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+.home-who-title {
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin: 0;
+}
+.home-who-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-2);
+  margin: 0;
+}
+.home-who-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.home-who-list li {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  padding-left: 14px;
+  position: relative;
+  letter-spacing: 0.005em;
+}
+.home-who-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 1px;
+  background: var(--mid, #3aa1cf);
+}
+.home-who-cta {
+  margin-top: auto;
+  padding-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--mid, #3aa1cf);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.home-who-cta:hover { gap: 12px; color: var(--text-1); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HOME, THE CLAW SUITE
+   Replaces the old Platform section and absorbs the old Process/
+   How-it-works steps into a single conversion-heavy block.
+   ═══════════════════════════════════════════════════════════════════════ */
+.home-claw-suite {
+  position: relative;
+  padding: clamp(100px, 14vh, 160px) 0 clamp(80px, 11vh, 130px);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.home-claw-suite .section-wrap { position: relative; z-index: 2; }
+.home-claw-suite .platform-bg-scrim {
+  background: linear-gradient(180deg, rgba(7, 10, 14, 0.88), rgba(7, 10, 14, 0.96));
+}
+.home-cs-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black, transparent 90%);
+}
+.home-claw-suite .cs-section-head {
+  max-width: 960px;
+  margin-bottom: 40px;
+}
+
+/* 6-card capability grid */
+.home-cs-caps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r, 2px);
+  overflow: hidden;
+  margin: 32px 0 44px;
+}
+.home-cs-cap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 26px;
+  background: rgba(8, 11, 15, 0.86);
+  backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+  min-height: 240px;
+}
+.home-cs-cap:hover { background: rgba(14, 18, 24, 0.95); }
+.home-cs-cap-featured {
+  background: linear-gradient(180deg, rgba(20, 184, 232, 0.08), rgba(8, 11, 15, 0.92));
+}
+.home-cs-cap-featured:hover {
+  background: linear-gradient(180deg, rgba(20, 184, 232, 0.12), rgba(14, 18, 24, 0.95));
+}
+.home-cs-cap-num {
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+.home-cs-cap-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 0;
+}
+.home-cs-cap-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0;
+}
+.home-cs-cap-link {
+  margin-top: auto;
+  padding-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--mid, #3aa1cf);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.home-cs-cap-link:hover { gap: 10px; color: var(--text-1); }
+
+/* Pipeline, 3 steps, absorbed from old how-it-works */
+.home-cs-pipeline {
+  margin: 44px 0 36px;
+  padding: 30px 0 4px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.home-cs-pipeline-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.home-cs-pipeline-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  color: var(--mid, #3aa1cf);
+  font-weight: 500;
+}
+.home-cs-pipeline-title {
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.015em;
+  margin: 0;
+  max-width: 46ch;
+}
+.home-cs-pipeline-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.home-cs-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.home-cs-step-num {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--mid, #3aa1cf);
+  padding: 3px 8px;
+  border: 1px solid rgba(58, 161, 207, 0.3);
+  border-radius: 2px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.home-cs-step h4 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.005em;
+  margin: 0 0 6px;
+}
+.home-cs-step p {
+  font-size: 0.85rem;
+  line-height: 1.58;
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* Conversion row */
+.home-cs-cta-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.home-cs-cta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 26px 24px;
+  background: rgba(10, 13, 18, 0.82);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--text-1);
+  position: relative;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  min-height: 140px;
+}
+.home-cs-cta-card:hover {
+  background: rgba(16, 20, 26, 0.95);
+  border-color: rgba(58, 161, 207, 0.4);
+  transform: translateY(-1px);
+}
+.home-cs-cta-primary {
+  background: linear-gradient(135deg, rgba(20, 85, 230, 0.18), rgba(58, 161, 207, 0.08));
+  border-color: rgba(58, 161, 207, 0.5);
+}
+.home-cs-cta-primary:hover {
+  background: linear-gradient(135deg, rgba(20, 85, 230, 0.28), rgba(58, 161, 207, 0.14));
+  border-color: rgba(58, 161, 207, 0.75);
+}
+.home-cs-cta-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  color: var(--mid, #3aa1cf);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.home-cs-cta-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.015em;
+}
+.home-cs-cta-sub {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.home-cs-cta-arrow {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  color: var(--text-3);
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+}
+.home-cs-cta-card:hover .home-cs-cta-arrow {
+  color: var(--mid, #3aa1cf);
+  transform: translateX(4px);
+}
+
+/* ───── Real-image showcase (desktop dashboard + mobile stealth pair) ───── */
+.home-cs-shots {
+  display: grid;
+  grid-template-columns: 1.85fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin: 32px 0 44px;
+  position: relative;
+  z-index: 1;
+}
+.home-cs-shot-desktop {
+  margin: 0;
+  display: block;
+  position: relative;
+  /* Override .cs-pro-figure's clip so the annotation pills can hang
+     outside the browser-chrome bezel without being cropped. The image
+     itself still rounds cleanly because of the inner img border-radius. */
+  overflow: visible;
+}
+.home-cs-shot-desktop .cs-pro-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0 0 calc(var(--r-lg) - 1px) calc(var(--r-lg) - 1px);
+}
+.home-cs-shot-caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 4px 0;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.03em;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+}
+.home-cs-shot-caption > span:not(.cs-mono):not(.cs-caption-sep) {
+  font-family: inherit;
+}
+.home-cs-shot-mobile {
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(180deg, rgba(20, 85, 230, 0.05) 0%, rgba(10, 13, 18, 0.6) 100%),
+    var(--surface-2, rgba(12, 16, 22, 0.8));
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg, 10px);
+  padding: 22px 22px 0;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.home-cs-shot-mobile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(58, 161, 207, 0.18), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 20% 100%, rgba(20, 85, 230, 0.14), transparent 70%);
+}
+.home-cs-mob-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+.home-cs-mob-tag {
+  font-size: 0.63rem;
+  letter-spacing: 0.22em;
+  color: var(--mid, #3aa1cf);
+  font-weight: 600;
+}
+.home-cs-mob-sub {
+  font-size: 0.95rem;
+  color: var(--text-1);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.home-cs-mob-stack {
+  position: relative;
+  flex: 1;
+  min-height: 320px;
+}
+.home-cs-phone {
+  position: absolute;
+  width: 62%;
+  max-width: 232px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px -24px rgba(0, 0, 0, 0.78),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: #000;
+}
+.home-cs-phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.home-cs-phone-back {
+  top: -4%;
+  right: 4%;
+  transform: rotate(-5deg);
+  filter: brightness(0.82) saturate(0.85);
+  z-index: 1;
+}
+.home-cs-phone-front {
+  bottom: -8%;
+  left: 6%;
+  transform: rotate(2.5deg);
+  z-index: 2;
+}
+
+/* Reposition the latency / accuracy annotations for the home figure */
+.home-cs-ann {
+  position: absolute;
+  z-index: 3;
+}
+.home-cs-shot-desktop .home-cs-ann.ann-tl {
+  top: 56px;
+  left: -18px;
+  right: auto;
+  bottom: auto;
+}
+.home-cs-shot-desktop .home-cs-ann.ann-br {
+  bottom: 60px;
+  right: -18px;
+  top: auto;
+  left: auto;
+}
+
+/* ───── Global section rhythm tightening (site-wide) ───── */
+/* Reduced the default section-wrap vertical padding from 96px to 72px so the
+   overall page feels denser and more institutional. Home sections that
+   manage their own vertical rhythm (`.home-who`, `.home-claw-suite`) strip
+   the inner .section-wrap padding entirely. */
+.home-who .section-wrap,
+.home-claw-suite .section-wrap {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.home-who { padding: clamp(56px, 7vh, 88px) 0; }
+.home-claw-suite { padding: clamp(72px, 9vh, 112px) 0 clamp(60px, 7vh, 92px); }
+.home-claw-suite .cs-section-head { margin-bottom: 28px; padding-bottom: 20px; }
+.home-who .cs-section-head { margin-bottom: 32px; padding-bottom: 22px; }
+
+/* Responsive rules */
+@media (max-width: 1280px) {
+  .home-cs-caps { grid-template-columns: repeat(2, 1fr); }
+  .home-cs-pipeline-steps { grid-template-columns: 1fr; gap: 20px; }
+  .home-cs-cta-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 1100px) {
+  .home-cs-shots { grid-template-columns: 1fr; gap: 18px; }
+  .home-cs-shot-mobile { min-height: auto; padding-bottom: 40px; }
+  .home-cs-mob-stack { min-height: 480px; }
+  .home-cs-phone { max-width: 248px; }
+  .home-cs-shot-desktop .home-cs-ann { display: none; }
+}
+@media (max-width: 960px) {
+  .home-who-grid { grid-template-columns: 1fr; }
+  .home-cs-caps { grid-template-columns: 1fr; }
+  .home-who-card { min-height: auto; padding: 28px 24px; }
+  .home-cs-cap { min-height: auto; padding: 26px 22px; }
+}
+@media (max-width: 768px) {
+  .home-claw-suite { padding: 64px 0 48px; }
+  .home-who { padding: 52px 0 36px; }
+  .home-cs-pipeline { margin: 36px 0 28px; padding: 24px 0 4px; }
+  .home-cs-caps { margin: 24px 0 32px; }
+  .home-cs-cta-row { margin-bottom: 28px; }
+}
+@media (max-width: 640px) {
+  .home-cs-shots { margin: 24px 0 32px; }
+  .home-cs-mob-stack { min-height: 420px; }
+  .home-cs-phone { max-width: 215px; }
 }

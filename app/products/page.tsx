@@ -1,10 +1,26 @@
+import EnterpriseContactForm from "../components/enterprise-contact-form";
 import HeroIphoneMockup from "../components/hero-iphone-mockup";
+import HeroMonitorMockup from "../components/hero-monitor-mockup";
 import MobileNavDrawer from "../components/mobile-nav-drawer";
 import SiteFooter from "../components/site-footer";
 
+/**
+ * /products, The CLAW Suite.
+ *
+ * Redesigned as a sophisticated fintech product page rather than a consumer
+ * marketing landing page. Three products, one predictive engine:
+ *
+ *   01 · CLAW Pro        , Desktop trading terminal + mobile companion
+ *   02 · CLAW Stealth    , Lightweight iOS / Android app + Ask Claw GPT agent
+ *   03 · CLAW Enterprise , The Oracle, full model arsenal, API, SLA
+ *
+ * Design language: typographic, sharp geometry, restrained gradients, monospace
+ * for technical metadata, specification-sheet style section headers. Closer to
+ * a Bloomberg/institutional product page than to a SaaS landing.
+ */
 export default function ProductsPage() {
   return (
-    <main className="products-page">
+    <main className="claw-suite-page">
       <canvas id="bg-canvas" />
 
       {/* ── Navbar ── */}
@@ -14,14 +30,15 @@ export default function ProductsPage() {
             <img src="/logo.png" alt="Eagle AI Labs" className="logo-img" />
           </a>
           <ul className="nav-links">
-            <li><a href="/solutions">Solutions</a></li>
-            <li><a href="/products" style={{ color: 'var(--mid)' }}>Products</a></li>
-            <li><a href="/technology">Technology</a></li>
-            <li><a href="/hedge-fund">Live Hedge Fund Trading</a></li>
+            <li><a href="/products" aria-current="page">Claw</a></li>
+            <li><a href="/solutions">AI Solutions</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
             <a href="https://app.eagleailabs.com/auth/login" className="btn btn-ghost">Sign In</a>
-            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Try Now</a>
+            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Get Started</a>
           </div>
           <button className="nav-burger" id="nav-burger" aria-label="Toggle menu">
             <span /><span /><span />
@@ -31,371 +48,580 @@ export default function ProductsPage() {
 
       <MobileNavDrawer active="products" />
 
-      {/* ── Hero Banner — split layout ── */}
-      <section className="prod-banner">
-        {/* Left — copy */}
-        <div className="prod-banner-left">
-          <div className="prod-b-energy" aria-hidden="true">
-            <div className="prod-b-orb prod-b-orb1" />
-            <div className="prod-b-orb prod-b-orb2" />
+      {/* ══════════════════════════════════════════════════════════════════
+          HERO, typographic, institutional, suite-first
+      ══════════════════════════════════════════════════════════════════ */}
+      <section className="cs-hero">
+        <div className="cs-hero-inner">
+          <div className="cs-hero-eyebrow">
+            <span className="cs-eyebrow-ticker">EAGLE AI LABS</span>
+            <span className="cs-eyebrow-sep" aria-hidden="true">/</span>
+            <span className="cs-eyebrow-label">THE CLAW SUITE</span>
           </div>
-          <div className="prod-banner-content">
-            <a href="/" className="tp-back-btn prod-back-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M19 12H5M11 6L5 12L11 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              Back to Eagle AI Labs
-            </a>
-            <div className="prod-top-badges">
-              <span className="prod-badge-pill">Eagle AI Labs</span>
-              <span className="prod-badge-pill prod-badge-live">
-                <span className="live-blink" />
-                AI-Powered Products
-              </span>
-            </div>
-            <h1 className="prod-banner-title">
-              Precision Tools.<br />
-              <span className="gradient-text">For Every Trader.</span>
-            </h1>
-            <p className="prod-banner-sub">
-              Three products. One predictive engine. Whether you want the full institutional
-              terminal, AI-guided simplicity, or complete model intelligence — Eagle AI Labs
-              has your edge, whatever your level.
-            </p>
-            <div className="prod-banner-stats">
-              <div className="prod-bstat">
-                <span className="prod-bstat-val">10+</span>
-                <span className="prod-bstat-label">AI Models Live</span>
-              </div>
-              <div className="prod-bstat-sep" />
-              <div className="prod-bstat">
-                <span className="prod-bstat-val">200+</span>
-                <span className="prod-bstat-label">Pairs Active</span>
-              </div>
-              <div className="prod-bstat-sep" />
-              <div className="prod-bstat">
-                <span className="prod-bstat-val">24/7</span>
-                <span className="prod-bstat-label">Signal Coverage</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Right — 3D chart photo */}
-        <div className="prod-banner-right">
-          <div className="prod-chart-3d-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1000&q=85&fit=crop"
-              alt="Live trading charts"
-              className="prod-chart-img"
-            />
-          </div>
-          <div className="prod-chart-overlay" />
-          {/* Floating signal chips */}
-          <div className="prod-sig-chip prod-sig-chip-1">
-            <span className="prod-sig-dir prod-sig-long">▲ LONG</span>
-            <span className="prod-sig-pair">BTC/USD</span>
-            <span className="prod-sig-conf">87%</span>
-          </div>
-          <div className="prod-sig-chip prod-sig-chip-2">
-            <span className="prod-sig-dir prod-sig-long">▲ LONG</span>
-            <span className="prod-sig-pair">ETH/USD</span>
-            <span className="prod-sig-conf">81%</span>
-          </div>
-          <div className="prod-sig-chip prod-sig-chip-3">
-            <span className="prod-sig-dir prod-sig-short">▼ SHORT</span>
-            <span className="prod-sig-pair">SOL/USD</span>
-            <span className="prod-sig-conf">73%</span>
+          <h1 className="cs-hero-title">
+            Crypto intelligence,<br />
+            <span className="cs-hero-title-accent">engineered in three forms.</span>
+          </h1>
+
+          <p className="cs-hero-sub">
+            One predictive engine. Three distinct surfaces. A professional desktop
+            terminal for active traders, a mobile edition with a conversational AI
+            agent, and an enterprise deployment built around our multi-model Oracle
+            and proprietary research stack.
+          </p>
+
+          <nav className="cs-hero-quicknav" aria-label="Products">
+            <a href="#claw-pro" className="cs-qn-item">
+              <span className="cs-qn-num">01</span>
+              <span className="cs-qn-name">CLAW Pro</span>
+              <span className="cs-qn-cat">Desktop terminal</span>
+            </a>
+            <a href="#claw-stealth" className="cs-qn-item">
+              <span className="cs-qn-num">02</span>
+              <span className="cs-qn-name">CLAW Stealth</span>
+              <span className="cs-qn-cat">Mobile + Ask Claw</span>
+            </a>
+            <a href="#claw-enterprise" className="cs-qn-item">
+              <span className="cs-qn-num">03</span>
+              <span className="cs-qn-name">CLAW Enterprise</span>
+              <span className="cs-qn-cat">Oracle · API · SLA</span>
+            </a>
+          </nav>
+
+          <div className="cs-hero-rail">
+            <div className="cs-rail-item">
+              <span className="cs-rail-val">10+</span>
+              <span className="cs-rail-label">Production models</span>
+            </div>
+            <div className="cs-rail-sep" aria-hidden="true" />
+            <div className="cs-rail-item">
+              <span className="cs-rail-val">200+</span>
+              <span className="cs-rail-label">Pairs covered</span>
+            </div>
+            <div className="cs-rail-sep" aria-hidden="true" />
+            <div className="cs-rail-item">
+              <span className="cs-rail-val">50<span className="cs-rail-unit">ms</span></span>
+              <span className="cs-rail-label">Signal latency</span>
+            </div>
+            <div className="cs-rail-sep" aria-hidden="true" />
+            <div className="cs-rail-item">
+              <span className="cs-rail-val">24<span className="cs-rail-unit">/7</span></span>
+              <span className="cs-rail-label">Model coverage</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          PRODUCT 1 — CLAW PRO
-      ══════════════════════════════════════════ */}
-      <section className="prod-section" id="claw">
-        <div className="section-wrap prod-section-inner">
-          {/* Left — copy */}
-          <div className="prod-copy reveal">
-            <div className="prod-badge">FLAGSHIP TERMINAL</div>
-            <h2 className="prod-title prod-title--claw-pro">
-              <span className="gradient-text">CLAW</span>
-              <span className="prod-title-pro">Pro</span>
+      {/* ══════════════════════════════════════════════════════════════════
+          THE SUITE, at-a-glance overview grid
+      ══════════════════════════════════════════════════════════════════ */}
+      <section className="cs-suite-overview">
+        <div className="section-wrap">
+          <div className="cs-section-head">
+            <div className="cs-section-eyebrow">THE SUITE</div>
+            <h2 className="cs-section-title">
+              Three products, shaped around how you actually work.
             </h2>
-            <p className="prod-subtitle">The full institutional trading terminal, built for active crypto traders.</p>
-            <p className="prod-desc">
-              CLAW Pro is the complete Eagle AI workstation — every signal, every timeframe, every
-              model output, surfaced in one professional interface. Raw signals, model confidence,
-              order flow analytics, and live heatmaps in a single terminal designed for traders who
-              want the complete picture.
-            </p>
-            <ul className="prod-features">
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <circle cx="10" cy="10" r="8" stroke="url(#cg1)" strokeWidth="1.4"/>
-                    <path d="M5 10.5L8.5 14L15 7" stroke="url(#cg1)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                    <defs><linearGradient id="cg1" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                AI directional signals across 10 major pairs, 4 timeframes
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <rect x="2" y="12" width="3" height="6" rx="1" fill="url(#cg2)"/>
-                    <rect x="7" y="8" width="3" height="10" rx="1" fill="url(#cg2)" opacity="0.7"/>
-                    <rect x="12" y="4" width="3" height="14" rx="1" fill="url(#cg2)" opacity="0.5"/>
-                    <path d="M3.5 11L8.5 6.5L13.5 9L18 4" stroke="url(#cg2)" strokeWidth="1.4" strokeLinecap="round"/>
-                    <defs><linearGradient id="cg2" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Multi-timeframe charts with integrated signal overlays
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <rect x="2" y="2" width="7" height="7" rx="1.5" fill="url(#cg3)" opacity="0.9"/>
-                    <rect x="11" y="2" width="7" height="7" rx="1.5" fill="url(#cg3)" opacity="0.5"/>
-                    <rect x="2" y="11" width="7" height="7" rx="1.5" fill="url(#cg3)" opacity="0.5"/>
-                    <rect x="11" y="11" width="7" height="7" rx="1.5" fill="url(#cg3)" opacity="0.3"/>
-                    <defs><linearGradient id="cg3" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Market heatmaps — visualise momentum and correlation at a glance
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <circle cx="10" cy="10" r="7" stroke="url(#cg4)" strokeWidth="1.3" strokeDasharray="3 2"/>
-                    <circle cx="10" cy="10" r="3" fill="url(#cg4)"/>
-                    <defs><linearGradient id="cg4" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Order flow analytics — see what's moving inside each candle
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <path d="M10 2v4M10 14v4M2 10h4M14 10h4" stroke="url(#cg5)" strokeWidth="1.5" strokeLinecap="round"/>
-                    <circle cx="10" cy="10" r="4" stroke="url(#cg5)" strokeWidth="1.3"/>
-                    <defs><linearGradient id="cg5" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Liquidity scanners — automated detection of high-probability setups
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <path d="M3 7h14M3 10h10M3 13h6" stroke="url(#cg6)" strokeWidth="1.5" strokeLinecap="round"/>
-                    <circle cx="16" cy="13" r="3" stroke="url(#cg6)" strokeWidth="1.3"/>
-                    <defs><linearGradient id="cg6" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Custom alert builder — set thresholds on any AI signal
-              </li>
-            </ul>
-            <a
-              href="https://app.eagleailabs.com/claw/pretrade?utm_source=owned-eagle&utm_medium=website&utm_campaign=Claw&business_line=Claw-All&start=start-evergreen&end=end-evergreen&objective=registration&tactic=none+selected"
-              className="btn btn-primary prod-cta"
-            >
-              Try CLAW Pro →
-            </a>
           </div>
 
-          {/* Right — CLAW Pro product screenshot */}
-          <div className="prod-visual prod-visual--claw-pro reveal">
-            <figure className="prod-claw-pro-figure">
-              <img
-                src="/products-claw-pro-dashboard.png"
-                alt="CLAW Pro trading terminal with charts, whale activity, prediction, and breakout bot"
-                className="prod-claw-pro-img"
-                loading="lazy"
-                decoding="async"
+          <div className="cs-suite-grid">
+            {/* Pro */}
+            <a href="#claw-pro" className="cs-suite-card">
+              <div className="cs-sc-top">
+                <span className="cs-sc-tier">Tier 01</span>
+                <span className="cs-sc-status cs-sc-status-live">Live</span>
+              </div>
+              <div className="cs-sc-name">
+                CLAW <span className="cs-sc-name-sub">Pro</span>
+              </div>
+              <p className="cs-sc-tagline">
+                The institutional trading terminal for active crypto traders.
+              </p>
+              <div className="cs-sc-platforms">
+                <span className="cs-platform-chip">Desktop</span>
+                <span className="cs-platform-chip">iOS companion</span>
+                <span className="cs-platform-chip">Android companion</span>
+              </div>
+              <ul className="cs-sc-bullets">
+                <li>Full model surface area, every signal, every timeframe</li>
+                <li>Live heatmaps, order flow, liquidity scanners</li>
+                <li>Programmable alert engine across all model outputs</li>
+              </ul>
+              <div className="cs-sc-link">
+                Explore CLAW Pro
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </a>
+
+            {/* Stealth */}
+            <a href="#claw-stealth" className="cs-suite-card cs-suite-card--stealth">
+              <div className="cs-sc-top">
+                <span className="cs-sc-tier">Tier 02</span>
+                <span className="cs-sc-status cs-sc-status-live">Live</span>
+              </div>
+              <div className="cs-sc-name">
+                CLAW <span className="cs-sc-name-sub cs-sc-name-sub-stealth">Stealth</span>
+              </div>
+              <p className="cs-sc-tagline">
+                Crypto intelligence in your pocket, with a GPT you can talk to.
+              </p>
+              <div className="cs-sc-platforms">
+                <span className="cs-platform-chip">iOS</span>
+                <span className="cs-platform-chip">Android</span>
+              </div>
+              <ul className="cs-sc-bullets">
+                <li>High-conviction signals, surfaced the moment they fire</li>
+                <li>Ask Claw, conversational AI for prices, whales, context</li>
+                <li>Liquidation heatmaps + live market read in a thumb-tap</li>
+              </ul>
+              <div className="cs-sc-link">
+                Explore CLAW Stealth
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </a>
+
+            {/* Enterprise */}
+            <a href="#claw-enterprise" className="cs-suite-card cs-suite-card--enterprise">
+              <div className="cs-sc-top">
+                <span className="cs-sc-tier">Tier 03</span>
+                <span className="cs-sc-status cs-sc-status-contact">By invitation</span>
+              </div>
+              <div className="cs-sc-name">
+                CLAW <span className="cs-sc-name-sub">Enterprise</span>
+              </div>
+              <p className="cs-sc-tagline">
+                The Oracle, the full model arsenal, shaped to your risk stack.
+              </p>
+              <div className="cs-sc-platforms">
+                <span className="cs-platform-chip">API</span>
+                <span className="cs-platform-chip">White-label</span>
+                <span className="cs-platform-chip">Bespoke SLA</span>
+              </div>
+              <ul className="cs-sc-bullets">
+                <li>The Oracle, live multi-model consensus engine</li>
+                <li>Full arsenal of predictive neural networks + research</li>
+                <li>Direct API, data licensing, custom model development</li>
+              </ul>
+              <div className="cs-sc-link">
+                Talk to partnerships
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          01 · CLAW PRO, Desktop terminal + mobile companion
+      ══════════════════════════════════════════════════════════════════ */}
+      <section className="cs-product" id="claw-pro">
+        <div className="section-wrap">
+          <header className="cs-product-header">
+            <div className="cs-ph-index">01</div>
+            <div className="cs-ph-meta">
+              <div className="cs-ph-label">CLAW Pro · Flagship Terminal</div>
+              <div className="cs-ph-divider" aria-hidden="true" />
+              <div className="cs-ph-platforms">
+                <span>Desktop web</span>
+                <span className="cs-ph-platform-sep" aria-hidden="true">·</span>
+                <span>iOS companion</span>
+                <span className="cs-ph-platform-sep" aria-hidden="true">·</span>
+                <span>Android companion</span>
+              </div>
+            </div>
+            <div className="cs-ph-badge cs-ph-badge-live">
+              <span className="live-blink" /> LIVE
+            </div>
+          </header>
+
+          <div className="cs-product-body">
+            <div className="cs-product-copy reveal">
+              <h2 className="cs-product-title">
+                <span className="cs-product-title-brand">CLAW</span>
+                <span className="cs-product-title-variant">Pro</span>
+              </h2>
+              <p className="cs-product-lead">
+                The full Eagle AI workstation for active crypto traders. Every signal,
+                every model output, every timeframe, surfaced in a single professional
+                interface with live order flow, heatmaps and a programmable alert engine.
+              </p>
+
+              <ul className="cs-feat-list cs-feat-list--r3">
+                <li>
+                  <span className="cs-feat-num">01</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Full model surface area</div>
+                    <div className="cs-feat-desc">Directional signals across every pair and timeframe, with confidence scoring on each call.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">02</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Charts with live overlays</div>
+                    <div className="cs-feat-desc">Entries, targets and invalidation levels plotted on TradingView-grade candles.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">03</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Heatmaps &amp; order flow</div>
+                    <div className="cs-feat-desc">Momentum, correlation and liquidation heatmaps alongside live order flow.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">04</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Programmable alerts</div>
+                    <div className="cs-feat-desc">Set thresholds on any model output, delivered to desktop, mobile and webhook.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">05</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Mobile companion app</div>
+                    <div className="cs-feat-desc">Paired iOS/Android companion, watchlists, alerts and model feed, fully synced.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">06</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Whale &amp; on-chain intel</div>
+                    <div className="cs-feat-desc">Live wallet flows, exchange reserves and large-position monitoring in one surface.</div>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="cs-product-ctas">
+                <a
+                  href="https://app.eagleailabs.com/claw/pretrade?utm_source=owned-eagle&utm_medium=website&utm_campaign=Claw&business_line=Claw-All&start=start-evergreen&end=end-evergreen&objective=registration&tactic=none+selected"
+                  className="btn btn-primary cs-cta"
+                >
+                  Launch CLAW Pro
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </a>
+                <a href="#claw-enterprise" className="btn btn-outline cs-cta-secondary">
+                  API access for desks
+                </a>
+              </div>
+            </div>
+
+            <div className="cs-product-visual cs-product-visual--pro reveal">
+              {/* Floating monitor mockup with the real CLAW Pro terminal
+                  at the correct 16:10 aspect ratio (1024×640 source). */}
+              <HeroMonitorMockup
+                src="/products-claw-pro-monitor.png"
+                alt="CLAW Pro trading terminal with charts, whale activity, prediction card and breakout bot"
               />
-            </figure>
+              <div className="cs-pro-figure-caption">
+                <span className="cs-mono">CLAW Pro v2.1</span>
+                <span className="cs-caption-sep" aria-hidden="true">·</span>
+                <span>Live BTC/USD · 4H model consensus</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          PRODUCT 2 — CLAW STEALTH
-      ══════════════════════════════════════════ */}
-      <section className="prod-section prod-section-alt" id="claw-stealth">
-        <div className="section-wrap prod-section-inner prod-section-inner-rev">
-          {/* Left — same iPhone + chart mock as homepage hero */}
-          <div className="prod-visual prod-visual--stealth-iphone reveal">
-            <HeroIphoneMockup />
-          </div>
+      {/* ══════════════════════════════════════════════════════════════════
+          02 · CLAW STEALTH, Mobile + Ask Claw GPT agent
+      ══════════════════════════════════════════════════════════════════ */}
+      <section className="cs-product cs-product-alt" id="claw-stealth">
+        <div className="section-wrap">
+          <header className="cs-product-header">
+            <div className="cs-ph-index">02</div>
+            <div className="cs-ph-meta">
+              <div className="cs-ph-label">CLAW Stealth · Mobile Edition</div>
+              <div className="cs-ph-divider" aria-hidden="true" />
+              <div className="cs-ph-platforms">
+                <span>iOS</span>
+                <span className="cs-ph-platform-sep" aria-hidden="true">·</span>
+                <span>Android</span>
+                <span className="cs-ph-platform-sep" aria-hidden="true">·</span>
+                <span>Ask Claw GPT agent</span>
+              </div>
+            </div>
+            <div className="cs-ph-badge cs-ph-badge-live">
+              <span className="live-blink" /> LIVE
+            </div>
+          </header>
 
-          {/* Right — copy */}
-          <div className="prod-copy reveal">
-            <div className="prod-badge prod-badge-stealth">STREAMLINED EDITION</div>
-            <h2 className="prod-title">
-              CLAW <span className="gradient-text">Stealth</span>
-            </h2>
-            <p className="prod-subtitle">AI signals for traders who don&apos;t have time to watch charts.</p>
-            <p className="prod-desc">
-              All the intelligence of Eagle AI Labs — stripped down, surfaced through AI agents,
-              and delivered the moment it matters. Stealth watches the markets 24/7 and only
-              pings you when a high-conviction signal fires. You get the call, the confidence,
-              and the levels. You decide whether to trade.
-            </p>
-            <ul className="prod-features">
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <path d="M10 2C6.68 2 4 4.68 4 8c0 5 6 10 6 10s6-5 6-10c0-3.32-2.68-6-6-6z" fill="url(#stg1)" opacity="0.9"/>
-                    <circle cx="10" cy="8" r="2" fill="#0a1628"/>
-                    <defs><linearGradient id="stg1" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                AI agents monitor every market 24/7 — you get pinged, not flooded
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <path d="M5 10h10M10 5l5 5-5 5" stroke="url(#stg2)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                    <defs><linearGradient id="stg2" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Clean signal feed — only the highest-confidence, model-verified calls
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <path d="M4 4h12v8H4z" stroke="url(#stg3)" strokeWidth="1.3" rx="1"/>
-                    <path d="M8 12v4M12 12v4M6 16h8" stroke="url(#stg3)" strokeWidth="1.3" strokeLinecap="round"/>
-                    <defs><linearGradient id="stg3" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Custom alerts — set your conditions from our best-performing models
-              </li>
-              <li>
-                <span className="prod-feat-icon">
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <rect x="3" y="4" width="14" height="12" rx="2" stroke="url(#stg4)" strokeWidth="1.3"/>
-                    <path d="M7 9h6M7 12h4" stroke="url(#stg4)" strokeWidth="1.3" strokeLinecap="round"/>
-                    <defs><linearGradient id="stg4" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                  </svg>
-                </span>
-                Beginner-friendly UX — actionable from day one, no learning curve
-              </li>
-            </ul>
-            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary prod-cta">
-              Try CLAW Stealth →
-            </a>
+          <div className="cs-product-body cs-product-body-rev">
+            <div className="cs-product-visual cs-product-visual--stealth reveal">
+              <HeroIphoneMockup
+                ctaHref="https://app.eagleailabs.com/auth/login"
+                ctaLabel="Launch CLAW Stealth"
+              />
+            </div>
+
+            <div className="cs-product-copy reveal">
+              <h2 className="cs-product-title">
+                <span className="cs-product-title-brand">CLAW</span>
+                <span className="cs-product-title-variant cs-product-title-variant-stealth">Stealth</span>
+              </h2>
+              <p className="cs-product-lead">
+                The lightweight mobile edition. Stealth watches every market 24/7 and
+                only pings you when a high-conviction signal fires. Paired with Ask Claw
+               , a conversational AI agent you can actually talk to about crypto.
+              </p>
+
+              {/* Ask Claw, explicit callout, the differentiator */}
+              <div className="cs-ask-claw">
+                <div className="cs-ac-head">
+                  <div className="cs-ac-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M12 2L3 7V13C3 17.5 6.5 21.5 12 22C17.5 21.5 21 17.5 21 13V7L12 2Z" stroke="url(#ac-g)" strokeWidth="1.6" strokeLinejoin="round"/>
+                      <path d="M9 11H15M9 14H13" stroke="url(#ac-g)" strokeWidth="1.4" strokeLinecap="round"/>
+                      <defs><linearGradient id="ac-g" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
+                    </svg>
+                    Ask Claw · GPT agent
+                  </div>
+                </div>
+                <p className="cs-ac-desc">
+                  A domain-trained conversational AI for crypto. Prices, setups, whale
+                  activity, liquidation clusters, model read, ask in plain English, get
+                  context-aware answers grounded in live Eagle AI data.
+                </p>
+                <div className="cs-ac-prompts">
+                  <span className="cs-ac-prompt">&ldquo;Where&apos;s BTC going this week?&rdquo;</span>
+                  <span className="cs-ac-prompt">&ldquo;What&apos;s the whale activity on ETH?&rdquo;</span>
+                  <span className="cs-ac-prompt">&ldquo;Give me an entry plan for SOL long&rdquo;</span>
+                </div>
+              </div>
+
+              <ul className="cs-feat-list cs-feat-list--r2">
+                <li>
+                  <span className="cs-feat-num">01</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">24/7 agent monitoring</div>
+                    <div className="cs-feat-desc">You get pinged, not flooded, only the highest-conviction calls reach the surface.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">02</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Live market read</div>
+                    <div className="cs-feat-desc">Trend, risk and sentiment on a single glanceable overview screen.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">03</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Heatmaps &amp; intel feed</div>
+                    <div className="cs-feat-desc">BTC, ETH, SOL, XRP liquidation heatmaps plus ranked EAGLEAI Intel.</div>
+                  </div>
+                </li>
+                <li>
+                  <span className="cs-feat-num">04</span>
+                  <div className="cs-feat-body">
+                    <div className="cs-feat-title">Zero learning curve</div>
+                    <div className="cs-feat-desc">Actionable from first launch. For traders who don&apos;t watch charts.</div>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="cs-product-ctas">
+                <a
+                  href="https://app.eagleailabs.com/auth/login"
+                  className="btn btn-primary cs-cta"
+                >
+                  Get CLAW Stealth
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </a>
+                <div className="cs-store-row">
+                  <a
+                    href="https://www.eagleailabs.com/download/ios"
+                    target="_blank"
+                    rel="noopener"
+                    className="cs-store-chip"
+                  >
+                    <span className="cs-store-label">Download on</span>
+                    <span className="cs-store-name">App Store</span>
+                  </a>
+                  <a
+                    href="https://www.eagleailabs.com/download/android"
+                    target="_blank"
+                    rel="noopener"
+                    className="cs-store-chip"
+                  >
+                    <span className="cs-store-label">Get it on</span>
+                    <span className="cs-store-name">Google Play</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          PRODUCT 3 — THE ORACLE
-      ══════════════════════════════════════════ */}
-      <section className="prod-oracle-section" id="oracle">
-        {/* Rotating brain canvas */}
+      {/* ══════════════════════════════════════════════════════════════════
+          03 · CLAW ENTERPRISE, Oracle, arsenal, API, contact form
+      ══════════════════════════════════════════════════════════════════ */}
+      <section className="cs-enterprise" id="claw-enterprise">
+        {/* Ambient brain canvas + glow rings, the "intelligence" visual */}
         <canvas id="oracle-brain-canvas" className="oracle-brain-canvas" />
-
-        {/* Ambient glow rings */}
         <div className="oracle-glow-ring oracle-ring1" aria-hidden="true" />
         <div className="oracle-glow-ring oracle-ring2" aria-hidden="true" />
         <div className="oracle-glow-ring oracle-ring3" aria-hidden="true" />
 
-        <div className="section-wrap oracle-inner">
-          <div className="oracle-top-badge reveal">APEX PRODUCT</div>
-          <h2 className="oracle-title reveal">
-            The <span className="gradient-text oracle-title-glow">Oracle</span>
-          </h2>
-          <p className="oracle-tagline reveal">The multi-model consensus engine for serious capital — every Eagle AI model, voting in real time.</p>
-          <p className="oracle-desc reveal">
-            The Oracle runs every Eagle AI model simultaneously and scores each one against live
-            market conditions. It tracks which models are winning right now, weighs their conviction,
-            and surfaces the single highest-confidence call at any moment. You don&apos;t pick a
-            model — The Oracle picks the one you should be listening to.
-          </p>
+        <div className="section-wrap cs-ent-wrap">
+          <header className="cs-product-header cs-ent-header">
+            <div className="cs-ph-index">03</div>
+            <div className="cs-ph-meta">
+              <div className="cs-ph-label">CLAW Enterprise · Institutional Deployment</div>
+              <div className="cs-ph-divider" aria-hidden="true" />
+              <div className="cs-ph-platforms">
+                <span>The Oracle</span>
+                <span className="cs-ph-platform-sep" aria-hidden="true">·</span>
+                <span>REST + WebSocket API</span>
+                <span className="cs-ph-platform-sep" aria-hidden="true">·</span>
+                <span>Bespoke SLA</span>
+              </div>
+            </div>
+            <div className="cs-ph-badge cs-ph-badge-ent">BY INVITATION</div>
+          </header>
 
-          <div className="oracle-pillars reveal">
-            <div className="oracle-pillar">
-              <div className="oracle-pillar-icon">
-                <svg viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="14" stroke="url(#og1)" strokeWidth="1.2" strokeDasharray="4 2"/>
-                  <circle cx="16" cy="16" r="8" stroke="url(#og1)" strokeWidth="1.5"/>
-                  <circle cx="16" cy="16" r="3" fill="url(#og1)"/>
-                  <defs><linearGradient id="og1" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                </svg>
-              </div>
-              <h4>All Models. Live.</h4>
-              <p>Every Eagle AI model runs in parallel, scored against real-time market data at all times.</p>
+          <div className="cs-ent-lede reveal">
+            <h2 className="cs-ent-title">
+              The full arsenal.
+              <br />
+              <span className="cs-hero-title-accent">Shaped to your risk stack.</span>
+            </h2>
+            <p className="cs-ent-sub">
+              CLAW Enterprise is how hedge funds, proprietary desks and fintech
+              operators integrate Eagle AI. Direct access to the Oracle, every
+              production model, our research pipeline, and custom model development,
+              delivered under partnership with an institutional SLA.
+            </p>
+          </div>
+
+          {/* Arsenal, the capabilities grid */}
+          <div className="cs-arsenal reveal">
+            <div className="cs-arsenal-head">
+              <span className="cs-arsenal-eyebrow">THE ARSENAL</span>
+              <span className="cs-arsenal-divider" aria-hidden="true" />
+              <span className="cs-arsenal-hint">What Enterprise unlocks</span>
             </div>
-            <div className="oracle-pillar">
-              <div className="oracle-pillar-icon">
-                <svg viewBox="0 0 32 32" fill="none">
-                  <path d="M4 28L12 16L18 22L24 10L30 4" stroke="url(#og2)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="12" cy="16" r="2.5" fill="url(#og2)"/>
-                  <circle cx="24" cy="10" r="2.5" fill="url(#og2)"/>
-                  <defs><linearGradient id="og2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                </svg>
+            <div className="cs-arsenal-grid">
+              <div className="cs-arsenal-card">
+                <div className="cs-ars-num">01</div>
+                <h3 className="cs-ars-title">The Oracle</h3>
+                <p className="cs-ars-desc">
+                  Our multi-model consensus engine runs every production model against
+                  live market data, scores them in real time, and surfaces the single
+                  highest-confidence call at any moment.
+                </p>
               </div>
-              <h4>Dynamic Model Selection</h4>
-              <p>The Oracle weighs confidence, recent accuracy, and market conditions to identify which model deserves trust — right now.</p>
-            </div>
-            <div className="oracle-pillar">
-              <div className="oracle-pillar-icon">
-                <svg viewBox="0 0 32 32" fill="none">
-                  <rect x="4" y="20" width="5" height="8" rx="1.5" fill="url(#og3)" opacity="0.5"/>
-                  <rect x="12" y="12" width="5" height="16" rx="1.5" fill="url(#og3)" opacity="0.7"/>
-                  <rect x="20" y="4" width="5" height="24" rx="1.5" fill="url(#og3)"/>
-                  <defs><linearGradient id="og3" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                </svg>
+              <div className="cs-arsenal-card">
+                <div className="cs-ars-num">02</div>
+                <h3 className="cs-ars-title">Predictive model library</h3>
+                <p className="cs-ars-desc">
+                  CNN-BiLSTM, attention networks, microstructure models, ensemble
+                  voters, every Eagle AI architecture, queryable by pair, timeframe,
+                  regime.
+                </p>
               </div>
-              <h4>Real-Time Scoring</h4>
-              <p>A live performance leaderboard shows which models are winning, how much edge they carry, and when to rotate.</p>
-            </div>
-            <div className="oracle-pillar">
-              <div className="oracle-pillar-icon">
-                <svg viewBox="0 0 32 32" fill="none">
-                  <path d="M16 4L4 10V22L16 28L28 22V10L16 4Z" stroke="url(#og4)" strokeWidth="1.4" strokeLinejoin="round"/>
-                  <path d="M16 4V28M4 10L28 22M28 10L4 22" stroke="url(#og4)" strokeWidth="0.8" strokeOpacity="0.4"/>
-                  <defs><linearGradient id="og4" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs>
-                </svg>
+              <div className="cs-arsenal-card">
+                <div className="cs-ars-num">03</div>
+                <h3 className="cs-ars-title">REST + WebSocket API</h3>
+                <p className="cs-ars-desc">
+                  Sub-50ms signal latency. Historical endpoints for backtesting, live
+                  streams for execution. Client SDKs for Python, Node and Rust on
+                  request.
+                </p>
               </div>
-              <h4>Market State Intelligence</h4>
-              <p>The Oracle classifies live market regimes — trending, ranging, volatile — and adjusts which signals it surfaces accordingly.</p>
+              <div className="cs-arsenal-card">
+                <div className="cs-ars-num">04</div>
+                <h3 className="cs-ars-title">Custom model development</h3>
+                <p className="cs-ars-desc">
+                  Our research team builds, trains and ships bespoke models against
+                  your instruments, objectives and data pipelines, not off-the-shelf.
+                </p>
+              </div>
+              <div className="cs-arsenal-card">
+                <div className="cs-ars-num">05</div>
+                <h3 className="cs-ars-title">Data licensing</h3>
+                <p className="cs-ars-desc">
+                  Historical signal archives, confidence distributions and enriched
+                  market state classifications, licensed for research and deployment.
+                </p>
+              </div>
+              <div className="cs-arsenal-card">
+                <div className="cs-ars-num">06</div>
+                <h3 className="cs-ars-title">White-label &amp; partnership</h3>
+                <p className="cs-ars-desc">
+                  Run CLAW Pro under your brand, or embed Eagle AI intelligence into
+                  your own product surface. Includes engineering co-development.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="oracle-consensus-box reveal">
-            <div className="oracle-consensus-header">
-              <span className="oracle-live-dot" />
-              Live Consensus — BTC/USD
+          {/* The Oracle, live consensus preview */}
+          <div className="cs-oracle-preview reveal">
+            <div className="cs-oracle-preview-head">
+              <div className="cs-oracle-live">
+                <span className="oracle-live-dot" />
+                <span className="cs-mono">LIVE</span>
+                <span className="cs-oracle-pair">BTC / USD</span>
+              </div>
+              <div className="cs-oracle-preview-meta">
+                <span className="cs-mono">4 models · consensus scored</span>
+              </div>
             </div>
-            <div className="oracle-model-rows">
+            <div className="cs-oracle-rows">
               {[
-                { name: 'CNN-BiLSTM 1H',   dir: 'LONG', conf: 92, best: true  },
-                { name: 'Attention 4H',     dir: 'LONG', conf: 87, best: false },
-                { name: 'Ensemble 1D',      dir: 'LONG', conf: 83, best: false },
-                { name: 'Microstructure 30M', dir: 'LONG', conf: 79, best: false },
+                { name: 'CNN-BiLSTM',       tf: '1H',  dir: 'LONG', conf: 92, best: true  },
+                { name: 'Attention',        tf: '4H',  dir: 'LONG', conf: 87, best: false },
+                { name: 'Ensemble',         tf: '1D',  dir: 'LONG', conf: 83, best: false },
+                { name: 'Microstructure',   tf: '30M', dir: 'LONG', conf: 79, best: false },
               ].map(m => (
-                <div key={m.name} className={`oracle-model-row${m.best ? ' oracle-model-best' : ''}`}>
-                  <span className="omr-name">{m.name}</span>
-                  <span className="omr-dir" style={{ color: '#14fdfd' }}>{m.dir}</span>
-                  <div className="omr-bar-wrap">
-                    <div className="omr-bar" style={{ width: `${m.conf}%` }} />
+                <div key={m.name} className={`cs-oracle-row${m.best ? ' cs-oracle-row-best' : ''}`}>
+                  <span className="cs-or-name">{m.name}</span>
+                  <span className="cs-or-tf cs-mono">{m.tf}</span>
+                  <span className="cs-or-dir">{m.dir}</span>
+                  <div className="cs-or-bar-wrap">
+                    <div className="cs-or-bar" style={{ width: `${m.conf}%` }} />
                   </div>
-                  <span className="omr-conf">{m.conf}%</span>
-                  {m.best && <span className="omr-best-badge">BEST</span>}
+                  <span className="cs-or-conf cs-mono">{m.conf}%</span>
+                  {m.best && <span className="cs-or-best">BEST</span>}
                 </div>
               ))}
             </div>
-            <div className="oracle-verdict">
-              <span className="oracle-verdict-label">Oracle Verdict</span>
-              <span className="oracle-verdict-val gradient-text">STRONG LONG · 4-Model Consensus</span>
+            <div className="cs-oracle-verdict">
+              <span className="cs-ov-label">ORACLE VERDICT</span>
+              <span className="cs-ov-sep" aria-hidden="true" />
+              <span className="cs-ov-val">STRONG LONG · 4-Model Consensus</span>
             </div>
           </div>
 
-          <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary oracle-cta reveal">
-            Access The Oracle →
-          </a>
+          {/* Contact form */}
+          <div className="cs-contact reveal">
+            <div className="cs-contact-head">
+              <div className="cs-contact-eyebrow">GET IN TOUCH</div>
+              <h3 className="cs-contact-title">
+                Partner with Eagle AI Labs.
+              </h3>
+              <p className="cs-contact-sub">
+                Enterprise access is by invitation and scoped to fit your desk. Tell
+                us how you want to use CLAW and our partnerships team will be in
+                touch within 24 business hours.
+              </p>
+              <ul className="cs-contact-assurances">
+                <li><span className="cs-ca-dot" aria-hidden="true" />Response within 24 business hours</li>
+                <li><span className="cs-ca-dot" aria-hidden="true" />NDA available on request</li>
+                <li><span className="cs-ca-dot" aria-hidden="true" />Pilot deployments supported</li>
+              </ul>
+            </div>
+
+            <EnterpriseContactForm />
+          </div>
         </div>
       </section>
 

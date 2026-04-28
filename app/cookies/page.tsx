@@ -36,12 +36,12 @@ export default function CookiePolicyPage() {
       <h2>3. Categories of cookies we use</h2>
       <h3>Strictly necessary</h3>
       <p>
-        Required for the website and Services to function — for example, authentication, session
+        Required for the website and Services to function, for example, authentication, session
         management, and load balancing. These cannot be switched off.
       </p>
       <h3>Functional</h3>
       <p>
-        Enable enhanced functionality and personalisation — for example, remembering your preferred
+        Enable enhanced functionality and personalisation, for example, remembering your preferred
         timeframe on the signal dashboard. You can disable these in your browser; the Services will
         continue to work but some personalisation will be lost.
       </p>
@@ -54,7 +54,7 @@ export default function CookiePolicyPage() {
 
       <h2>4. Third-party cookies</h2>
       <p>
-        Some cookies are set by third parties whose services we use — for example, analytics
+        Some cookies are set by third parties whose services we use, for example, analytics
         providers and payment processors. These third parties are contractually required to process
         data in line with our instructions and applicable data protection laws.
       </p>
@@ -62,7 +62,7 @@ export default function CookiePolicyPage() {
       <h2>5. Managing cookies</h2>
       <p>
         Most browsers allow you to refuse cookies, delete existing ones, or be notified when a
-        cookie is being set. The exact steps vary by browser — consult your browser&apos;s help
+        cookie is being set. The exact steps vary by browser, consult your browser&apos;s help
         documentation. Blocking strictly necessary cookies may prevent parts of the Services from
         working.
       </p>

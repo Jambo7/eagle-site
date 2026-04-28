@@ -1,6 +1,6 @@
 /**
  * Pipeline-style data-flow schematic (ingest → model → signals).
- * Shared by home + technology pages — keep in sync visually.
+ * Shared by home + technology pages, keep in sync visually.
  */
 export default function DataFlowDiagram() {
   return (
@@ -15,7 +15,7 @@ export default function DataFlowDiagram() {
             <stop stopColor="#4d6278" />
             <stop offset="1" stopColor="#556882" />
           </linearGradient>
-          {/* Single flow particle — very soft blur, low alpha (motion via animateMotion only) */}
+          {/* Single flow particle, very soft blur, low alpha (motion via animateMotion only) */}
           <filter id="df-particle-soft" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="0.9" result="b" />
             <feMerge>
@@ -25,7 +25,7 @@ export default function DataFlowDiagram() {
           </filter>
         </defs>
         <g transform="rotate(-0.45 230 198)">
-          {/* Layer 1 — ingest */}
+          {/* Layer 1, ingest */}
           <g className="nn-conn-1" stroke="rgba(95, 115, 140, 0.38)" strokeWidth="0.38" fill="none">
             <line x1="64" y1="81" x2="166" y2="101" />
             <line x1="64" y1="81" x2="166" y2="176" />
@@ -63,7 +63,7 @@ export default function DataFlowDiagram() {
             <line x1="266" y1="292" x2="356" y2="246" />
           </g>
 
-          {/* One particle, one route along existing edges — forward then reverse for continuous loop */}
+          {/* One particle, one route along existing edges, forward then reverse for continuous loop */}
           <g className="df-flow-particle" aria-hidden="true">
             <path
               id="df-flow-route"
@@ -79,7 +79,7 @@ export default function DataFlowDiagram() {
             </circle>
           </g>
 
-          {/* Input points — unlabeled data taps */}
+          {/* Input points, unlabeled data taps */}
           <g className="nn-nodes-in" fill="rgba(12, 16, 24, 0.92)" stroke="url(#df-stroke-in)" strokeWidth="0.9">
             <circle cx="64" cy="81" r="5.2" />
             <circle cx="64" cy="147" r="5.2" />

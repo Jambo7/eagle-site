@@ -1,18 +1,25 @@
 /**
  * Shared site footer. Used on every public page.
  *
- * Link policy (draft):
- * - Points to real destinations where they exist (/solutions, /products,
- *   /technology, /hedge-fund, /privacy, /terms, /risk-disclosure, /cookies,
- *   the in-product app URLs, and the sample-signal section on the homepage).
- * - Uses `mailto:hello@eagleailabs.com` with a subject line for items that
- *   do not yet have a dedicated page/product (Careers, API Access, Docs,
- *   Community). Swap these for real URLs as the surrounding pages ship.
+ * Structure mirrors the existing eagleailabs.com footer (Products /
+ * Resources / Other columns + full legal bar: Privacy · Cookies · Terms ·
+ * Risk Disclaimer · Conflict of Interest · Changelog).
+ *
+ * Link policy:
+ * - Internal routes for every top-level page we have rebuilt (/products,
+ *   /solutions, /pricing, /blog, /about, /privacy, /terms, /risk-disclosure,
+ *   /cookies, /technology, /hedge-fund).
+ * - Existing live eagleailabs.com URLs for deep pages we have not yet
+ *   rebuilt (Affiliates, Partner Portal, Promotion Proposal, Conflict of
+ *   Interest, Changelog, CLAW Trade Credits). These open in a new tab.
+ * - `mailto:hello@eagleailabs.com` with a subject line for items without
+ *   a dedicated page (Docs, Contact).
  */
 export default function SiteFooter() {
   const year = new Date().getFullYear();
   const mailto = (subject: string) =>
     `mailto:hello@eagleailabs.com?subject=${encodeURIComponent(subject)}`;
+  const ext = "https://www.eagleailabs.com";
 
   return (
     <footer id="footer">
@@ -43,41 +50,53 @@ export default function SiteFooter() {
           </div>
           <div className="footer-links">
             <div className="fl-col">
-              <div className="fl-head">Platform</div>
-              <a href="https://app.eagleailabs.com/auth/login">Sign In</a>
-              <a href="/products#claw">CLAW Pro Terminal</a>
-              <a href="/products#claw-stealth">CLAW Stealth</a>
-              <a href="/products#oracle">The Oracle</a>
-              <a href={mailto("API Access Enquiry")}>API Access</a>
-            </div>
-            <div className="fl-col">
-              <div className="fl-head">Company</div>
-              <a href="/solutions">Solutions</a>
-              <a href="/technology">Technology</a>
-              <a href="/hedge-fund">Hedge Fund Partnership</a>
-              <a href={mailto("Careers at Eagle AI Labs")}>Careers</a>
-              <a href={mailto("General Enquiry")}>Contact</a>
+              <div className="fl-head">Products</div>
+              <a href="/">Home</a>
+              <a href="/products">Claw</a>
+              <a href="/solutions">AI Solutions</a>
+              <a href="/pricing">Pricing</a>
+              <a href={`${ext}/claw-trade-credits`} target="_blank" rel="noopener">CLAW Trade Credits</a>
             </div>
             <div className="fl-col">
               <div className="fl-head">Resources</div>
-              <a href="/#sample-signal">Example Signals</a>
-              <a href="/technology">Research &amp; Forward Curves</a>
-              <a href={mailto("Documentation Access")}>Documentation</a>
-              <a href={mailto("API Docs Access")}>API Docs</a>
-              <a href={mailto("Community Access")}>Community</a>
+              <a href="/blog">Blog</a>
+              <a href={mailto("Documentation Access")}>Docs</a>
+              <a href="/about">About</a>
+              <a href={mailto("General Enquiry")}>Contact</a>
+              <a href="/technology">Technology</a>
             </div>
             <div className="fl-col">
-              <div className="fl-head">Legal</div>
-              <a href="/privacy">Privacy Policy</a>
-              <a href="/terms">Terms of Service</a>
-              <a href="/risk-disclosure">Risk Disclosure</a>
-              <a href="/cookies">Cookie Policy</a>
+              <div className="fl-head">Other</div>
+              <a href={`${ext}/affiliates`} target="_blank" rel="noopener">Affiliates</a>
+              <a href={`${ext}/partner-portal`} target="_blank" rel="noopener">Partner Portal</a>
+              <a href={mailto("Promotion Proposal Submission")}>Submit a Promotion Proposal</a>
+              <a href="/hedge-fund">Hedge Fund Partnership</a>
+              <a href="/#sample-signal">Example Signals</a>
             </div>
           </div>
         </div>
+        {/* Legal bar, mirrors the existing eagleailabs.com site's bottom
+            line: © + Privacy · Cookies · Terms · Risk Disclaimer ·
+            Conflict of Interest · Changelog. Internal routes used where
+            we already have a rebuilt page; external otherwise. */}
         <div className="footer-bottom">
-          <p>© {year} Eagle AI Labs. All rights reserved.</p>
-          <p className="footer-disclaimer">AI-generated signals are not financial advice. Cryptocurrency trading involves substantial risk of loss.</p>
+          <div className="footer-bottom-copy">
+            <p>© {year} Eagle AI Labs. All rights reserved.</p>
+            <p className="footer-disclaimer">AI-generated signals are not financial advice. Cryptocurrency trading involves substantial risk of loss.</p>
+          </div>
+          <nav className="footer-legal-nav" aria-label="Legal">
+            <a href="/privacy">Privacy Policy</a>
+            <span className="fln-sep" aria-hidden="true">|</span>
+            <a href="/cookies">Cookies</a>
+            <span className="fln-sep" aria-hidden="true">|</span>
+            <a href="/terms">Terms and Conditions</a>
+            <span className="fln-sep" aria-hidden="true">|</span>
+            <a href="/risk-disclosure">Risk Disclaimer</a>
+            <span className="fln-sep" aria-hidden="true">|</span>
+            <a href={`${ext}/conflict-of-interest`} target="_blank" rel="noopener">Conflict of Interest</a>
+            <span className="fln-sep" aria-hidden="true">|</span>
+            <a href={`${ext}/changelog`} target="_blank" rel="noopener">Changelog</a>
+          </nav>
         </div>
       </div>
     </footer>

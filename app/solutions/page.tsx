@@ -13,14 +13,15 @@ export default function SolutionsPage() {
             <img src="/logo.png" alt="Eagle AI Labs" className="logo-img" />
           </a>
           <ul className="nav-links">
-            <li><a href="/solutions" style={{ color: 'var(--mid)' }}>Solutions</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/technology">Technology</a></li>
-            <li><a href="/hedge-fund">Live Hedge Fund Trading</a></li>
+            <li><a href="/products">Claw</a></li>
+            <li><a href="/solutions" aria-current="page">AI Solutions</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
             <a href="https://app.eagleailabs.com/auth/login" className="btn btn-ghost">Sign In</a>
-            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Try Now</a>
+            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Get Started</a>
           </div>
           <button className="nav-burger" id="nav-burger" aria-label="Toggle menu">
             <span /><span /><span />
@@ -53,7 +54,7 @@ export default function SolutionsPage() {
           </h1>
           <p className="sol-hero-sub reveal">
             Eagle AI Labs is not a product company. We are an AI solutions architecture firm.
-            Our predictive infrastructure is domain-agnostic — built to model complex systems,
+            Our predictive infrastructure is domain-agnostic, built to model complex systems,
             identify probabilistic outcomes, and deliver conviction signals wherever edge is valued.
           </p>
           <div className="sol-pillars reveal">
@@ -96,7 +97,7 @@ export default function SolutionsPage() {
               </div>
               <div>
                 <div className="sol-infra-title">Modular Architecture</div>
-                <div className="sol-infra-desc">Every model we build shares the same underlying infrastructure. New verticals are not new codebases — they are new domains applied to a proven stack.</div>
+                <div className="sol-infra-desc">Every model we build shares the same underlying infrastructure. New verticals are not new codebases, they are new domains applied to a proven stack.</div>
               </div>
             </div>
             <div className="sol-infra-card">
@@ -110,7 +111,7 @@ export default function SolutionsPage() {
               </div>
               <div>
                 <div className="sol-infra-title">Probabilistic Outputs</div>
-                <div className="sol-infra-desc">We do not return binary predictions. Every signal carries a directional probability, confidence score, and quality rating — built for decision-making under uncertainty.</div>
+                <div className="sol-infra-desc">We do not return binary predictions. Every signal carries a directional probability, confidence score, and quality rating, built for decision-making under uncertainty.</div>
               </div>
             </div>
             <div className="sol-infra-card">
@@ -132,7 +133,7 @@ export default function SolutionsPage() {
       </div>
 
       {/* ══════════════════════════════════════════
-          SOLUTION 1 — CRYPTO & DIGITAL ASSETS (flagship)
+          SOLUTION 1, CRYPTO & DIGITAL ASSETS (flagship)
       ══════════════════════════════════════════ */}
       <section className="sol-section sol-flagship" id="crypto">
         <div className="section-wrap">
@@ -152,18 +153,18 @@ export default function SolutionsPage() {
               <p className="sol-section-body">
                 Crypto markets present a unique modelling challenge: 24/7 operation, extreme volatility
                 regimes, microstructure-driven price action, and overlapping macro catalysts. Eagle AI Labs
-                has built a predictive infrastructure that handles all of it — delivering directional
+                has built a predictive infrastructure that handles all of it, delivering directional
                 probability signals across 10 of the most liquid futures pairs, on four timeframes.
               </p>
               <p className="sol-section-body">
-                Our architecture — CNN + Bidirectional LSTM + Self-Attention — is specifically designed
+                Our architecture, CNN + Bidirectional LSTM + Self-Attention, is specifically designed
                 for sequential, non-stationary time-series data. The result is a model that does not just
                 track price; it understands market structure and anticipates it.
               </p>
               <ul className="sol-feat-list">
                 <li>Directional probability signals with calibrated confidence scores</li>
                 <li>10 liquid futures pairs across 30M, 1H, 4H and Daily timeframes</li>
-                <li>Order flow intelligence — 16 microstructure features per candle</li>
+                <li>Order flow intelligence, 16 microstructure features per candle</li>
                 <li>Weekly adaptive retraining on rolling 24-month windows</li>
                 <li>Live deployment in a US-regulated CME hedge fund</li>
               </ul>
@@ -209,7 +210,7 @@ export default function SolutionsPage() {
                 </div>
                 <div className="sfsc-footer">
                   <span className="sfsc-live-dot" />
-                  Live signal feed — updated every 30 minutes
+                  Live signal feed, updated every 30 minutes
                 </div>
               </div>
             </div>
@@ -218,7 +219,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          SOLUTIONS GRID — other verticals
+          SOLUTIONS GRID, other verticals
       ══════════════════════════════════════════ */}
       <section className="sol-grid-section">
         <div className="section-wrap">
@@ -231,7 +232,7 @@ export default function SolutionsPage() {
             <p className="sol-grid-sub">
               Eagle AI Labs' architecture is not limited to crypto. Any market with sufficient
               historical data and measurable outcomes is a candidate for our predictive stack.
-              Below are the verticals we are actively developing — each available for partnership
+              Below are the verticals we are actively developing, each available for partnership
               and early-access engagement.
             </p>
           </div>
@@ -254,12 +255,12 @@ export default function SolutionsPage() {
                 Sports markets share the same structural challenge as financial markets: bounded
                 information, probabilistic outcomes, and behavioural inefficiencies that create
                 persistent edge. Eagle AI Labs is building predictive models for match outcomes,
-                player performance metrics, and in-play probability shifts — across football, basketball,
+                player performance metrics, and in-play probability shifts, across football, basketball,
                 tennis, and American sports.
               </p>
               <p className="sol-card-body">
                 Our models process historical performance data, lineup variables, venue factors,
-                and contextual market signals to produce calibrated outcome probabilities — designed
+                and contextual market signals to produce calibrated outcome probabilities, designed
                 for both trading applications and strategic decision-making.
               </p>
               <ul className="sol-card-list">
@@ -286,14 +287,14 @@ export default function SolutionsPage() {
               <div className="sol-card-badge sol-badge-dev">In Development</div>
               <h3 className="sol-card-title">Gold, Oil &amp; Commodities</h3>
               <p className="sol-card-body">
-                Commodity markets are macro-driven, sentiment-sensitive, and structurally deep —
+                Commodity markets are macro-driven, sentiment-sensitive, and structurally deep,
                 making them ideal for AI-powered directional forecasting. Eagle AI Labs is extending
                 its predictive architecture into Gold (XAU/USD), Crude Oil (WTI &amp; Brent),
                 Natural Gas, and broader commodity futures.
               </p>
               <p className="sol-card-body">
                 Our models incorporate multi-source inputs: technical price series, macroeconomic
-                indicators, geopolitical sentiment signals, and supply-demand proxy data — to
+                indicators, geopolitical sentiment signals, and supply-demand proxy data, to
                 generate forward-looking directional probability outputs across multiple timeframes.
               </p>
               <ul className="sol-card-list">
@@ -320,14 +321,14 @@ export default function SolutionsPage() {
               <p className="sol-card-body">
                 Foreign exchange is the largest and most liquid market in the world, yet it
                 remains dominated by reactive decision-making. Eagle AI Labs is building
-                directional prediction models for major currency pairs — EUR/USD, GBP/USD,
-                USD/JPY, and beyond — using the same battle-tested architecture that powers
+                directional prediction models for major currency pairs, EUR/USD, GBP/USD,
+                USD/JPY, and beyond, using the same battle-tested architecture that powers
                 our crypto signal engine.
               </p>
               <p className="sol-card-body">
                 FX models incorporate central bank rate differentials, macro data releases,
                 cross-market liquidity flows, and technical microstructure to produce calibrated
-                probability outputs — giving traders a statistical edge over discretionary
+                probability outputs, giving traders a statistical edge over discretionary
                 and momentum-based approaches.
               </p>
               <ul className="sol-card-list">
@@ -352,8 +353,8 @@ export default function SolutionsPage() {
               <div className="sol-card-badge sol-badge-dev">In Development</div>
               <h3 className="sol-card-title">Prediction Markets</h3>
               <p className="sol-card-body">
-                Prediction markets — covering political elections, economic data releases,
-                regulatory decisions, and macro events — represent an emerging frontier for
+                Prediction markets, covering political elections, economic data releases,
+                regulatory decisions, and macro events, represent an emerging frontier for
                 AI-driven forecasting. Eagle AI Labs is developing models that aggregate
                 structured data, sentiment signals, and base rate analysis to generate
                 calibrated probability estimates for binary and multi-outcome events.

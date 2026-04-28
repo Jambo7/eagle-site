@@ -3,7 +3,7 @@ import MobileNavDrawer from "./mobile-nav-drawer";
 import SiteFooter from "./site-footer";
 
 type Props = {
-  /** Page title — e.g. "Privacy Policy". */
+  /** Page title, e.g. "Privacy Policy". */
   title: string;
   /** Short one-line summary shown under the title. */
   lede: string;
@@ -38,14 +38,15 @@ export default function LegalShell({ title, lede, effectiveDate, children }: Pro
             <img src="/logo.png" alt="Eagle AI Labs" className="logo-img" />
           </a>
           <ul className="nav-links">
-            <li><a href="/solutions">Solutions</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/technology">Technology</a></li>
-            <li><a href="/hedge-fund">Live Hedge Fund Trading</a></li>
+            <li><a href="/products">Claw</a></li>
+            <li><a href="/solutions">AI Solutions</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
             <a href="https://app.eagleailabs.com/auth/login" className="btn btn-ghost">Sign In</a>
-            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Try Now</a>
+            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Get Started</a>
           </div>
           <button className="nav-burger" id="nav-burger" aria-label="Toggle menu">
             <span /><span /><span />

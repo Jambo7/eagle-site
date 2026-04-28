@@ -13,14 +13,15 @@ export default function HedgeFundPage() {
             <img src="/logo.png" alt="Eagle AI Labs" className="logo-img" />
           </a>
           <ul className="nav-links">
-            <li><a href="/solutions">Solutions</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/technology">Technology</a></li>
-            <li><a href="/hedge-fund" style={{ color: 'var(--mid)' }}>Live Hedge Fund Trading</a></li>
+            <li><a href="/products">Claw</a></li>
+            <li><a href="/solutions">AI Solutions</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
             <a href="https://app.eagleailabs.com/auth/login" className="btn btn-ghost">Sign In</a>
-            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Try Now</a>
+            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Get Started</a>
           </div>
           <button className="nav-burger" id="nav-burger" aria-label="Toggle menu">
             <span /><span /><span />
@@ -30,7 +31,7 @@ export default function HedgeFundPage() {
 
       <MobileNavDrawer active="hedge-fund" />
 
-      {/* ── Hero Banner — split layout ── */}
+      {/* ── Hero Banner, split layout ── */}
       <section className="hf-banner">
         <div className="hf-banner-left">
           <div className="hf-energy">
@@ -41,7 +42,7 @@ export default function HedgeFundPage() {
             <div className="hf-top-badges">
               <span className="hf-badge-live">
                 <span className="live-blink" />
-                Live — CME Bitcoin Futures
+                Live, CME Bitcoin Futures
               </span>
               <span className="hf-badge">Eagle AI Powered</span>
             </div>
@@ -51,7 +52,7 @@ export default function HedgeFundPage() {
               <span className="gradient-text">At Institutional Scale</span>
             </h1>
             <p className="hf-hero-sub">
-              Infinite Point Capital — a US-regulated, CFTC-overseen hedge fund —
+              Infinite Point Capital, a US-regulated, CFTC-overseen hedge fund,
               chose Eagle AI Labs as its exclusive AI infrastructure partner.
               Deployed on live CME Bitcoin futures. This is what institutional
               confidence in our models looks like.
@@ -110,7 +111,7 @@ export default function HedgeFundPage() {
                 After independently discovering Eagle AI Labs&apos; models, Brad ran structured
                 performance validation across multiple market regimes. The accuracy,
                 confidence calibration, and drawdown profile all passed the institutional
-                bar — and led to a significant decision: build a regulated fund around them.
+                bar, and led to a significant decision: build a regulated fund around them.
                 That is not a marketing claim. That is an institutional operator putting
                 capital and regulatory commitment behind what our models produce.
               </p>
@@ -136,12 +137,12 @@ export default function HedgeFundPage() {
             <div className="hf-step">
               <div className="hf-step-num">01</div>
               <h3>Repeatable Edge</h3>
-              <p>Directional accuracy held across bull, bear, and ranging markets — not curve-fitted to a single regime. A non-random edge is the hardest thing to find in quantitative finance. Our models have it.</p>
+              <p>Directional accuracy held across bull, bear, and ranging markets, not curve-fitted to a single regime. A non-random edge is the hardest thing to find in quantitative finance. Our models have it.</p>
             </div>
             <div className="hf-step">
               <div className="hf-step-num">02</div>
               <h3>Calibrated Confidence</h3>
-              <p>When the model signals high confidence, accuracy is materially higher. When it signals uncertainty, it says so. That calibration — rare in AI systems — is what makes the output usable at institutional scale.</p>
+              <p>When the model signals high confidence, accuracy is materially higher. When it signals uncertainty, it says so. That calibration, rare in AI systems, is what makes the output usable at institutional scale.</p>
             </div>
             <div className="hf-step">
               <div className="hf-step-num">03</div>
@@ -175,7 +176,7 @@ export default function HedgeFundPage() {
                 </svg>
               </div>
               <h3>Probabilistic Forecasting</h3>
-              <p>Not a price target — a directional probability. Across 30m, 1H, 4H, and daily timeframes, every output is a calibrated number a quant or portfolio manager can act on without interpretation.</p>
+              <p>Not a price target, a directional probability. Across 30m, 1H, 4H, and daily timeframes, every output is a calibrated number a quant or portfolio manager can act on without interpretation.</p>
               <span className="fc-tag">Core Output</span>
             </div>
             <div className="hf-tech-card">
@@ -191,7 +192,7 @@ export default function HedgeFundPage() {
                 </svg>
               </div>
               <h3>Signal Quality Tiers</h3>
-              <p>Every signal carries a three-tier quality rating. Strong signals historically outperform. Uncertain ones say so explicitly. That transparency enables disciplined position sizing — a non-negotiable in institutional risk management.</p>
+              <p>Every signal carries a three-tier quality rating. Strong signals historically outperform. Uncertain ones say so explicitly. That transparency enables disciplined position sizing, a non-negotiable in institutional risk management.</p>
               <span className="fc-tag">Risk Framework</span>
             </div>
             <div className="hf-tech-card">
@@ -207,7 +208,7 @@ export default function HedgeFundPage() {
                 </svg>
               </div>
               <h3>Continuous Improvement</h3>
-              <p>Models retrain weekly on a rolling 24-month dataset. A new checkpoint only replaces the live model if it outperforms — meaning the system structurally improves over time without manual intervention or degradation risk.</p>
+              <p>Models retrain weekly on a rolling 24-month dataset. A new checkpoint only replaces the live model if it outperforms, meaning the system structurally improves over time without manual intervention or degradation risk.</p>
               <span className="fc-tag">Adaptive System</span>
             </div>
           </div>
@@ -227,17 +228,17 @@ export default function HedgeFundPage() {
               <p style={{ color: 'var(--text-2)', lineHeight: '1.8', marginBottom: '28px', fontSize: '0.92rem' }}>
                 The fact that our models are running inside a fund that operates on the CME
                 says something about their quality. The CME doesn&apos;t care about compelling
-                narratives — it clears trades. The CFTC doesn&apos;t care about marketing —
+                narratives, it clears trades. The CFTC doesn&apos;t care about marketing,
                 it regulates conduct. Our models passed both filters.
               </p>
               <ul className="hf-cme-list">
                 <li>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><defs><linearGradient id="hf-ck1" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs><path d="M3 8L6.5 11.5L13 5" stroke="url(#hf-ck1)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  CFTC oversight — the highest US derivatives regulatory standard
+                  CFTC oversight, the highest US derivatives regulatory standard
                 </li>
                 <li>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><defs><linearGradient id="hf-ck2" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs><path d="M3 8L6.5 11.5L13 5" stroke="url(#hf-ck2)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  Centrally cleared — every position audited and reported
+                  Centrally cleared, every position audited and reported
                 </li>
                 <li>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><defs><linearGradient id="hf-ck3" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs><path d="M3 8L6.5 11.5L13 5" stroke="url(#hf-ck3)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -245,7 +246,7 @@ export default function HedgeFundPage() {
                 </li>
                 <li>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><defs><linearGradient id="hf-ck4" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#1455e6"/><stop offset="1" stopColor="#14fdfd"/></linearGradient></defs><path d="M3 8L6.5 11.5L13 5" stroke="url(#hf-ck4)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  Institutional liquidity depth — no slippage, no counterparty risk
+                  Institutional liquidity depth, no slippage, no counterparty risk
                 </li>
               </ul>
             </div>
@@ -305,7 +306,7 @@ export default function HedgeFundPage() {
               </a>
               <a href="/#sample-signal" className="btn btn-outline">View Example Signals</a>
               {/* TODO: swap mailto for calendar booking URL (Calendly / cal.com) once provisioned */}
-              <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20%E2%80%94%20Eagle%20AI%20Labs" className="btn btn-ghost">Book a Demo</a>
+              <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20%20Eagle%20AI%20Labs" className="btn btn-ghost">Book a Demo</a>
             </div>
           </div>
         </div>

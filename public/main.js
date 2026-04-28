@@ -1,5 +1,5 @@
 /* =========================================================
-   Eagle AI Labs — main.js
+   Eagle AI Labs, main.js
    Canvas energy field · Scroll reveals · Counter animation
    ========================================================= */
 
@@ -307,7 +307,7 @@ function initSignalRows() {
   if (pui) io.observe(pui);
 }
 
-/* ── Neural / data-flow SVG — motion is CSS-only (no random neon pulses) ── */
+/* ── Neural / data-flow SVG, motion is CSS-only (no random neon pulses) ── */
 function initNeuralFlow() {}
 
 /* ── Active chart timeframe tab ── */
@@ -468,7 +468,7 @@ function initPlatformBgParallax() {
     const span = rect.height + vh;
     const t = (vh - rect.top) / span;
     const clamped = Math.max(0, Math.min(1, t));
-    /* Subtle vertical drift — image moves slower than the section (parallax) */
+    /* Subtle vertical drift, image moves slower than the section (parallax) */
     const px = (clamped - 0.5) * 32;
     img.style.transform = `translate3d(-50%, calc(-50% + ${px.toFixed(2)}px), 0)`;
   }

@@ -14,14 +14,15 @@ export default function TechnologyPage() {
             <img src="/logo.png" alt="Eagle AI Labs" className="logo-img" />
           </a>
           <ul className="nav-links">
-            <li><a href="/solutions">Solutions</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/technology" style={{ color: 'var(--mid)' }}>Technology</a></li>
-            <li><a href="/hedge-fund">Live Hedge Fund Trading</a></li>
+            <li><a href="/products">Claw</a></li>
+            <li><a href="/solutions">AI Solutions</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
             <a href="https://app.eagleailabs.com/auth/login" className="btn btn-ghost">Sign In</a>
-            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Try Now</a>
+            <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Get Started</a>
           </div>
           <button className="nav-burger" id="nav-burger" aria-label="Toggle menu">
             <span /><span /><span />
@@ -43,7 +44,7 @@ export default function TechnologyPage() {
         </div>
       </div>
 
-      {/* ── Hero — same content as homepage technology section ── */}
+      {/* ── Hero, same content as homepage technology section ── */}
       <section id="technology" className="tp-hero">
         <div className="tech-energy" aria-hidden="true">
           <div className="tech-orb tech-orb1" />
@@ -61,7 +62,7 @@ export default function TechnologyPage() {
               <p className="reveal" style={{ color: 'var(--text-2)', lineHeight: '1.8', marginBottom: '32px', fontSize: '0.95rem' }}>
                 For over two years, Eagle AI Labs has operated at the frontier of predictive
                 market intelligence. Our models have been battle-tested across bull runs, bear
-                markets, and high-volatility regimes — continuously adapting and compounding edge.
+                markets, and high-volatility regimes, continuously adapting and compounding edge.
               </p>
 
               <div className="tech-stats-grid">
@@ -99,7 +100,7 @@ export default function TechnologyPage() {
           <div className="tech-orb tech-orb3" />
         </div>
 
-        {/* Intro — full width */}
+        {/* Intro, full width */}
         <div className="section-wrap tp-section-wrap">
           <div className="tp-fc-intro reveal">
             <div className="section-eyebrow">Forward Curves</div>
@@ -109,7 +110,7 @@ export default function TechnologyPage() {
             </h2>
             <p className="tp-fc-lead">Institutional strategy. Rebuilt for digital assets.</p>
             <p className="tp-fc-body">
-              Forward curves sit at the core of global derivatives markets — driving trillions
+              Forward curves sit at the core of global derivatives markets, driving trillions
               in positioning, pricing, and risk management. Yet in crypto, this layer of
               intelligence has remained fragmented, reactive, and largely inaccessible.
             </p>
@@ -122,7 +123,7 @@ export default function TechnologyPage() {
           </div>
         </div>
 
-        {/* Terminal preview + "What Makes Our Forward Curves Different" — split */}
+        {/* Terminal preview + "What Makes Our Forward Curves Different", split */}
         <div className="section-wrap tp-section-wrap">
           <div className="tp-fc-split reveal">
             <div className="tp-fc-visual">
@@ -147,7 +148,7 @@ export default function TechnologyPage() {
               <ul className="tp-fc-list">
                 <li><span className="tp-fc-bullet" />Short-term forward projections <em>(1H–24H tenors)</em> grounded in live predictive signals</li>
                 <li><span className="tp-fc-bullet" />Dynamic spread matrices that highlight divergence and relative value across time horizons</li>
-                <li><span className="tp-fc-bullet" />Curve vs reality tracking — measure accuracy and model drift in real time</li>
+                <li><span className="tp-fc-bullet" />Curve vs reality tracking, measure accuracy and model drift in real time</li>
                 <li><span className="tp-fc-bullet" />Stabilised projection logic, reducing noise and increasing signal reliability</li>
               </ul>
               <p className="tp-fc-closing">
@@ -158,7 +159,7 @@ export default function TechnologyPage() {
           </div>
         </div>
 
-        {/* Powered by AI + Relative Value — two columns */}
+        {/* Powered by AI + Relative Value, two columns */}
         <div className="section-wrap tp-section-wrap">
           <div className="tp-fc-two-col reveal">
             <div className="tp-fc-col-card">
@@ -174,7 +175,7 @@ export default function TechnologyPage() {
               </ul>
               <p className="tp-fc-closing">
                 This allows us to move beyond reactive analytics and into forward-looking intelligence
-                — where curves are not derived from markets alone, but predicted ahead of them.
+               , where curves are not derived from markets alone, but predicted ahead of them.
               </p>
             </div>
             <div className="tp-fc-col-card">
@@ -239,7 +240,7 @@ export default function TechnologyPage() {
               <h4>Curve Intelligence, Not Just Data</h4>
               <p>
                 Most platforms distribute data. We distribute intelligence. Eagle AI Labs forward
-                curves transform raw market inputs into structured, predictive insight — giving
+                curves transform raw market inputs into structured, predictive insight, giving
                 you a clearer view of what&apos;s coming next and how to position for it.
               </p>
             </div>
@@ -255,7 +256,7 @@ export default function TechnologyPage() {
             <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '16px' }}>
               Intelligence You Can<br /><span className="gradient-text">Act On</span>
             </h2>
-            <p>The same forward curve and predictive signal infrastructure used by institutional partners — available to every serious trader via Eagle AI Labs.</p>
+            <p>The same forward curve and predictive signal infrastructure used by institutional partners, available to every serious trader via Eagle AI Labs.</p>
             <div style={{ display: 'flex', gap: '16px', marginTop: '32px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <a
                 href="https://app.eagleailabs.com/claw/pretrade?utm_source=owned-eagle&utm_medium=website&utm_campaign=Claw&business_line=Claw-All&start=start-evergreen&end=end-evergreen&objective=registration&tactic=none+selected"
@@ -266,7 +267,7 @@ export default function TechnologyPage() {
               </a>
               <a href="/#sample-signal" className="btn btn-outline">View Example Signals</a>
               {/* TODO: swap mailto for calendar booking URL (Calendly / cal.com) once provisioned */}
-              <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20%E2%80%94%20Eagle%20AI%20Labs" className="btn btn-ghost">Book a Demo</a>
+              <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20%20Eagle%20AI%20Labs" className="btn btn-ghost">Book a Demo</a>
             </div>
           </div>
         </div>

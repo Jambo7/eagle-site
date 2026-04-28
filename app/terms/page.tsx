@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
       <h2>3. Description of service</h2>
       <p>
         The Services provide AI-generated predictive signals, analytics, and related tooling for
-        financial markets. Signals are probabilistic model outputs — not instructions, advice, or
+        financial markets. Signals are probabilistic model outputs, not instructions, advice, or
         guarantees. See our <a href="/risk-disclosure">Risk Disclosure</a> for more detail.
       </p>
 
