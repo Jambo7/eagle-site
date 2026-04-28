@@ -42,10 +42,10 @@ const VALUES = [
 const TEAM = [
   { name: "Jack Rockell",            role: "Global Product Development",  bio: "Leads a skilled team shipping the CLAW suite." },
   { name: "Darren Bishop",           role: "Global Operations Manager",    bio: "Expertise across the full operational stack of modern finance." },
-  { name: "Alan Ljungström-Caunt",   role: "Chief Technology Officer",     bio: "Creator, developer, builder. Engineering the core of Eagle AI." },
+  { name: "DK",                      role: "Product Development",          bio: "Builds and ships across the CLAW product surface, from spec to release." },
   { name: "Lee Steer",               role: "Global Managing Director",     bio: "Sales and business leadership across crypto, TradFi and fintech." },
   { name: "James Ratsma",            role: "Head of Marketing & Community",bio: "Retail and crypto market mastermind, connecting CLAW to traders." },
-  { name: "Tom Sargent",             role: "Marketing Advisor",            bio: "Marketer with many years of web3 experience." },
+  { name: "Adam Johnson",            role: "Sales",                        bio: "Drives commercial growth and partner relationships across CLAW." },
   { name: "Martin Costa",            role: "Advisor",                       bio: "Years of deep financial-market experience." },
 ];
 

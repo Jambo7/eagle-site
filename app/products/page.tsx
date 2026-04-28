@@ -48,28 +48,79 @@ export default function ProductsPage() {
 
       <MobileNavDrawer active="products" />
 
+      {/*
+        SVG filter that programmatically removes the dark background of
+        the CLAW logo PNG. It works in two passes:
+          1. feColorMatrix puts the image's luminance into the alpha
+             channel (black becomes transparent, white stays opaque).
+          2. feComponentTransfer steepens the alpha curve so anything
+             below ~17% luminance becomes fully transparent and the
+             wordmark itself stays solid.
+        Hidden from layout via width/height 0. Referenced by
+        .cs-hero-mark-img via filter: url('#claw-bg-removal').
+      */}
+      <svg
+        width="0"
+        height="0"
+        style={{ position: "absolute", pointerEvents: "none" }}
+        aria-hidden="true"
+      >
+        <defs>
+          <filter id="claw-bg-removal" colorInterpolationFilters="sRGB">
+            <feColorMatrix
+              type="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0.299 0.587 0.114 0 0"
+            />
+            <feComponentTransfer>
+              <feFuncA type="linear" slope="3" intercept="-0.5" />
+            </feComponentTransfer>
+          </filter>
+        </defs>
+      </svg>
+
       {/* ══════════════════════════════════════════════════════════════════
           HERO, typographic, institutional, suite-first
       ══════════════════════════════════════════════════════════════════ */}
       <section className="cs-hero">
         <div className="cs-hero-inner">
-          <div className="cs-hero-eyebrow">
-            <span className="cs-eyebrow-ticker">EAGLE AI LABS</span>
-            <span className="cs-eyebrow-sep" aria-hidden="true">/</span>
-            <span className="cs-eyebrow-label">THE CLAW SUITE</span>
+          {/* Two-column head: typographic stack on the left, CLAW
+              wordmark on the right. The mark anchors the page identity
+              and gives the title a visual counterweight. */}
+          <div className="cs-hero-head-row">
+            <div className="cs-hero-head-left">
+              <div className="cs-hero-eyebrow">
+                <span className="cs-eyebrow-ticker">EAGLE AI LABS</span>
+                <span className="cs-eyebrow-sep" aria-hidden="true">/</span>
+                <span className="cs-eyebrow-label">THE CLAW SUITE</span>
+              </div>
+
+              <h1 className="cs-hero-title">
+                Crypto intelligence,<br />
+                <span className="cs-hero-title-accent">engineered in three forms.</span>
+              </h1>
+
+              <p className="cs-hero-sub">
+                One predictive engine. Three distinct surfaces. A professional desktop
+                terminal for active traders, a mobile edition with a conversational AI
+                agent, and an enterprise deployment built around our multi-model Oracle
+                and proprietary research stack.
+              </p>
+            </div>
+
+            <div className="cs-hero-mark" aria-hidden="true">
+              <img
+                src="/claw-logo.png"
+                alt=""
+                className="cs-hero-mark-img"
+                loading="eager"
+                decoding="async"
+                draggable={false}
+              />
+            </div>
           </div>
-
-          <h1 className="cs-hero-title">
-            Crypto intelligence,<br />
-            <span className="cs-hero-title-accent">engineered in three forms.</span>
-          </h1>
-
-          <p className="cs-hero-sub">
-            One predictive engine. Three distinct surfaces. A professional desktop
-            terminal for active traders, a mobile edition with a conversational AI
-            agent, and an enterprise deployment built around our multi-model Oracle
-            and proprietary research stack.
-          </p>
 
           <nav className="cs-hero-quicknav" aria-label="Products">
             <a href="#claw-pro" className="cs-qn-item">

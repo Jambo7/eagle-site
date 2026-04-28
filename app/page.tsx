@@ -1,5 +1,6 @@
 import DataFlowDiagram from "./components/data-flow-diagram";
 import HeroIphoneMockup from "./components/hero-iphone-mockup";
+import HeroMonitorMockup from "./components/hero-monitor-mockup";
 import MobileNavDrawer from "./components/mobile-nav-drawer";
 import SiteFooter from "./components/site-footer";
 
@@ -47,19 +48,6 @@ export default function Home() {
         </div>
 
         <div className="hero-content">
-          {/* Market status strip: institutional "systems live" cue,
-              sits above the eyebrow as a constant ambient signal. */}
-          <div className="hero-status-bar reveal" aria-hidden="true">
-            <span className="hs-dot" />
-            <span className="hs-label cs-mono">SYSTEM ONLINE</span>
-            <span className="hs-sep">/</span>
-            <span className="cs-mono">ORACLE v2.4</span>
-            <span className="hs-sep">/</span>
-            <span className="cs-mono">LATENCY 47ms</span>
-            <span className="hs-sep">/</span>
-            <span className="cs-mono">BTC · ETH · SOL · XRP</span>
-          </div>
-
           <p className="hero-eyebrow reveal">AI-native predictive intelligence</p>
 
           <h1 className="hero-title reveal">
@@ -306,7 +294,7 @@ export default function Home() {
                 running our predictive infrastructure, has continuously
                 refined its trading strategies against our production
                 signals. Our models did not learn in a sandbox. They
-                learned on live capital.
+                learn on live capital.
               </p>
 
               <div className="tech-stats-grid">
@@ -463,20 +451,13 @@ export default function Home() {
               Sharp, institutional framing. Browser chrome + phone chrome
               anchors the product; annotations surface headline numbers. */}
           <div className="home-cs-shots reveal">
-            {/* Desktop: real CLAW Pro dashboard screenshot */}
-            <figure className="home-cs-shot-desktop cs-pro-figure">
-              <div className="cs-pro-figure-bar">
-                <span className="cs-pf-dot" />
-                <span className="cs-pf-dot" />
-                <span className="cs-pf-dot" />
-                <span className="cs-pf-url">app.eagleailabs.com / claw / pro</span>
-              </div>
-              <img
-                src="/products-claw-pro-dashboard.png"
+            {/* Desktop: floating monitor mockup with real CLAW Pro
+                terminal screenshot. Same component used in /products
+                so the visual treatment is consistent across the site. */}
+            <figure className="home-cs-shot-desktop">
+              <HeroMonitorMockup
+                src="/products-claw-pro-monitor.png"
                 alt="CLAW Pro trading terminal with live charts, whale activity, prediction card and breakout bot"
-                className="cs-pro-img"
-                loading="lazy"
-                decoding="async"
               />
               <figcaption className="home-cs-shot-caption">
                 <span className="cs-mono">CLAW Pro v2.1</span>
@@ -510,31 +491,6 @@ export default function Home() {
               </div>
             </figure>
 
-            {/* Mobile: two Ask Claw stealth shots, tight institutional frame */}
-            <div className="home-cs-shot-mobile">
-              <div className="home-cs-mob-header">
-                <span className="cs-mono home-cs-mob-tag">ASK CLAW · STEALTH</span>
-                <span className="home-cs-mob-sub">Same engine, pocket-sized.</span>
-              </div>
-              <div className="home-cs-mob-stack">
-                <div className="home-cs-phone home-cs-phone-front">
-                  <img
-                    src="/hero-phone/5.png"
-                    alt="Ask Claw quick prompts for best set-up, direction and altcoin plays"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="home-cs-phone home-cs-phone-back">
-                  <img
-                    src="/hero-phone/6.png"
-                    alt="Ask Claw generated ETH long trade plan with entry, stop and targets"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* ───── 3-step engine pipeline (merged from old /how-it-works) ───── */}
