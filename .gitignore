@@ -17,6 +17,11 @@
 /.next/
 /out/
 
+# generated marketing video exports + intermediate frames
+# (out/ is already ignored above; listing explicitly for discoverability)
+/out/iphone-frames-*/
+/out/iphone-mockup-*.mov
+
 # production
 /build
 
