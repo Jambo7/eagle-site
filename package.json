@@ -5,8 +5,13 @@
   "scripts": {
     "dev": "next dev --turbopack -p 3000",
     "build": "next build",
+    "postbuild": "node scripts/postbuild-base-path.mjs",
+    "build:pages": "cross-env NEXT_PUBLIC_BASE_PATH=/eagle-site npm run build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "capture:iphone": "node scripts/capture-iphone-video.mjs",
+    "capture:iphone:tilt": "node scripts/capture-iphone-video.mjs tilt",
+    "capture:iphone:flat": "node scripts/capture-iphone-video.mjs flat"
   },
   "dependencies": {
     "next": "16.2.2",
@@ -14,12 +19,15 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@tailwindcss/postcss": "^4",
+    "cross-env": "^7.0.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "puppeteer": "^24.42.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
