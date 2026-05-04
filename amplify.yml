@@ -1,0 +1,21 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    # Static export from `output: "export"` in next.config.ts lands in /out,
+    # not /.next. Pointing baseDirectory at /out also tells Amplify to treat
+    # this as a static site (no SSR), so it won't look for files like
+    # required-server-files.json that only exist in SSR builds.
+    baseDirectory: out
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
