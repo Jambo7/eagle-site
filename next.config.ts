@@ -13,7 +13,10 @@ import path from "node:path";
 // Local dev (`npm run dev`) leaves NEXT_PUBLIC_BASE_PATH unset, so the
 // site behaves as if served from "/" with no rewriting needed.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const isProductionExport = !!basePath;
+// Any non-dev build (GitHub Pages export, Amplify, etc.) should omit
+// dev-only utility pages. `next dev` sets NODE_ENV=development; both
+// `next build` and `next start` set it to "production".
+const isProductionBuild = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   output: "export",
@@ -31,10 +34,10 @@ const nextConfig: NextConfig = {
 
   // Dev-only utility pages live alongside production pages but use the
   // `.dev.tsx` extension. They're recognized as routes only when running
-  // `next dev`; the GitHub Pages production export omits them entirely
-  // (e.g. /dev/iphone-capture, which uses `searchParams` and therefore
-  // can't be statically rendered).
-  pageExtensions: isProductionExport
+  // `next dev`; production builds (GitHub Pages, Amplify, etc.) omit
+  // them entirely (e.g. /dev/iphone-capture, which uses `searchParams`
+  // and therefore can't be statically rendered).
+  pageExtensions: isProductionBuild
     ? ["tsx", "ts", "jsx", "js"]
     : ["tsx", "ts", "jsx", "js", "dev.tsx", "dev.ts"],
 };
