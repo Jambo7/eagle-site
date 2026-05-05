@@ -86,7 +86,7 @@ export default function CookiePolicyPage() {
         <a href="mailto:hello@eagleailabs.com?subject=Cookie%20Policy%20Enquiry">hello@eagleailabs.com</a>.
       </p>
       <p>
-        See also our <a href="/privacy">Privacy Policy</a>.
+        See also our <a href="/legal/privacy-policy">Privacy Policy</a>.
       </p>
     </LegalShell>
   );

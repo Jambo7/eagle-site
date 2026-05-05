@@ -9,6 +9,12 @@ type Props = {
   lede: string;
   /** ISO date ("2026-04-27") of the last material update. */
   effectiveDate: string;
+  /**
+   * Whether to show the "Draft · Pending legal review" badge above the
+   * title. Defaults to true; pass false on pages whose copy has been
+   * approved (e.g. the Privacy Policy).
+   */
+  draft?: boolean;
   children: ReactNode;
 };
 
@@ -21,7 +27,7 @@ type Props = {
  * NOTE (draft): content inside legal pages is placeholder copy awaiting
  * review by legal counsel before publication.
  */
-export default function LegalShell({ title, lede, effectiveDate, children }: Props) {
+export default function LegalShell({ title, lede, effectiveDate, draft = true, children }: Props) {
   const formattedDate = new Date(effectiveDate).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -64,7 +70,9 @@ export default function LegalShell({ title, lede, effectiveDate, children }: Pro
           Back to Eagle AI Labs
         </a>
 
-        <span className="legal-draft">Draft · Pending legal review</span>
+        {draft && (
+          <span className="legal-draft">Draft · Pending legal review</span>
+        )}
 
         <h1 className="legal-title">{title}</h1>
         <p className="legal-lede">{lede}</p>

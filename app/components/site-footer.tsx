@@ -7,8 +7,12 @@
  *
  * Link policy:
  * - Internal routes for every top-level page we have rebuilt (/products,
- *   /solutions, /pricing, /blog, /about, /privacy, /terms, /risk-disclosure,
- *   /cookies, /technology, /hedge-fund).
+ *   /solutions, /pricing, /blog, /about, /legal/privacy-policy, /terms,
+ *   /risk-disclosure, /cookies, /technology, /hedge-fund). The Privacy
+ *   Policy lives at /legal/privacy-policy/ to match the URL submitted to
+ *   Apple for iOS app review and to mirror the existing eagleailabs.com
+ *   path (so external links keep working after DNS transfers to this
+ *   Amplify deployment).
  * - Existing live eagleailabs.com URLs for deep pages we have not yet
  *   rebuilt (Affiliates, Partner Portal, Promotion Proposal, Conflict of
  *   Interest, Changelog, CLAW Trade Credits). These open in a new tab.
@@ -64,6 +68,7 @@ export default function SiteFooter() {
               <a href="/about">About</a>
               <a href={mailto("General Enquiry")}>Contact</a>
               <a href="/technology">Technology</a>
+              <a href="/legal/privacy-policy">Privacy Policy</a>
             </div>
             <div className="fl-col">
               <div className="fl-head">Other</div>
@@ -85,7 +90,7 @@ export default function SiteFooter() {
             <p className="footer-disclaimer">AI-generated signals are not financial advice. Cryptocurrency trading involves substantial risk of loss.</p>
           </div>
           <nav className="footer-legal-nav" aria-label="Legal">
-            <a href="/privacy">Privacy Policy</a>
+            <a href="/legal/privacy-policy">Privacy Policy</a>
             <span className="fln-sep" aria-hidden="true">|</span>
             <a href="/cookies">Cookies</a>
             <span className="fln-sep" aria-hidden="true">|</span>
