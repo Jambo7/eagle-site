@@ -2556,7 +2556,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .footer-top { display: grid; grid-template-columns: 320px 1fr; gap: 80px; margin-bottom: 60px; }
 .footer-brand .logo { margin-bottom: 16px; }
 .footer-brand p { font-size: 0.88rem; color: var(--text-3); line-height: 1.7; margin-bottom: 22px; max-width: 280px; }
-.footer-socials { display: flex; gap: 10px; }
+.footer-socials { display: flex; flex-wrap: wrap; gap: 10px; }
 .footer-socials a {
   display: flex; align-items: center; justify-content: center;
   width: 36px; height: 36px;
