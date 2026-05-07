@@ -11,19 +11,28 @@ export default function TermsOfServicePage() {
   return (
     <LegalShell
       title="Terms of Service"
-      lede="The terms that govern your use of the Eagle AI Labs website, CLAW products, and related services."
-      effectiveDate="2026-04-27"
+      lede="The terms that govern your use of the Eagle AI Labs website, CLAW products, and related services. Also serves as our End User License Agreement (EULA) for the Apple App Store."
+      effectiveDate="2026-05-07"
+      draft={false}
     >
       <h2>1. Agreement</h2>
       <p>
-        These Terms of Service (&ldquo;Terms&rdquo;) form a legal agreement between you and Eagle AI
-        Labs (&ldquo;Eagle AI Labs&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;)
-        and govern your access to and use of our website, our CLAW products, our AI signal outputs,
-        and any related services (together, the &ldquo;Services&rdquo;).
+        These Terms of Service (&ldquo;Terms&rdquo;), which also serve as our End User License
+        Agreement (the &ldquo;EULA&rdquo;) for users who download our applications via the Apple
+        App Store or other application stores, form a legal agreement between you and Eagle AI Labs
+        (&ldquo;Eagle AI Labs&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) and
+        govern your access to and use of our website, our CLAW products, our AI signal outputs, and
+        any related services (together, the &ldquo;Services&rdquo;).
       </p>
       <p>
         By accessing or using the Services you agree to be bound by these Terms. If you do not
         agree, you must not use the Services.
+      </p>
+      <p>
+        <strong>Note for Apple App Store users:</strong> If you accessed the Services through the
+        Apple App Store, the additional terms in{" "}
+        <a href="#apple-subscription-terms">Section 7A</a> apply to your auto-renewable
+        subscription.
       </p>
 
       <h2>2. Eligibility and account</h2>
@@ -72,6 +81,84 @@ export default function TermsOfServicePage() {
         frequency, and cancellation terms are disclosed at the point of subscription. Trials may be
         cancelled at any time before the trial end date.
       </p>
+
+      <h2 id="apple-subscription-terms">
+        7A. Auto-renewable subscriptions purchased through the Apple App Store
+      </h2>
+      <p>
+        Where you purchase a subscription to CLAW Stealth, or any other Eagle AI Labs application,
+        through the Apple App Store, the following additional terms apply alongside the rest of
+        these Terms.
+      </p>
+
+      <h3>Subscription titles and length</h3>
+      <p>Auto-renewable subscriptions currently offered include:</p>
+      <ul>
+        <li>
+          <strong>CLAW Stealth Monthly</strong> &ndash; subscription period of one (1) month.
+        </li>
+        <li>
+          <strong>CLAW Stealth Annual</strong> &ndash; subscription period of twelve (12) months.
+        </li>
+      </ul>
+      <p>
+        The exact list of subscription products available to you is shown in-app and on the App
+        Store product page at the point of purchase.
+      </p>
+
+      <h3>Price</h3>
+      <p>
+        The price of each subscription is displayed on the App Store and in-app at the point of
+        purchase, in your local currency. The applicable price is the price shown at confirmation
+        of purchase. Prices may differ between territories and may be updated by Apple from time to
+        time.
+      </p>
+
+      <h3>Payment</h3>
+      <p>
+        Payment will be charged to your Apple ID account at confirmation of purchase.
+      </p>
+
+      <h3>Auto-renewal</h3>
+      <p>
+        Your subscription automatically renews at the end of each subscription period unless
+        auto-renew is turned off at least 24 hours before the end of the current period. Your Apple
+        ID account will be charged for renewal within 24 hours prior to the end of the current
+        period at the same price as the original subscription, unless we have notified you of a
+        price change in advance.
+      </p>
+
+      <h3>Cancellation and managing your subscription</h3>
+      <p>
+        Subscriptions may be managed by you, and auto-renewal may be turned off by going to your
+        Apple ID Account Settings on your device after purchase. No cancellation of the current
+        subscription is allowed during an active subscription period; any cancellation takes effect
+        at the end of the then-current period.
+      </p>
+
+      <h3>Free trials</h3>
+      <p>
+        Where a free trial is offered, any unused portion of a free trial period will be forfeited
+        when you purchase a subscription, where applicable.
+      </p>
+
+      <h3>Privacy Policy and Terms of Use</h3>
+      <p>
+        By purchasing or maintaining an auto-renewable subscription you agree to these Terms of Use
+        (the EULA) and our Privacy Policy. You can read both at any time:
+      </p>
+      <ul>
+        <li>
+          Terms of Use (EULA):{" "}
+          <a href="/terms">https://www.eagleailabs.com/terms/</a>
+        </li>
+        <li>
+          Privacy Policy:{" "}
+          <a href="/legal/privacy-policy">
+            https://www.eagleailabs.com/legal/privacy-policy/
+          </a>
+        </li>
+      </ul>
 
       <h2>8. Termination</h2>
       <p>
