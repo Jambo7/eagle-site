@@ -45,7 +45,7 @@ const TEAM = [
   { name: "DK",                      role: "Product Development",          bio: "Builds and ships across the CLAW product surface, from spec to release." },
   { name: "Lee Steer",               role: "Global Managing Director",     bio: "Sales and business leadership across crypto, TradFi and fintech." },
   { name: "James Ratsma",            role: "Head of Marketing & Community",bio: "Retail and crypto market mastermind, connecting CLAW to traders." },
-  { name: "Adam Johnson",            role: "Sales",                        bio: "Drives commercial growth and partner relationships across CLAW." },
+  { name: "Adam Johnson",            role: "Advisor",                      bio: "Drives commercial growth and partner relationships across CLAW and enterprise." },
   { name: "Martin Costa",            role: "Advisor",                       bio: "Years of deep financial-market experience." },
 ];
 
