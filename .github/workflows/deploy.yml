@@ -1,12 +1,14 @@
 name: Deploy to GitHub Pages
 
-# Build and publish a static export of the Next.js site to GitHub Pages
-# at https://jambo7.github.io/eagle-site/. Triggered automatically on
-# pushes to `main`, and on demand via the Actions tab.
+# Build and publish a static export of the Next.js site to GitHub Pages,
+# served from the custom domain https://www.eagleailabs.com/ (configured
+# in repo Settings → Pages, with `public/CNAME` carrying the value into
+# every deploy). Triggered automatically on pushes to `amplify-deploy`,
+# and on demand via the Actions tab.
 
 on:
   push:
-    branches: [main]
+    branches: [amplify-deploy]
   workflow_dispatch:
 
 # Standard Pages OIDC permissions — required by actions/deploy-pages.
@@ -24,9 +26,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # Tells next.config.ts + scripts/postbuild-base-path.mjs that
-      # the site is served from the /eagle-site/ subpath.
-      NEXT_PUBLIC_BASE_PATH: /eagle-site
+      # Custom domain (www.eagleailabs.com) serves the site from root, so
+      # NEXT_PUBLIC_BASE_PATH is intentionally unset here — Next.js builds
+      # without a basePath, and scripts/postbuild-base-path.mjs becomes a
+      # no-op. Keep this empty unless you switch back to serving from
+      # https://jambo7.github.io/eagle-site/.
       # The capture-iphone-video script uses puppeteer, but CI never
       # runs it. Skip the ~150 MB Chromium download to keep installs fast.
       PUPPETEER_SKIP_DOWNLOAD: "true"
