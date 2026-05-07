@@ -39,14 +39,23 @@ const VALUES = [
   },
 ];
 
-const TEAM = [
-  { name: "Jack Rockell",            role: "Global Product Development",  bio: "Leads a skilled team shipping the CLAW suite." },
-  { name: "Darren Bishop",           role: "Global Operations Manager",    bio: "Expertise across the full operational stack of modern finance." },
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  /** Optional headshot served from `public/team/`. Renders inside the circular
+   *  `.cs-team-avatar`; falls back to initials when omitted. */
+  photo?: string;
+};
+
+const TEAM: TeamMember[] = [
+  { name: "Jack Rockell",            role: "Global Product Development",  bio: "Leads a skilled team shipping the CLAW suite.", photo: "/team/jack-rockell.png" },
+  { name: "Darren Bishop",           role: "Global Operations Manager",    bio: "Expertise across the full operational stack of modern finance.", photo: "/team/darren-bishop.png" },
   { name: "DK",                      role: "Product Development",          bio: "Builds and ships across the CLAW product surface, from spec to release." },
-  { name: "Lee Steer",               role: "Global Managing Director",     bio: "Sales and business leadership across crypto, TradFi and fintech." },
-  { name: "James Ratsma",            role: "Head of Marketing & Community",bio: "Retail and crypto market mastermind, connecting CLAW to traders." },
+  { name: "Lee Steer",               role: "Global Managing Director",     bio: "Sales and business leadership across crypto, TradFi and fintech.", photo: "/team/lee-steer.png" },
+  { name: "James Ratsma",            role: "Head of Marketing & Community",bio: "Retail and crypto market mastermind, connecting CLAW to traders.", photo: "/team/james-ratsma.png" },
   { name: "Adam Johnson",            role: "Advisor",                      bio: "Drives commercial growth and partner relationships across CLAW and enterprise." },
-  { name: "Martin Costa",            role: "Advisor",                       bio: "Years of deep financial-market experience." },
+  { name: "Martin Costa",            role: "Advisor",                       bio: "Years of deep financial-market experience.", photo: "/team/martin-costa.png" },
 ];
 
 /**
@@ -221,13 +230,23 @@ export default function AboutPage() {
             {TEAM.map((p) => (
               <article key={p.name} className="cs-team-card">
                 <div className="cs-team-avatar" aria-hidden="true">
-                  <span className="cs-team-initials">
-                    {p.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </span>
+                  {p.photo ? (
+                    <img
+                      src={p.photo}
+                      alt=""
+                      className="cs-team-photo"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <span className="cs-team-initials">
+                      {p.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .slice(0, 2)}
+                    </span>
+                  )}
                 </div>
                 <div className="cs-team-meta">
                   <div className="cs-team-name">{p.name}</div>

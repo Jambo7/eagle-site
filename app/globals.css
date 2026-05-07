@@ -6942,6 +6942,16 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   color: var(--text-1);
 }
 .cs-team-initials { font-size: 1rem; }
+/* When a member has a headshot, the <img> fills the round avatar wrapper.
+   The supplied photos already include their own blue ring, so cover-fit
+   inside the circular clip lines up with the brand's existing palette. */
+.cs-team-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 999px;
+  display: block;
+}
 .cs-team-meta { min-width: 0; flex: 1; }
 .cs-team-name {
   font-family: var(--font-h);
