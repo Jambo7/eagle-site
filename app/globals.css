@@ -6928,8 +6928,8 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 .cs-team-avatar {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
+  width: 88px;
+  height: 88px;
   border-radius: 999px;
   border: 1px solid rgba(20,85,230,0.35);
   background: linear-gradient(135deg, rgba(20,85,230,0.25), rgba(74,198,214,0.12));
@@ -6941,7 +6941,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   letter-spacing: 0.02em;
   color: var(--text-1);
 }
-.cs-team-initials { font-size: 1rem; }
+.cs-team-initials { font-size: 1.5rem; }
 /* When a member has a headshot, the <img> fills the round avatar wrapper.
    The supplied photos already include their own blue ring, so cover-fit
    inside the circular clip lines up with the brand's existing palette. */
