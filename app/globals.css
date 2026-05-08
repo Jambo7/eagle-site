@@ -720,7 +720,10 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .iphone-frame {
   position: relative;
   width: 100%;
-  max-width: 340px;
+  /* Bumped from 340px → 380px so the rasterised texture inside the 3D
+     rotation gets ~12% more device pixels to work with. The right column
+     of #hero (1320px × 0.72fr ≈ 552px) still has plenty of headroom. */
+  max-width: 380px;
   margin: 0 auto;
   aspect-ratio: 393 / 852;
 
@@ -761,9 +764,13 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
     /* Removed the decorative blue halo (`0 0 28px rgba(80,120,190,...)`).
        Anodised aluminium doesn't emit light; the screen content already
        gives the device a believable glow without a coloured corona. */
-  /* A touch more dimensional. -8deg / 2deg reads as a real product shot
-     under a 3/4 studio key light without tipping back into "playful render". */
-  transform: perspective(1400px) rotateY(-8deg) rotateX(2deg);
+  /* Editorial product shot tilt. Was previously bumped to -8deg/2deg for
+     more dimensionality, but the steeper angle made Chrome rasterise the
+     screen content at lower effective resolution inside the 3D layer.
+     Backing off to -3.5deg/1deg recovers crispness on the screenshots
+     while still reading as a real product shot under a 3/4 studio key
+     light, not a flat render. */
+  transform: perspective(1400px) rotateY(-3.5deg) rotateX(1deg);
   transform-style: preserve-3d;
   will-change: auto;
 }
@@ -1187,7 +1194,7 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 
 /* ── App screenshot slideshow inside the iPhone screen ──
-   Six CLAW Stealth / Ask Claw screens cross-fade on a 30s loop.
+   Nine CLAW Stealth / Ask Claw screens cross-fade on a 45s loop.
    Timing is driven entirely by CSS, each slide has the same keyframe
    and a staggered `animation-delay` set inline in the component.
 
@@ -1205,35 +1212,44 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 .iphone-slide {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  /* ── Supersampling trick ──
+     Render each slide at 200% size, then scale(0.5) it back to fit the
+     phone screen. Chrome allocates the slide's compositor texture at
+     the rendered size BEFORE the 0.5 scale, so the texture has 2× the
+     pixel density it otherwise would. When the parent .iphone-frame
+     rasterises its rotated 3D layer it composites this 2×-density
+     texture, recovering most of the sharpness that the 3D transform
+     would normally lose by sampling at CSS density.
+     Origin top-left so the visible quadrant lines up with the screen. */
+  top: 0;
+  left: 0;
+  inset: auto;
+  width: 200%;
+  height: 200%;
   /* `contain` preserves the full screenshot, previously `cover` was cropping
      the edges of the app UI. The slides container background (#07080b)
      already matches the screen colour, so any tiny letterbox blends in. */
   object-fit: contain;
   object-position: center center;
   opacity: 0;
-  animation: phoneSlideCycle 30s ease-in-out infinite;
+  animation: phoneSlideCycle 45s ease-in-out infinite;
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: none;
-  will-change: opacity;
+  will-change: opacity, transform;
   /* Hint to modern Chrome/Safari to use the highest quality downscaling
      filter (Lanczos / bicubic) rather than the cheaper bilinear default
-     used inside a 3D-transformed subtree. Helps recover a touch of
-     sharpness when the iPhone is rotated in 3D space.
-     NOTE: this is only a hint, the 3D rotation still rasterises children
-     at CSS density. The real fix for sharpness is higher-DPI source
-     screenshots (Chrome DevTools at DPR 3, or a real iPhone). */
+     used inside a 3D-transformed subtree. */
   image-rendering: high-quality;
   -ms-interpolation-mode: bicubic;
-  /* Force its own compositor layer so the browser keeps it as a separate
-     texture instead of merging it into the rasterised 3D parent layer. */
-  transform: translateZ(0);
+  /* `scale(0.5) translateZ(0)` does double duty: scales the 200% layout
+     back to fit the screen, AND forces its own compositor layer so the
+     supersampled texture is preserved through the parent's 3D rotation. */
+  transform: scale(0.5) translateZ(0);
+  transform-origin: top left;
   backface-visibility: hidden;
 }
-/* 30s cycle, 6 slides × 5s each, with fades aligned so each outgoing slide
+/* 45s cycle, 9 slides × 5s each, with fades aligned so each outgoing slide
    cross-fades through the same 0.6s window as the next slide's fade-in
    (no dark gap between slides).
 
@@ -1241,24 +1257,24 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
      0s   → 0.6s   fade in
      0.6s → 5.0s   hold (4.4s)  ← slide N+1 begins fading in at 5.0s
      5.0s → 5.6s   fade out (perfectly overlaps slide N+1's fade in)
-     5.6s → 30s   invisible
+     5.6s → 45s   invisible
 
    Tighter than the previous 1s fade because institutional dashboards
    (Bloomberg, FactSet, TradeStation) use decisive ~0.5–0.7s transitions
    rather than slow marketing dissolves.
 
-   Percentages of the 30s cycle:
-     0%      → opacity 0  (fade in start)
-     2%      → opacity 1  (fade in done, 0.6s)
-     16.67%  → opacity 1  (hold end, fade out start, 5.0s)
-     18.67%  → opacity 0  (fade out done, 5.6s)
-     100%    → opacity 0  (invisible) */
+   Percentages of the 45s cycle:
+     0%       → opacity 0  (fade in start)
+     1.333%   → opacity 1  (fade in done, 0.6s)
+     11.111%  → opacity 1  (hold end, fade out start, 5.0s)
+     12.444%  → opacity 0  (fade out done, 5.6s)
+     100%     → opacity 0  (invisible) */
 @keyframes phoneSlideCycle {
-  0%      { opacity: 0; }
-  2%      { opacity: 1; }
-  16.67%  { opacity: 1; }
-  18.67%  { opacity: 0; }
-  100%    { opacity: 0; }
+  0%       { opacity: 0; }
+  1.333%   { opacity: 1; }
+  11.111%  { opacity: 1; }
+  12.444%  { opacity: 0; }
+  100%     { opacity: 0; }
 }
 
 /* Respect users who prefer reduced motion, show the first slide only. */
@@ -6859,6 +6875,154 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   letter-spacing: -0.01em;
 }
 
+/* ──────────────────────────────────────────────────────────────────
+   /about, manifesto v2 — editorial pull quote + 3-pillar journey arc
+   Replaces the prior 4-paragraph block with two sharper visual beats:
+   a single-thesis quote, then a left-to-right "saw → built → going"
+   pillar arc connected by hairline arrows. Heavier on whitespace,
+   lighter on prose, fits the rest of the cs-* design language.
+   ────────────────────────────────────────────────────────────────── */
+.cs-about-quote {
+  position: relative;
+  margin: 0 0 56px;
+  padding: 0 0 0 36px;
+  border-left: 2px solid rgba(20, 85, 230, 0.55);
+  max-width: 860px;
+}
+.cs-about-quote-mark {
+  position: absolute;
+  left: 6px;
+  top: -18px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 4rem;
+  line-height: 1;
+  color: rgba(20, 85, 230, 0.6);
+  user-select: none;
+  pointer-events: none;
+}
+.cs-about-quote p {
+  margin: 0;
+  font-family: var(--font-h);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.012em;
+  color: var(--text-1);
+}
+.cs-about-quote-attr {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+}
+
+/* 3-pillar arc, "WHAT WE SAW · BUILT · WHERE IT GOES".
+   Layout uses two arrow rows (auto-width) interleaved with three
+   pillar columns (1fr) — the grid template flexes them onto a
+   single row on desktop and stacks them on mobile. */
+.cs-about-pillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+.cs-about-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px 26px 28px;
+  background: linear-gradient(180deg, rgba(10,16,32,0.55), rgba(10,16,32,0.2));
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  position: relative;
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.cs-about-pillar:hover {
+  background: linear-gradient(180deg, rgba(20,85,230,0.07), rgba(10,16,32,0.2));
+  border-color: rgba(20,85,230,0.3);
+}
+.cs-about-pillar-num {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: rgba(20, 130, 255, 0.85);
+}
+.cs-about-pillar-title {
+  font-family: var(--font-h);
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+  color: var(--text-1);
+  margin: 0;
+}
+.cs-about-pillar-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* Hairline arrow connector between pillars: a thin line + chevron tip.
+   Built as a pseudo-element on dedicated `cs-about-pillar-arrow` items
+   so the arrow lives in the grid track, not absolutely positioned. */
+.cs-about-pillar-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  min-width: 36px;
+}
+.cs-about-pillar-arrow::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(20,85,230,0.0) 0%, rgba(20,85,230,0.55) 50%, rgba(20,85,230,0.0) 100%);
+}
+.cs-about-pillar-arrow::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid rgba(20,85,230,0.55);
+  margin-left: -6px;
+  flex: 0 0 auto;
+}
+.cs-about-pillar-arrow:hover {
+  background: transparent;
+  border: none;
+}
+
+@media (max-width: 1100px) {
+  .cs-about-pillars {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .cs-about-pillar-arrow {
+    min-width: 0;
+    height: 28px;
+  }
+  .cs-about-pillar-arrow::before {
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(20,85,230,0.0) 0%, rgba(20,85,230,0.55) 50%, rgba(20,85,230,0.0) 100%);
+  }
+  .cs-about-pillar-arrow::after {
+    border-top: 6px solid rgba(20,85,230,0.55);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: none;
+    margin-left: 0;
+    margin-top: -6px;
+  }
+}
+
 .cs-about-values {
   border-bottom: 1px solid var(--border);
   background: var(--bg);
@@ -6882,11 +7046,38 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .cs-value-card:hover { background: rgba(20,85,230,0.06); }
 .cs-value-card:nth-child(3n) { border-right: none; }
 .cs-value-card:nth-last-child(-n+3) { border-bottom: none; }
+/* Card head row: icon glyph on the left, monospaced number on the right.
+   Icon is a 28×28 line glyph to match the cs-* institutional style. */
+.cs-value-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.cs-value-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(20, 85, 230, 0.35);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(20, 85, 230, 0.12), rgba(20, 85, 230, 0.04));
+  color: rgba(120, 175, 255, 0.95);
+  flex: 0 0 auto;
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.cs-value-card:hover .cs-value-icon {
+  background: linear-gradient(180deg, rgba(20, 85, 230, 0.22), rgba(20, 85, 230, 0.08));
+  border-color: rgba(20, 130, 255, 0.55);
+  color: rgba(180, 215, 255, 1);
+}
 .cs-value-num {
   font-size: 0.75rem;
   color: var(--mid);
   letter-spacing: 0.12em;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 .cs-value-title {
   font-family: var(--font-h);

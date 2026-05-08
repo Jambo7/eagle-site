@@ -464,31 +464,6 @@ export default function Home() {
                 <span className="cs-caption-sep" aria-hidden="true">·</span>
                 <span>Live BTC/USD · 4H model consensus</span>
               </figcaption>
-
-              <div className="annotation ann-tl home-cs-ann">
-                <span className="ann-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M12 7v5l3.5 2" />
-                  </svg>
-                </span>
-                <div>
-                  <div className="ann-head">50ms Latency</div>
-                  <div className="ann-sub">Sub-second signal delivery</div>
-                </div>
-              </div>
-              <div className="annotation ann-br home-cs-ann">
-                <span className="ann-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M8.3 12.3l2.2 2.2 5.2-5.2" />
-                  </svg>
-                </span>
-                <div>
-                  <div className="ann-head">94.7% Accuracy</div>
-                  <div className="ann-sub">30-day rolling average</div>
-                </div>
-              </div>
             </figure>
 
           </div>

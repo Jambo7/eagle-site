@@ -12,7 +12,7 @@
  *      cycle frame-by-frame via `window.__setFrameTime(ms)`. This avoids
  *      wall-clock drift that the naive "screenshot every 33ms" approach
  *      suffers from once a single screenshot exceeds one frame budget.
- *   4. Save 900 PNGs (30s × 30fps) per pose with `omitBackground: true`
+ *   4. Save 1350 PNGs (45s × 30fps) per pose with `omitBackground: true`
  *      so the device's drop shadow and pedestal glow land in the alpha
  *      channel as semi-transparent pixels.
  *   5. Hand the PNG sequence to a bundled ffmpeg binary that downscales
@@ -52,7 +52,7 @@ const OUT_DIR = path.join(ROOT, "out");
 const BASE_URL = process.env.CAPTURE_BASE_URL ?? "http://localhost:3000";
 const POSES = /** @type {const} */ (["tilt", "flat"]);
 const FPS = 30;
-const DURATION_MS = 30_000;
+const DURATION_MS = 45_000;
 const FRAME_COUNT = (FPS * DURATION_MS) / 1000;
 const FRAME_INTERVAL_MS = 1000 / FPS;
 const VIEWPORT = { width: 1080, height: 1920, deviceScaleFactor: 2 };

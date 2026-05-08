@@ -1,12 +1,17 @@
+import Image from "next/image";
+
 type Slide = { src: string; alt: string };
 
 const PHONE_SLIDES: Slide[] = [
-  { src: "/hero-phone/1.png", alt: "CLAW Stealth Overview, live read gauges for trend health, risk pressure and sentiment with current BTC, ETH, SOL and XRP prices" },
-  { src: "/hero-phone/2.png", alt: "CLAW Stealth Charts, top crypto assets with expanded ETH/USDT chart and timeframe picker" },
-  { src: "/hero-phone/3.png", alt: "CLAW Stealth Liquidation Heatmap for BTC/USDT with long wall, short wall and historical liquidation cluster grid" },
-  { src: "/hero-phone/4.png", alt: "CLAW Stealth Alerts, active BTC long alert with entry, take-profit and stop-loss levels" },
-  { src: "/hero-phone/5.png", alt: "Ask Claw, prompt hub with Hot, Analysis, Macro and Whales filters and suggested setup questions" },
-  { src: "/hero-phone/6.png", alt: "Ask Claw, generated BTC long candidate setup with trigger, entry, stop, two take-profits, R:R and conviction" },
+  { src: "/hero-phone/1.png", alt: "CLAW Stealth Live Read snapshot, with Trend Health, Risk Pressure and Sentiment gauges and current BTC, ETH, SOL and XRP prices" },
+  { src: "/hero-phone/2.png", alt: "CLAW Stealth Charts, top crypto assets with ETH/USDT expanded on a 7-day timeframe" },
+  { src: "/hero-phone/3.png", alt: "Ask Claw prompt hub, with Hot, Analysis, Macro and Whales filter tabs and suggested setup questions" },
+  { src: "/hero-phone/4.png", alt: "CLAW Stealth Social Sentiment feed, with Impact, Signals, Topic, News and X filters and chronological headline ordering" },
+  { src: "/hero-phone/5.png", alt: "CLAW Stealth Whale flow, real-time big-investor buy and sell pressure with most active tokens and biggest move" },
+  { src: "/hero-phone/6.png", alt: "Ask Claw generated ETH long candidate setup, with entry, stop, take-profit ladder, position sizing, reward-to-risk and reward-risk sanity check" },
+  { src: "/hero-phone/7.png", alt: "Ask Claw analysing market data in response to a 'what's the best trade today' prompt" },
+  { src: "/hero-phone/8.png", alt: "CLAW Stealth Create Alert dialog, with token, direction, entry, take-profit and stop-loss fields ready to set an ETH long alert" },
+  { src: "/hero-phone/9.png", alt: "CLAW Stealth Liquidation Heatmap for BTC/USDT, with high and low price resistance walls and historical liquidation cluster grid" },
 ];
 
 type Props = {
@@ -22,7 +27,7 @@ type Props = {
  * products page Stealth section.
  *
  * Timing (see `.iphone-slide` in globals.css):
- *   • 30s full cycle, 6 slides × 5s each
+ *   • 45s full cycle, 9 slides × 5s each
  *   • 0.6s crossfade + 4.4s hold per slide (institutional cadence:
  *     decisive transition, longer dwell on each frame)
  *   • Outgoing and incoming slides cross-fade through the same 0.6s
@@ -59,15 +64,24 @@ export default function HeroIphoneMockup({
 
           <div className="iphone-slides" aria-label="CLAW Stealth app tour">
             {PHONE_SLIDES.map((s, i) => (
-              <img
+              <Image
                 key={s.src}
                 src={s.src}
                 alt={s.alt}
+                /* Native iPhone 14/15 retina resolution at DPR 3, matches the
+                   source PNGs in /public/hero-phone/. Explicit dimensions let
+                   the browser plan the compositor layer at the right pixel
+                   density before the parent's 3D rotation rasterises it. */
+                width={1179}
+                height={2556}
                 className="iphone-slide"
                 style={{ animationDelay: `${-1 + i * 5}s` }}
+                priority={i === 0}
                 loading="eager"
                 decoding="async"
                 draggable={false}
+                sizes="(max-width: 1100px) 300px, 380px"
+                unoptimized
               />
             ))}
           </div>

@@ -29,14 +29,14 @@ declare global {
   }
 }
 
-const CYCLE_MS = 30_000;
+const CYCLE_MS = 45_000;
 const SLIDE_DELAY_MS = (i: number) => (-1 + i * 5) * 1000;
 
 // Mirrors the @keyframes phoneSlideCycle declaration in globals.css
-// (0%/2%/16.67%/18.67%/100% over a 30s cycle), in absolute milliseconds.
-const FADE_IN_MS = 600; //  2% of 30000
-const HOLD_END_MS = 5000; //  16.67% of 30000
-const FADE_OUT_END_MS = 5600; //  18.67% of 30000
+// (0%/1.333%/11.111%/12.444%/100% over a 45s cycle), in absolute milliseconds.
+const FADE_IN_MS = 600; //   1.333% of 45000
+const HOLD_END_MS = 5000; //  11.111% of 45000
+const FADE_OUT_END_MS = 5600; // 12.444% of 45000
 
 // Approximation of CSS `ease-in-out` (cubic-bezier(0.42, 0, 0.58, 1)).
 // The keyframes use opacity transitions where this curve is essentially

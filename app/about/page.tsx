@@ -6,38 +6,132 @@ import AboutFaq from "../components/about-faq";
    Data, values, team, and long-view narrative.
    ──────────────────────────────────────────────────────────────── */
 
-const VALUES = [
+type ValueIcon =
+  | "innovation"
+  | "ownership"
+  | "commitment"
+  | "openness"
+  | "teamwork"
+  | "growth";
+
+type Value = {
+  n: string;
+  title: string;
+  desc: string;
+  icon: ValueIcon;
+};
+
+const VALUES: Value[] = [
   {
     n: "01",
     title: "Innovation",
-    desc: "We build what hasn't been built before. We challenge assumptions, test bold ideas, and use AI to push the boundary of what's possible in digital trading.",
+    desc: "Build what hasn't been built. Challenge assumptions, test bold ideas, push the boundary.",
+    icon: "innovation",
   },
   {
     n: "02",
     title: "Ownership",
-    desc: "We take responsibility for our work, our results and our impact. Every team member is trusted to lead, make decisions and treat the company's mission as their own.",
+    desc: "Take responsibility for the work, the results, the impact. Treat the mission as your own.",
+    icon: "ownership",
   },
   {
     n: "03",
     title: "Commitment",
-    desc: "We show up for our users, our builders and our community. We listen closely, respond quickly, and shape the future of Eagle AI alongside the traders who live in it.",
+    desc: "Show up for users, builders and community. Listen closely. Respond quickly. Ship constantly.",
+    icon: "commitment",
   },
   {
     n: "04",
     title: "Openness",
-    desc: "Transparency earns trust. From model performance to internal feedback, we share openly, listen deeply and improve together, in public.",
+    desc: "Transparency earns trust. Share model performance, feedback and progress, in public.",
+    icon: "openness",
   },
   {
     n: "05",
     title: "Teamwork",
-    desc: "We move faster together. Eagle AI is built by a collective of ambitious minds who collaborate, challenge and support each other every step of the way.",
+    desc: "Move faster together. A collective of ambitious minds who collaborate, challenge and support.",
+    icon: "teamwork",
   },
   {
     n: "06",
     title: "Growth",
-    desc: "Whether scaling the platform, learning new skills or evolving the vision, we grow through every challenge we take on, as individuals and as a company.",
+    desc: "Scale the platform. Learn new skills. Evolve the vision. Grow through every challenge.",
+    icon: "growth",
   },
 ];
+
+/**
+ * Values icon set, sized 32×32, strokeWidth 1.5 line glyphs to match the
+ * rest of the cs-* design language (mono, institutional, no fills). Each
+ * is paired with one of the six values above by the `icon` field.
+ */
+function ValueIconSvg({ name }: { name: ValueIcon }) {
+  const common = {
+    width: 28,
+    height: 28,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.5,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  switch (name) {
+    case "innovation":
+      // Lightning spark: bold, single-stroke
+      return (
+        <svg {...common}>
+          <path d="M13 2L4 13h7v9l9-13h-7V2z" />
+        </svg>
+      );
+    case "ownership":
+      // Pennant flag on a pole, 'plant your mark'
+      return (
+        <svg {...common}>
+          <path d="M5 3v18" />
+          <path d="M5 4h12l-3 4 3 4H5" />
+        </svg>
+      );
+    case "commitment":
+      // Concentric target rings, follow-through, accuracy
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="5" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+        </svg>
+      );
+    case "openness":
+      // Open eye / lens, transparency
+      return (
+        <svg {...common}>
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      );
+    case "teamwork":
+      // Three nodes connected in a triangle
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="5" r="2" />
+          <circle cx="5" cy="18" r="2" />
+          <circle cx="19" cy="18" r="2" />
+          <line x1="12" y1="7" x2="6" y2="16.5" />
+          <line x1="12" y1="7" x2="18" y2="16.5" />
+          <line x1="7" y1="18" x2="17" y2="18" />
+        </svg>
+      );
+    case "growth":
+      // Stepped uptrend with arrow tip — performance, scale
+      return (
+        <svg {...common}>
+          <polyline points="3 17 9 11 13 15 21 7" />
+          <polyline points="14 7 21 7 21 14" />
+        </svg>
+      );
+  }
+}
 
 type TeamMember = {
   name: string;
@@ -143,7 +237,8 @@ export default function AboutPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          JOURNEY, framed as the product of relentless refinement
+          JOURNEY, distilled to a pull quote and a 3-step arc
+          (saw the gap → built the engine → expanding the domain)
       ══════════════════════════════════════════════════════════════════ */}
       <section className="cs-about-manifesto">
         <div className="section-wrap cs-tight-wrap">
@@ -153,40 +248,55 @@ export default function AboutPage() {
               Redefining the landscape of digital-asset intelligence.
             </h2>
           </div>
-          <div className="cs-about-manifesto-grid">
-            <div className="cs-about-manifesto-label">
-              <span className="cs-mono">WHY WE BUILT THIS</span>
-            </div>
-            <div className="cs-about-manifesto-body">
-              <p>
-                At Eagle AI, we have redefined the landscape of digital-asset
-                data through relentless innovation and technical depth. Our
-                commitment to pushing boundaries has empowered countless
-                operators to navigate complex markets with conviction.
+
+          {/* Editorial pull quote, sets the thesis in one breath. */}
+          <blockquote className="cs-about-quote">
+            <span className="cs-about-quote-mark" aria-hidden="true">&ldquo;</span>
+            <p>
+              We don&apos;t build AI that replaces the trader. We build AI that
+              lets the trader see further, decide faster, and stay ahead of
+              a market that prices itself in seconds.
+            </p>
+            <footer className="cs-about-quote-attr cs-mono">
+              EAGLE AI LABS &nbsp;/&nbsp; PRODUCT THESIS
+            </footer>
+          </blockquote>
+
+          {/* 3-pillar arc: what we saw → what we built → where it goes */}
+          <ol className="cs-about-pillars">
+            <li className="cs-about-pillar">
+              <div className="cs-about-pillar-num cs-mono">01 &middot; WHAT WE SAW</div>
+              <h3 className="cs-about-pillar-title">
+                A market that moves in seconds, on tools that move in minutes.
+              </h3>
+              <p className="cs-about-pillar-desc">
+                Most platforms are either too simple to be useful at a
+                professional level, or too slow to capture moves as they happen.
               </p>
-              <p>
-                Most trading platforms were either too simple to be useful at
-                a professional level, or too slow to keep up with a market
-                that prices itself in seconds. We saw a gap between the
-                complexity of crypto markets and the quality of the tools
-                available, and we built Eagle AI Labs to close it with real
-                intelligence, not hype.
+            </li>
+            <li className="cs-about-pillar cs-about-pillar-arrow" aria-hidden="true" />
+            <li className="cs-about-pillar">
+              <div className="cs-about-pillar-num cs-mono">02 &middot; WHAT WE BUILT</div>
+              <h3 className="cs-about-pillar-title">
+                Predictive AI, purpose-built for real market conditions.
+              </h3>
+              <p className="cs-about-pillar-desc">
+                Models trained on quantitative signals and behavioural patterns.
+                Operator-grade. Designed to augment human decisions, not replace them.
               </p>
-              <p>
-                Our edge is precision. Our models are purpose-built for real
-                market conditions, trained on quantitative signals and
-                behavioural patterns. Our platform is designed for operators
-                who take their own decisions, augmented, not replaced, by AI.
+            </li>
+            <li className="cs-about-pillar cs-about-pillar-arrow" aria-hidden="true" />
+            <li className="cs-about-pillar">
+              <div className="cs-about-pillar-num cs-mono">03 &middot; WHERE IT GOES</div>
+              <h3 className="cs-about-pillar-title">
+                The Bloomberg Terminal for digital assets.
+              </h3>
+              <p className="cs-about-pillar-desc">
+                AI-first, professional-grade. Crypto first. Then sports, macro
+                and every other high-stakes decision domain.
               </p>
-              <p>
-                Long term, we&apos;re building the Bloomberg Terminal for digital
-                assets: an AI-first platform where professional traders, funds
-                and communities analyse, execute and grow. Starting with
-                crypto. Expanding into sports, macro and other high-stakes
-                decision domains.
-              </p>
-            </div>
-          </div>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -205,7 +315,12 @@ export default function AboutPage() {
           <div className="cs-values-grid">
             {VALUES.map((v) => (
               <div key={v.n} className="cs-value-card">
-                <div className="cs-value-num cs-mono">{v.n}</div>
+                <div className="cs-value-card-head">
+                  <span className="cs-value-icon" aria-hidden="true">
+                    <ValueIconSvg name={v.icon} />
+                  </span>
+                  <div className="cs-value-num cs-mono">{v.n}</div>
+                </div>
                 <h3 className="cs-value-title">{v.title}</h3>
                 <p className="cs-value-desc">{v.desc}</p>
               </div>
