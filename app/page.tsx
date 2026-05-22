@@ -37,31 +37,37 @@ export default function Home() {
       <MobileNavDrawer active="home" />
 
       {/* ══════════════════════════════════════════════════════════════════
-          HERO
+          HERO  ·  Claw Pro v2 free relaunch
+          Replaces the old "AI-architecture house" hero. New focal product
+          is the now-free Claw Pro v2 desktop terminal; the visual is a
+          dual-monitor stack (live dashboard in front, AutoTrade copytrade
+          leaderboard floating behind). The iPhone mock has moved further
+          down the page into its own Claw Stealth section.
       ══════════════════════════════════════════════════════════════════ */}
       <section id="hero">
-        {/* Institutional backdrop: subtle grid, soft radial depth, and a
-            faint stage glow behind the device. Sharp, restrained, fintech. */}
         <div className="hero-bg" aria-hidden="true">
           <div className="hero-bg-grid" />
           <div className="hero-bg-glow" />
         </div>
 
         <div className="hero-content">
-          <p className="hero-eyebrow reveal">AI-native predictive intelligence</p>
+          <div className="hero-launch-pill reveal">
+            <span className="hlp-dot" aria-hidden="true" />
+            <span className="hlp-strong">NOW LIVE</span>
+            <span className="hlp-sep" aria-hidden="true">·</span>
+            <span>Claw Pro v2 is free for every trader</span>
+          </div>
 
           <h1 className="hero-title reveal">
-            Predict Markets<br />
-            <span className="hero-gradient-line">Before They Move</span>
+            The pro trading terminal.<br />
+            <span className="hero-gradient-line">Now free.</span>
           </h1>
 
           <p className="hero-sub reveal">
-            Eagle AI Labs is an AI-architecture house. We build predictive
-            systems for institutional trading desks, hedge funds and
-            market-data partners, and ship the same core engines inside
-            CLAW, our intelligence suite for retail traders. The same
-            infrastructure is being extended into sports, macro and any
-            domain where probabilistic decisions are valued.
+            Claw Pro v2 puts predictive AI models, the full pro indicator
+            stack, blockchain-verified copy trading, a social network
+            with pro set-ups and trade analysis on every trader&apos;s
+            desk. Free when you link a supported exchange UID.
           </p>
 
           <div className="hero-btns reveal">
@@ -71,13 +77,23 @@ export default function Home() {
               target="_blank"
               rel="noopener"
             >
-              Start free trial
+              Get started free
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
             <a href="#claw-suite" className="btn btn-outline btn-lg">
-              Explore the CLAW Suite
+              See what&apos;s inside
             </a>
           </div>
+
+          <p className="hero-fine reveal">
+            Free with a linked exchange UID
+            <span className="hero-fine-sep" aria-hidden="true">·</span>
+            No card
+            <span className="hero-fine-sep" aria-hidden="true">·</span>
+            No trial limits
+            <span className="hero-fine-sep" aria-hidden="true">·</span>
+            Cancel anytime
+          </p>
 
           <div className="hero-metrics reveal">
             <div className="hm-item">
@@ -109,19 +125,65 @@ export default function Home() {
         </div>
 
         <div className="hero-chart reveal">
-          {/* Editorial overline above the device. Hairline rule + big oblique
-              display lockup + tiny mono caption gives the iPhone a confident,
-              "chapter title" frame instead of letting it hover unattached. */}
           <div className="hero-device-overline">
             <span className="hdo-rule" aria-hidden="true" />
             <h2 className="hdo-text">
-              AI at the <span className="hdo-text-accent">core</span>
+              Claw Pro v2, <span className="hdo-text-accent">live</span>
             </h2>
             <span className="hdo-tag cs-mono" aria-hidden="true">
-              The prediction engine, in your pocket
+              Dashboard + AutoTrade leaderboard
             </span>
           </div>
-          <HeroIphoneMockup />
+
+          {/* Dual-monitor lockup. Back monitor (AutoTrade leaderboard)
+              floats up and slightly right, rotated and dimmed so it reads
+              as a secondary surface. Front monitor (live dashboard) sits
+              flush, full size, anchoring the visual. */}
+          <div className="hero-dual-screens">
+            <figure className="hds-back" aria-label="Claw Pro v2 AutoTrade leaderboard screenshot">
+              <HeroMonitorMockup
+                src="/hero-claw-pro-v2-autotrade.png"
+                alt="Claw Pro v2 AutoTrade leaderboard with 40 copy-trading strategies, scores, profit columns and ApeX UID linking"
+              />
+            </figure>
+            <figure className="hds-front" aria-label="Claw Pro v2 trading dashboard screenshot">
+              <HeroMonitorMockup
+                src="/hero-claw-pro-v2-dashboard.png"
+                alt="Claw Pro v2 trading dashboard with TradingView chart, whale alerts, market intel and liquidation heatmap"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          LINKED EXCHANGES  ·  trust strip directly under the hero
+      ══════════════════════════════════════════════════════════════════ */}
+      <section id="linked-exchanges" aria-label="Supported exchanges for UID linking">
+        <div className="lx-wrap">
+          <span className="lx-label cs-mono">LINKED EXCHANGES</span>
+          <div className="lx-pills">
+            <span className="lx-pill lx-live">
+              <span className="lx-pill-dot" aria-hidden="true" />
+              <span className="lx-pill-name">MEXC</span>
+              <span className="lx-pill-status">LIVE</span>
+            </span>
+            <span className="lx-pill lx-live">
+              <span className="lx-pill-dot" aria-hidden="true" />
+              <span className="lx-pill-name">ApeX</span>
+              <span className="lx-pill-status">LIVE</span>
+            </span>
+            <span className="lx-pill lx-live">
+              <span className="lx-pill-dot" aria-hidden="true" />
+              <span className="lx-pill-name">Binance</span>
+              <span className="lx-pill-status">LIVE</span>
+            </span>
+            <span className="lx-pill lx-coming">
+              <span className="lx-pill-dot" aria-hidden="true" />
+              <span className="lx-pill-name">Blofin</span>
+              <span className="lx-pill-status">COMING SOON</span>
+            </span>
+          </div>
         </div>
       </section>
 
@@ -255,7 +317,7 @@ export default function Home() {
                 desktop and mobile.
               </p>
               <ul className="home-who-list">
-                <li>CLAW Pro desktop terminal</li>
+                <li>CLAW Pro v2 desktop terminal &mdash; now free</li>
                 <li>CLAW Stealth mobile companion</li>
                 <li>Ask Claw conversational agent</li>
               </ul>
@@ -457,12 +519,12 @@ export default function Home() {
             <figure className="home-cs-shot-desktop">
               <HeroMonitorMockup
                 src="/products-claw-pro-monitor.png"
-                alt="CLAW Pro trading terminal with live charts, whale activity, prediction card and breakout bot"
+                alt="CLAW Pro v2 trading terminal with live charts, whale activity, prediction card and breakout bot"
               />
               <figcaption className="home-cs-shot-caption">
-                <span className="cs-mono">CLAW Pro v2.1</span>
+                <span className="cs-mono">CLAW Pro v2</span>
                 <span className="cs-caption-sep" aria-hidden="true">·</span>
-                <span>Live BTC/USD · 4H model consensus</span>
+                <span>Now free with a linked exchange UID</span>
               </figcaption>
             </figure>
 
@@ -507,9 +569,9 @@ export default function Home() {
               target="_blank"
               rel="noopener"
             >
-              <div className="home-cs-cta-label cs-mono">LAUNCH</div>
-              <div className="home-cs-cta-title">Open CLAW Pro</div>
-              <div className="home-cs-cta-sub">Start a 3-day free trial. No card required.</div>
+              <div className="home-cs-cta-label cs-mono">LAUNCH · NOW FREE</div>
+              <div className="home-cs-cta-title">Open CLAW Pro v2</div>
+              <div className="home-cs-cta-sub">Free with a linked exchange UID. No card. No limits.</div>
               <span className="home-cs-cta-arrow">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
               </span>
@@ -549,6 +611,84 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
+          CLAW STEALTH MOBILE  ·  preserves the iPhone mockup the hero used
+          to host, now framed as the companion to the desktop Pro v2
+          terminal. iOS + Android, Ask Claw agent, live alerts on the move.
+      ══════════════════════════════════════════════════════════════════ */}
+      <section id="claw-stealth-home" className="home-stealth">
+        <div className="section-wrap">
+          <div className="home-stealth-grid">
+            <div className="home-stealth-copy">
+              <div className="cs-section-eyebrow">MOBILE &middot; CLAW STEALTH</div>
+              <h2 className="cs-section-title">
+                When you&apos;re away from the desk,<br />
+                <span className="cs-section-title-accent">Claw Stealth keeps the watch.</span>
+              </h2>
+              <p className="home-stealth-lead">
+                The mobile companion to Claw Pro v2. Predictive signals, the
+                Ask Claw conversational agent, whale flow, liquidation
+                heatmaps and live alerts &mdash; sized for the operator who
+                moves. iOS and Android, fully synced with your desktop
+                terminal.
+              </p>
+
+              <ul className="home-stealth-list">
+                <li>
+                  <span className="home-stealth-list-num cs-mono">01</span>
+                  <div>
+                    <h4>Ask Claw on the go</h4>
+                    <p>
+                      Generate trade set-ups in natural language &mdash;
+                      entry, stop, targets and sizing &mdash; in seconds.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span className="home-stealth-list-num cs-mono">02</span>
+                  <div>
+                    <h4>Live alerts &amp; whale flow</h4>
+                    <p>
+                      Push alerts on signals, levels, whales, funding and
+                      liquidations; never wait until you&apos;re back at the
+                      desk.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span className="home-stealth-list-num cs-mono">03</span>
+                  <div>
+                    <h4>Synced with Pro v2</h4>
+                    <p>
+                      Watchlists, alerts, model feed and portfolio mirror
+                      your desktop. Pick up exactly where you left off.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="home-stealth-ctas">
+                <a
+                  href="https://app.eagleailabs.com/auth/login"
+                  className="btn btn-outline btn-lg"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Join the Stealth waitlist
+                </a>
+                <a href="/products#claw-stealth" className="btn btn-ghost btn-lg">
+                  Read the full spec
+                </a>
+              </div>
+            </div>
+
+            <div className="home-stealth-visual reveal">
+              <HeroIphoneMockup />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
           FINAL CTA
       ══════════════════════════════════════════════════════════════════ */}
       <section id="cta">
@@ -556,12 +696,14 @@ export default function Home() {
           <div className="cta-glow" aria-hidden="true"></div>
           <div className="section-eyebrow reveal">Get Started</div>
           <h2 className="cta-title reveal">
-            Join the New Era of<br />
-            <span className="gradient-text">Intelligent Trading</span>
+            CLAW Pro v2 is free.<br />
+            <span className="gradient-text">Link a UID and start trading smarter.</span>
           </h2>
           <p className="cta-sub reveal">
-            Access Eagle AI Labs&apos; full predictive intelligence suite.
-            Institutional infrastructure, built for every type of trader.
+            Predictive AI models, the full pro indicator stack,
+            blockchain-verified copy trading, a social network with pro
+            set-ups and trade analysis &mdash; free with a linked
+            supported-exchange UID.
           </p>
           <div className="cta-btns reveal">
             <a
@@ -570,14 +712,14 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Start free, no card required
+              Get started free
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
             </a>
             <a href="#claw-suite" className="btn btn-outline btn-lg">Explore the CLAW Suite</a>
             {/* TODO: swap mailto for calendar booking URL once provisioned */}
             <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20Eagle%20AI%20Labs" className="btn btn-ghost btn-lg">Book a demo</a>
           </div>
-          <p className="cta-fine reveal">3-day free trial &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; Cancel anytime</p>
+          <p className="cta-fine reveal">Free with a linked exchange UID &nbsp;·&nbsp; MEXC, ApeX, Binance live &nbsp;·&nbsp; Blofin coming soon</p>
         </div>
       </section>
 

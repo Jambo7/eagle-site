@@ -10,7 +10,7 @@ import SiteFooter from "../components/site-footer";
  * Redesigned as a sophisticated fintech product page rather than a consumer
  * marketing landing page. Three products, one predictive engine:
  *
- *   01 · CLAW Pro        , Desktop trading terminal + mobile companion
+ *   01 · CLAW Pro v2     , Desktop trading terminal + mobile companion (free with linked exchange UID)
  *   02 · CLAW Stealth    , Lightweight iOS / Android app + Ask Claw GPT agent
  *   03 · CLAW Enterprise , The Oracle, full model arsenal, API, SLA
  *
@@ -125,8 +125,8 @@ export default function ProductsPage() {
           <nav className="cs-hero-quicknav" aria-label="Products">
             <a href="#claw-pro" className="cs-qn-item">
               <span className="cs-qn-num">01</span>
-              <span className="cs-qn-name">CLAW Pro</span>
-              <span className="cs-qn-cat">Desktop terminal</span>
+              <span className="cs-qn-name">CLAW Pro v2</span>
+              <span className="cs-qn-cat">Desktop terminal &middot; Free</span>
             </a>
             <a href="#claw-stealth" className="cs-qn-item">
               <span className="cs-qn-num">02</span>
@@ -181,13 +181,13 @@ export default function ProductsPage() {
             <a href="#claw-pro" className="cs-suite-card">
               <div className="cs-sc-top">
                 <span className="cs-sc-tier">Tier 01</span>
-                <span className="cs-sc-status cs-sc-status-live">Live</span>
+                <span className="cs-sc-status cs-sc-status-live">Live &middot; Free</span>
               </div>
               <div className="cs-sc-name">
-                CLAW <span className="cs-sc-name-sub">Pro</span>
+                CLAW <span className="cs-sc-name-sub">Pro v2</span>
               </div>
               <p className="cs-sc-tagline">
-                The institutional trading terminal for active crypto traders.
+                The institutional trading terminal for active crypto traders. Free with a linked exchange UID.
               </p>
               <div className="cs-sc-platforms">
                 <span className="cs-platform-chip">Desktop</span>
@@ -200,7 +200,7 @@ export default function ProductsPage() {
                 <li>Programmable alert engine across all model outputs</li>
               </ul>
               <div className="cs-sc-link">
-                Explore CLAW Pro
+                Explore CLAW Pro v2
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -277,7 +277,7 @@ export default function ProductsPage() {
           <header className="cs-product-header">
             <div className="cs-ph-index">01</div>
             <div className="cs-ph-meta">
-              <div className="cs-ph-label">CLAW Pro · Flagship Terminal</div>
+              <div className="cs-ph-label">CLAW Pro v2 &middot; Flagship Terminal &middot; Now Free</div>
               <div className="cs-ph-divider" aria-hidden="true" />
               <div className="cs-ph-platforms">
                 <span>Desktop web</span>
@@ -288,7 +288,7 @@ export default function ProductsPage() {
               </div>
             </div>
             <div className="cs-ph-badge cs-ph-badge-live">
-              <span className="live-blink" /> LIVE
+              <span className="live-blink" /> LIVE &middot; FREE
             </div>
           </header>
 
@@ -296,10 +296,11 @@ export default function ProductsPage() {
             <div className="cs-product-copy reveal">
               <h2 className="cs-product-title">
                 <span className="cs-product-title-brand">CLAW</span>
-                <span className="cs-product-title-variant">Pro</span>
+                <span className="cs-product-title-variant">Pro v2</span>
               </h2>
               <p className="cs-product-lead">
-                The full Eagle AI workstation for active crypto traders. Every signal,
+                The full Eagle AI workstation for active crypto traders &mdash; now
+                completely free when you link a supported exchange UID. Every signal,
                 every model output, every timeframe, surfaced in a single professional
                 interface with live order flow, heatmaps and a programmable alert engine.
               </p>
@@ -354,7 +355,7 @@ export default function ProductsPage() {
                   href="https://app.eagleailabs.com/claw/pretrade?utm_source=owned-eagle&utm_medium=website&utm_campaign=Claw&business_line=Claw-All&start=start-evergreen&end=end-evergreen&objective=registration&tactic=none+selected"
                   className="btn btn-primary cs-cta"
                 >
-                  Launch CLAW Pro
+                  Get CLAW Pro v2 free
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </a>
                 <a href="#claw-enterprise" className="btn btn-outline cs-cta-secondary">
@@ -364,16 +365,16 @@ export default function ProductsPage() {
             </div>
 
             <div className="cs-product-visual cs-product-visual--pro reveal">
-              {/* Floating monitor mockup with the real CLAW Pro terminal
+              {/* Floating monitor mockup with the real CLAW Pro v2 terminal
                   at the correct 16:10 aspect ratio (1024×640 source). */}
               <HeroMonitorMockup
                 src="/products-claw-pro-monitor.png"
-                alt="CLAW Pro trading terminal with charts, whale activity, prediction card and breakout bot"
+                alt="CLAW Pro v2 trading terminal with charts, whale activity, prediction card and breakout bot"
               />
               <div className="cs-pro-figure-caption">
-                <span className="cs-mono">CLAW Pro v2.1</span>
+                <span className="cs-mono">CLAW Pro v2</span>
                 <span className="cs-caption-sep" aria-hidden="true">·</span>
-                <span>Live BTC/USD · 4H model consensus</span>
+                <span>Free with a linked exchange UID</span>
               </div>
             </div>
           </div>
@@ -607,7 +608,7 @@ export default function ProductsPage() {
                 <div className="cs-ars-num">06</div>
                 <h3 className="cs-ars-title">White-label &amp; partnership</h3>
                 <p className="cs-ars-desc">
-                  Run CLAW Pro under your brand, or embed Eagle AI intelligence into
+                  Run CLAW Pro v2 under your brand, or embed Eagle AI intelligence into
                   your own product surface. Includes engineering co-development.
                 </p>
               </div>

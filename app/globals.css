@@ -333,12 +333,15 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 #hero {
   min-height: 100vh;
   display: grid;
-  /* Right column sized so the iPhone mock always hits its max-width cap
-     (and matches the Products page rendering) across common desktop widths.
-     Previously 0.52fr made the phone shrink below 312px on ~1000–1200px screens. */
-  grid-template-columns: 1fr 0.72fr;
+  /* 50/50 split for the Claw Pro v2 launch hero: the dual-monitor
+     lockup needs more horizontal room than the old iPhone mock had
+     (was 1fr / 0.72fr), but the headline column also needs enough
+     width so "The pro trading terminal." wraps to two lines, not
+     three. 1fr / 1fr lands that compromise nicely at 1320px max-width
+     (~566px each side after the 56px gap). */
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 64px;
+  gap: 56px;
   max-width: 1320px;
   margin: 0 auto;
   padding: calc(var(--nav-h) + 60px) var(--pad-x) 80px;
@@ -586,10 +589,17 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 }
 .hero-title {
   font-family: var(--font-h);
-  font-size: clamp(3rem, 6.5vw, 5.6rem);
+  /* Sized to keep the headline at two lines on desktop:
+     line 1 = "The pro trading terminal." on a single line
+     line 2 = "Now free." (gradient)
+     The previous clamp (max 5.6rem / ~90px) made "The pro" alone fill
+     the column width on the Pro v2 hero, stacking the title 3-4 lines
+     deep. Capped at 3.4rem (~54px) which still reads as a confident
+     display headline but lets 24-char line 1 fit the 1fr / 1fr track. */
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   margin-bottom: 22px;
   color: #fff;
 }
@@ -713,6 +723,263 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 @media (max-width: 380px) {
   .hdo-text { font-size: 1.65rem; letter-spacing: -0.03em; }
 }
+
+/* ═══════════════════════════════════════════════
+   Hero launch pill  -  Claw Pro v2 "now free" badge
+   Sits where the old .hero-eyebrow vertical-rule label used to live.
+   Pill shape, soft tinted background, pulsing live dot. Punches harder
+   than the eyebrow because the launch story IS the hero.
+   ═══════════════════════════════════════════════ */
+.hero-launch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 11px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(74, 198, 214, 0.28);
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 85, 230, 0.14) 0%,
+    rgba(74, 198, 214, 0.10) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  color: rgba(220, 240, 250, 0.92);
+  width: fit-content;
+}
+.hero-launch-pill .hlp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ac6d6;
+  box-shadow: 0 0 8px rgba(74, 198, 214, 0.85);
+  animation: hsPulse 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.hero-launch-pill .hlp-strong {
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  color: #9be3ee;
+  text-transform: uppercase;
+}
+.hero-launch-pill .hlp-sep {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+/* Fine-print row directly under the primary CTA buttons. Reassures
+   on the "free" claim without competing with the headline. */
+.hero-fine {
+  margin: -28px 0 32px;
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  color: var(--text-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.hero-fine-sep {
+  color: rgba(255, 255, 255, 0.18);
+}
+
+/* ═══════════════════════════════════════════════
+   Hero dual-screens lockup
+   Replaces the single iPhone mockup in the hero right column with
+   two CLAW Pro v2 monitor screenshots: the trading dashboard sits
+   front-and-centre, the AutoTrade leaderboard floats behind/right.
+
+   The container is positioned, both children are absolute. Container
+   aspect ratio is wider than tall (5:4) to give both monitors room
+   without crowding the headline column on the left.
+   ═══════════════════════════════════════════════ */
+.hero-dual-screens {
+  position: relative;
+  width: 100%;
+  /* #hero is now a 1fr / 1fr grid so the right track caps at ~566px
+     on a 1320px max-width viewport. The 980px max-width acts as a
+     ceiling for ultra-wide displays where the track itself widens. */
+  max-width: 980px;
+  margin: 0 auto;
+  aspect-ratio: 11 / 9;
+  isolation: isolate;
+}
+/* On-brand blue stage glow that sits behind both monitors. Matches the
+   palette of `.hero-bg-glow` (the deeper-blue radial behind the device
+   in the old iPhone hero) so the new dual-screen lockup feels anchored
+   in the same room instead of floating. */
+.hero-dual-screens::before {
+  content: "";
+  position: absolute;
+  inset: -12% -10%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 58% 52% at 52% 58%,
+      rgba(20, 85, 230, 0.42) 0%,
+      rgba(20, 85, 230, 0.22) 30%,
+      rgba(58, 161, 207, 0.10) 55%,
+      transparent 78%
+    );
+  filter: blur(42px);
+}
+.hds-back,
+.hds-front {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+.hds-back {
+  top: 0;
+  right: -6%;
+  width: 70%;
+  z-index: 1;
+  transform: rotate(2.2deg);
+  filter:
+    drop-shadow(0 14px 32px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 28px rgba(20, 85, 230, 0.25));
+  opacity: 0.94;
+}
+.hds-front {
+  bottom: 0;
+  left: 0;
+  width: 92%;
+  z-index: 2;
+  filter:
+    drop-shadow(0 18px 42px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 36px rgba(20, 85, 230, 0.28));
+}
+/* The inner mockup component caps itself at 720px; we want it to
+   take 100% of the figure so our width % above is meaningful. */
+.hds-back .monitor-mockup,
+.hds-front .monitor-mockup {
+  max-width: none;
+  padding-bottom: 0;
+}
+
+/* Tablet: shrink the stack proportionally, keep the layered feel. */
+@media (max-width: 1000px) {
+  .hero-dual-screens { max-width: 660px; aspect-ratio: 6 / 5; }
+  .hero-dual-screens::before { inset: -10% -8%; filter: blur(34px); }
+}
+
+/* Mobile: collapse to a clean vertical stack of two full-width
+   monitors, drop the rotation so they sit square on the page. */
+@media (max-width: 700px) {
+  .hero-dual-screens {
+    /* Keep position:relative so the ::before glow has the right
+       containing block; we just disable the layered ::before below
+       and let the children flow as a flex column. */
+    position: relative;
+    max-width: 480px;
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .hero-dual-screens::before { display: none; }
+  .hds-back,
+  .hds-front {
+    position: static;
+    width: 100%;
+    transform: none;
+    opacity: 1;
+    filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.5));
+  }
+  .hero-fine { margin-top: -16px; margin-bottom: 28px; font-size: 0.7rem; }
+}
+
+/* ═══════════════════════════════════════════════
+   Linked exchanges trust strip
+   Horizontal pill row directly under the hero, before the marquee.
+   Static, no motion. LIVE pills get a teal dot; the COMING SOON
+   pill gets a muted amber dot and softer styling.
+   ═══════════════════════════════════════════════ */
+#linked-exchanges {
+  position: relative;
+  z-index: 4;
+  padding: 22px var(--pad-x) 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.lx-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.lx-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.lx-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.lx-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 14px 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(10, 16, 32, 0.5);
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: var(--text-2);
+}
+.lx-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.lx-pill-name {
+  font-weight: 600;
+  color: var(--text-1);
+}
+.lx-pill-status {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+.lx-pill.lx-live { border-color: rgba(74, 198, 214, 0.28); }
+.lx-pill.lx-live .lx-pill-dot {
+  background: #4ac6d6;
+  box-shadow: 0 0 6px rgba(74, 198, 214, 0.85);
+}
+.lx-pill.lx-live .lx-pill-status {
+  background: rgba(74, 198, 214, 0.14);
+  color: #9be3ee;
+}
+.lx-pill.lx-coming { opacity: 0.78; }
+.lx-pill.lx-coming .lx-pill-dot {
+  background: #d6a14a;
+  box-shadow: 0 0 6px rgba(214, 161, 74, 0.55);
+}
+.lx-pill.lx-coming .lx-pill-status {
+  background: rgba(214, 161, 74, 0.14);
+  color: #f0c98a;
+}
+@media (max-width: 700px) {
+  #linked-exchanges { padding-top: 18px; }
+  .lx-wrap { gap: 14px; }
+  .lx-pill { font-size: 0.72rem; padding: 6px 12px 6px 10px; }
+  .lx-pill-status { font-size: 0.58rem; padding: 2px 6px; }
+}
+
 /* ═══════════════════════════════════════════════
    Realistic Portrait iPhone 15 Mockup
    Proportions: 393 × 852 (exact iPhone 15 logical px)
@@ -6520,6 +6787,41 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .cs-plans-grid-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.cs-plans-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Linked exchanges row inside the Pro v2 plan card.
+   Compact pill stack so the card still breathes. */
+.cs-plan-exchanges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 22px;
+}
+.cs-plan-exch {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(10, 16, 32, 0.55);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+}
+.cs-plan-exch.cs-plan-exch-live {
+  border-color: rgba(74, 198, 214, 0.28);
+  color: #cfe7ee;
+  background: rgba(74, 198, 214, 0.10);
+}
+.cs-plan-exch.cs-plan-exch-coming {
+  border-color: rgba(214, 161, 74, 0.32);
+  color: #f0c98a;
+  background: rgba(214, 161, 74, 0.10);
+  opacity: 0.92;
+}
 .cs-plan {
   position: relative;
   display: flex;
@@ -6736,6 +7038,12 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
 .cs-compare-table-4 tbody th,
 .cs-compare-table-4 tbody td { padding: 12px 14px; font-size: 0.85rem; }
 .cs-compare-table-4 { min-width: 840px; }
+
+/* 3-column compare: slightly roomier than 4-col since we dropped a tier */
+.cs-compare-table-3 thead th { padding: 20px 18px; }
+.cs-compare-table-3 tbody th,
+.cs-compare-table-3 tbody td { padding: 13px 18px; font-size: 0.88rem; }
+.cs-compare-table-3 { min-width: 720px; }
 .cs-ct-group-label {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
   font-size: 0.7rem;
@@ -7501,9 +7809,21 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   .cs-plans-grid-4 .cs-plan:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
 }
 
+@media (max-width: 1100px) {
+  .cs-plans-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .cs-plans-grid-3 .cs-plan {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-plans-grid-3 .cs-plan:last-child { border-bottom: none; }
+}
+
 @media (max-width: 960px) {
   .cs-plans-grid,
-  .cs-plans-grid-4 {
+  .cs-plans-grid-4,
+  .cs-plans-grid-3 {
     grid-template-columns: 1fr;
   }
   .cs-plan {
@@ -8109,6 +8429,123 @@ nav, section, footer, .marquee-wrap, .mobile-nav {
   right: -18px;
   top: auto;
   left: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HOME, CLAW STEALTH MOBILE SECTION
+   Lives between The Claw Suite and the Final CTA. Two-column layout:
+   copy + Ask Claw / alerts / sync feature list on the left, the live
+   HeroIphoneMockup on the right. This is where the iPhone visual that
+   used to occupy the hero now lives, framed explicitly as the mobile
+   companion to the now-free Pro v2 terminal.
+   ═══════════════════════════════════════════════════════════════════════ */
+.home-stealth {
+  padding: clamp(72px, 10vh, 120px) 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.home-stealth::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 60% at 88% 30%, rgba(20, 85, 230, 0.10), transparent 65%),
+    radial-gradient(ellipse 40% 50% at 12% 95%, rgba(58, 161, 207, 0.06), transparent 70%);
+  z-index: 0;
+}
+.home-stealth .section-wrap {
+  position: relative;
+  z-index: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.home-stealth-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.78fr;
+  gap: 64px;
+  align-items: center;
+}
+.home-stealth-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.home-stealth-copy .cs-section-eyebrow { margin-bottom: 0; }
+.home-stealth-copy .cs-section-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 3.6vw, 2.85rem);
+  line-height: 1.1;
+}
+.home-stealth-lead {
+  font-size: 0.98rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 540px;
+}
+.home-stealth-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+.home-stealth-list li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.home-stealth-list-num {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: var(--mid, #3aa1cf);
+  font-weight: 700;
+  padding-top: 4px;
+}
+.home-stealth-list h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+.home-stealth-list p {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin: 0;
+}
+.home-stealth-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.home-stealth-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.home-stealth-visual .iphone-frame {
+  max-width: 340px;
+}
+@media (max-width: 1000px) {
+  .home-stealth-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .home-stealth-visual .iphone-frame { max-width: 300px; }
+}
+@media (max-width: 600px) {
+  .home-stealth-visual .iphone-frame { max-width: 260px; }
+  .home-stealth-list { gap: 18px; }
+  .home-stealth-list li { grid-template-columns: 28px 1fr; gap: 10px; }
 }
 
 /* ───── Global section rhythm tightening (site-wide) ───── */

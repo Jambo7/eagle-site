@@ -6,12 +6,36 @@ type QA = { q: string; a: React.ReactNode };
 
 const FAQS: QA[] = [
   {
-    q: "Does Claw offer a free trial?",
+    q: "Is CLAW Pro v2 really free?",
     a: (
       <>
-        Yes. A 3-day free trial ships with every new Essential or Pro
-        account, full access to the predictive models, Ask Claw (Pro
-        only) and copy trading, with no commitment.
+        Yes. The full CLAW Pro v2 terminal is completely free when you
+        link a supported exchange UID (MEXC, ApeX or Binance today;
+        Blofin coming soon). Eagle is paid by the exchange through the
+        partner programme, so you keep the edge without a subscription.
+      </>
+    ),
+  },
+  {
+    q: "What does \"linked exchange UID\" actually mean?",
+    a: (
+      <>
+        When you sign up at app.eagleailabs.com you&apos;ll be asked to
+        link the unique ID of your trading account on one of our
+        supported exchanges. That link tells the exchange to credit
+        Eagle for your activity. Your funds, keys and trade execution
+        stay on the exchange &mdash; we never custody anything.
+      </>
+    ),
+  },
+  {
+    q: "Do I have to deposit or trade a minimum amount?",
+    a: (
+      <>
+        No minimum deposit and no minimum trade volume. Link the UID,
+        open the terminal, and use as much or as little as you like.
+        There&apos;s no card on file, no trial timer and nothing to
+        cancel.
       </>
     ),
   },
@@ -21,31 +45,9 @@ const FAQS: QA[] = [
       <>
         CLAW Stealth is in final pre-release. Join the waitlist on this
         page and you&apos;ll get first access when it opens on iOS and
-        Android. A Pro subscription unlocks full Stealth features
-        automatically at launch.
-      </>
-    ),
-  },
-  {
-    q: "Can I cancel my plan at any time?",
-    a: (
-      <>
-        Yes. All subscriptions are flexible, cancel any time from your
-        dashboard and access remains active until the end of the current
-        billing period.
-      </>
-    ),
-  },
-  {
-    q: "What&apos;s the difference between Essential and Pro?",
-    a: (
-      <>
-        Essential ($89 / mo) gives you the CLAW Pro terminal core,
-        predictive models (M1), social sentiment, the whale tracker and
-        100 CTC per month for copy trading. Pro ($149 / mo) adds the
-        advanced M2+ model suite, Ask Claw, unlocked Stealth mobile,
-        liquidation heatmaps, the breakout bot with auto-trading, and
-        200 CTC per month.
+        Android. Pro v2 users will be unlocked into Stealth
+        automatically at launch &mdash; same account, same UID, no
+        extra step.
       </>
     ),
   },
@@ -60,13 +62,13 @@ const FAQS: QA[] = [
     ),
   },
   {
-    q: "Is copy trading available on every plan?",
+    q: "Is copy trading included?",
     a: (
       <>
-        Yes, copy trading is powered by Claw Trade Credits (CTC). Every
-        paid plan includes a monthly CTC allocation that resets on your
-        billing date: 100 on Essential, 200 on Pro, unlimited on
-        Enterprise.
+        Yes. Blockchain-verified copy trading is built into Pro v2 and
+        powered by Claw Trade Credits (CTC). Pro v2 ships with 200 CTC
+        per month at no cost; Enterprise unlocks unlimited CTC under
+        the bespoke agreement.
       </>
     ),
   },
@@ -82,12 +84,13 @@ const FAQS: QA[] = [
     ),
   },
   {
-    q: "Can I switch plans later?",
+    q: "What happens if I unlink my exchange?",
     a: (
       <>
-        Yes. Upgrade or downgrade at any time from your dashboard.
-        Upgrades take effect immediately; downgrades apply at the start
-        of the next billing cycle.
+        If you unlink your supported-exchange UID, Pro v2 stops being
+        free for that account &mdash; we&apos;ll prompt you to re-link
+        or, if you prefer, migrate to an Enterprise agreement. Your
+        watchlists, alerts and history stay intact either way.
       </>
     ),
   },

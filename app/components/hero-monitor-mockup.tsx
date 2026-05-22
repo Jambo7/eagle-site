@@ -7,7 +7,7 @@ type Props = {
 };
 
 /**
- * External monitor mockup, used as the CLAW Pro hero device on /products
+ * External monitor mockup, used as the CLAW Pro v2 hero device on /products
  * and reusable elsewhere. Apple Studio Display-style profile: thin bezel,
  * dark glass screen, thin metallic neck, wide oval foot.
  *
@@ -29,7 +29,7 @@ type Props = {
  */
 export default function HeroMonitorMockup({
   src = "/products-claw-pro-dashboard.png",
-  alt = "CLAW Pro trading terminal",
+  alt = "CLAW Pro v2 trading terminal",
   caption,
 }: Props) {
   return (
