@@ -109,6 +109,10 @@ export default function SiteFooter() {
             <span className="fln-sep" aria-hidden="true">|</span>
             <a href="/terms">Terms and Conditions</a>
             <span className="fln-sep" aria-hidden="true">|</span>
+            <a href="/terms/claw-pro">Claw Pro Terms and Conditions</a>
+            <span className="fln-sep" aria-hidden="true">|</span>
+            <a href="/terms/claw-stealth">Claw Stealth Terms and Conditions</a>
+            <span className="fln-sep" aria-hidden="true">|</span>
             <a href="/risk-disclosure">Risk Disclaimer</a>
             <span className="fln-sep" aria-hidden="true">|</span>
             <a href={`${ext}/conflict-of-interest`} target="_blank" rel="noopener">Conflict of Interest</a>

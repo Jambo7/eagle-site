@@ -15,6 +15,23 @@ export default function TermsOfServicePage() {
       effectiveDate="2026-05-07"
       draft={false}
     >
+      <aside className="tc-variants" aria-label="Product-specific terms and conditions">
+        <p className="tc-variants-lede">
+          Looking for the product-specific terms? Each CLAW product is covered by its own
+          jurisdiction-specific agreement:
+        </p>
+        <div className="tc-variants-btns">
+          <a href="/terms/claw-pro" className="btn btn-primary">
+            Terms and Conditions: Claw Pro
+            <span className="tc-variants-meta">UK &middot; Eagle AI Labs Ltd</span>
+          </a>
+          <a href="/terms/claw-stealth" className="btn btn-outline">
+            Terms and Conditions: Claw Stealth
+            <span className="tc-variants-meta">UAE &middot; Eagle AI Labs FZCO</span>
+          </a>
+        </div>
+      </aside>
+
       <h2>1. Agreement</h2>
       <p>
         These Terms of Service (&ldquo;Terms&rdquo;), which also serve as our End User License

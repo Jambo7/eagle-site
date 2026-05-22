@@ -22,6 +22,15 @@
 /out/iphone-frames-*/
 /out/iphone-mockup-*.mov
 
+# self-contained Remotion drop-in exports (eagle-site code packaged
+# for use in external Remotion projects). Holds duplicated copies of
+# /public/hero-phone/*.png, ~10 MB, no need to ship in git.
+/exports/
+
+# Debug HTML dumps from scripts/convert-tc-docs.mjs (the .ts modules
+# it emits into app/terms/_content/ are the tracked source of truth).
+/scripts/_tc-output/
+
 # production
 /build
 
