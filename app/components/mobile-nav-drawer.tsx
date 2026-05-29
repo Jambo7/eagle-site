@@ -7,6 +7,8 @@ export type MobileNavActive =
   | "about"
   | "technology"
   | "hedge-fund"
+  | "how-to-access"
+  | "security"
   | "legal";
 
 type NavItem = {

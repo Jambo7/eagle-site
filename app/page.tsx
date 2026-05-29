@@ -152,6 +152,49 @@ export default function Home() {
                 alt="Claw Pro v2 trading dashboard with TradingView chart, whale alerts, market intel and liquidation heatmap"
               />
             </figure>
+
+            {/* Floating CTA over the dual-screen lockup, anchors the
+                "how do I actually get this free?" question and routes to
+                the dedicated UID-linking guide. */}
+            <a
+              href="/how-to-access"
+              className="hero-access-float"
+              aria-label="How to access Claw Pro v2 free, link a supported exchange UID"
+            >
+              <span className="haf-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2L4 6V12C4 17 7.5 21 12 22C16.5 21 20 17 20 12V6L12 2Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M9 12L11 14L15 10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span className="haf-text">
+                <span className="haf-eyebrow cs-mono">FREE ACCESS</span>
+                <span className="haf-label">How to Access</span>
+              </span>
+              <span className="haf-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M5 12H19M13 6L19 12L13 18"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </a>
           </div>
         </div>
       </section>

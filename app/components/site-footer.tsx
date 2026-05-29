@@ -2,28 +2,30 @@
  * Shared site footer. Used on every public page.
  *
  * Structure mirrors the existing eagleailabs.com footer (Products /
- * Resources / Other columns + full legal bar: Privacy · Cookies · Terms ·
- * Risk Disclaimer · Conflict of Interest · Changelog).
+ * Resources / Other columns + a legal bar at the bottom).
  *
  * Link policy:
  * - Internal routes for every top-level page we have rebuilt (/products,
  *   /solutions, /pricing, /blog, /about, /legal/privacy-policy, /terms,
- *   /risk-disclosure, /cookies, /technology, /hedge-fund). The Privacy
- *   Policy lives at /legal/privacy-policy/ to match the URL submitted to
- *   Apple for iOS app review and to mirror the existing eagleailabs.com
- *   path (so external links keep working after DNS transfers to this
- *   Amplify deployment).
- * - Existing live eagleailabs.com URLs for deep pages we have not yet
- *   rebuilt (Affiliates, Partner Portal, Promotion Proposal, Conflict of
- *   Interest, Changelog, CLAW Trade Credits). These open in a new tab.
+ *   /terms/claw-pro, /terms/claw-stealth, /risk-disclosure, /cookies,
+ *   /technology, /hedge-fund, /security). The Privacy Policy lives at
+ *   /legal/privacy-policy/ to match the URL submitted to Apple for iOS
+ *   app review.
  * - `mailto:hello@eagleailabs.com` with a subject line for items without
- *   a dedicated page (Docs, Contact).
+ *   a dedicated page (Docs, Contact, Promotion Proposal, Partner Portal).
+ * - Every link in this footer resolves to a real page or a real mailto.
+ *   Previous links into the legacy Wix-era www.eagleailabs.com deep
+ *   routes (Affiliates, Partner Portal, CLAW Trade Credits, Conflict of
+ *   Interest, Changelog) and the broken /#sample-signal anchor have
+ *   been retired now that the new site has replaced the old domain.
+ * - The `Beware of Scammers` link sits in both the Resources column
+ *   and the legal bar for maximum visibility ,  Telegram impersonation
+ *   is the most common attack vector against our user base.
  */
 export default function SiteFooter() {
   const year = new Date().getFullYear();
   const mailto = (subject: string) =>
     `mailto:hello@eagleailabs.com?subject=${encodeURIComponent(subject)}`;
-  const ext = "https://www.eagleailabs.com";
 
   return (
     <footer id="footer">
@@ -72,7 +74,6 @@ export default function SiteFooter() {
               <a href="/products">Claw</a>
               <a href="/solutions">AI Solutions</a>
               <a href="/pricing">Pricing</a>
-              <a href={`${ext}/claw-trade-credits`} target="_blank" rel="noopener">CLAW Trade Credits</a>
             </div>
             <div className="fl-col">
               <div className="fl-head">Resources</div>
@@ -81,22 +82,19 @@ export default function SiteFooter() {
               <a href="/about">About</a>
               <a href={mailto("General Enquiry")}>Contact</a>
               <a href="/technology">Technology</a>
+              <a href="/security" className="fl-link-alert">Beware of Scammers</a>
               <a href="/legal/privacy-policy">Privacy Policy</a>
             </div>
             <div className="fl-col">
               <div className="fl-head">Other</div>
-              <a href={`${ext}/affiliates`} target="_blank" rel="noopener">Affiliates</a>
-              <a href={`${ext}/partner-portal`} target="_blank" rel="noopener">Partner Portal</a>
               <a href={mailto("Promotion Proposal Submission")}>Submit a Promotion Proposal</a>
               <a href="/hedge-fund">Hedge Fund Partnership</a>
-              <a href="/#sample-signal">Example Signals</a>
             </div>
           </div>
         </div>
-        {/* Legal bar, mirrors the existing eagleailabs.com site's bottom
-            line: © + Privacy · Cookies · Terms · Risk Disclaimer ·
-            Conflict of Interest · Changelog. Internal routes used where
-            we already have a rebuilt page; external otherwise. */}
+        {/* Legal bar: © + Privacy · Cookies · Terms · Claw Pro T&C ·
+            Claw Stealth T&C · Risk Disclaimer. Every entry resolves to
+            a rebuilt page on this site. */}
         <div className="footer-bottom">
           <div className="footer-bottom-copy">
             <p>© {year} Eagle AI Labs. All rights reserved.</p>
@@ -115,9 +113,7 @@ export default function SiteFooter() {
             <span className="fln-sep" aria-hidden="true">|</span>
             <a href="/risk-disclosure">Risk Disclaimer</a>
             <span className="fln-sep" aria-hidden="true">|</span>
-            <a href={`${ext}/conflict-of-interest`} target="_blank" rel="noopener">Conflict of Interest</a>
-            <span className="fln-sep" aria-hidden="true">|</span>
-            <a href={`${ext}/changelog`} target="_blank" rel="noopener">Changelog</a>
+            <a href="/security" className="fln-alert">Beware of Scammers</a>
           </nav>
         </div>
       </div>
