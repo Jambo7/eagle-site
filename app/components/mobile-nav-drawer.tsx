@@ -19,15 +19,15 @@ type NavItem = {
 };
 
 /**
- * Mirrors the desktop nav order: Claw, AI Solutions, Pricing, Blog, About.
+ * Mirrors the desktop nav order: Claw, AI Solutions, How to Access, Community, About.
  * All five pages are now rebuilt internally under the CLAW Suite design
  * language, no more external hops for top-level navigation.
  */
 const NAV_ITEMS: NavItem[] = [
   { key: "products", href: "/products", label: "Claw" },
   { key: "solutions", href: "/solutions", label: "AI Solutions" },
-  { key: "pricing", href: "/pricing", label: "Pricing" },
-  { key: "blog", href: "/blog", label: "Blog" },
+  { key: "how-to-access", href: "/how-to-access", label: "How to Access" },
+  { key: "blog", href: "/blog", label: "Community" },
   { key: "about", href: "/about", label: "About" },
 ];
 

@@ -16,8 +16,8 @@ export default function TechnologyPage() {
           <ul className="nav-links">
             <li><a href="/products">Claw</a></li>
             <li><a href="/solutions">AI Solutions</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/how-to-access">How to Access</a></li>
+            <li><a href="/blog">Community</a></li>
             <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
@@ -267,7 +267,7 @@ export default function TechnologyPage() {
               </a>
               <a href="/#sample-signal" className="btn btn-outline">View Example Signals</a>
               {/* TODO: swap mailto for calendar booking URL (Calendly / cal.com) once provisioned */}
-              <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20%20Eagle%20AI%20Labs" className="btn btn-ghost">Book a Demo</a>
+              <a href="https://t.me/EAGLEAI_OFFICIAL" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Join The Community</a>
             </div>
           </div>
         </div>

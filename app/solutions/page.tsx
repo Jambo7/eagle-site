@@ -15,8 +15,8 @@ export default function SolutionsPage() {
           <ul className="nav-links">
             <li><a href="/products">Claw</a></li>
             <li><a href="/solutions" aria-current="page">AI Solutions</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/how-to-access">How to Access</a></li>
+            <li><a href="/blog">Community</a></li>
             <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
@@ -170,7 +170,7 @@ export default function SolutionsPage() {
               </ul>
               <div className="sol-cta-row">
                 <a href="https://app.eagleailabs.com/auth/login" className="btn btn-primary">Access Now →</a>
-                <a href="mailto:hello@eagleailabs.com?subject=Crypto AI Solutions Enquiry" className="btn btn-ghost">Enquire →</a>
+                <a href="https://t.me/EAGLEAI_OFFICIAL" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Enquire →</a>
               </div>
             </div>
             <div className="sol-flagship-visual reveal">
@@ -269,7 +269,7 @@ export default function SolutionsPage() {
                 <li>In-play signal generation for live markets</li>
                 <li>Edge identification vs. public pricing</li>
               </ul>
-              <a href="mailto:hello@eagleailabs.com?subject=Sports AI Solutions Enquiry" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
+              <a href="https://t.me/EAGLEAI_OFFICIAL" target="_blank" rel="noopener noreferrer" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
             </div>
 
             {/* Gold, Oil, Commodities */}
@@ -303,7 +303,7 @@ export default function SolutionsPage() {
                 <li>Multi-timeframe signal delivery (intraday to weekly)</li>
                 <li>Portfolio-level commodity signal aggregation</li>
               </ul>
-              <a href="mailto:hello@eagleailabs.com?subject=Commodities AI Solutions Enquiry" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
+              <a href="https://t.me/EAGLEAI_OFFICIAL" target="_blank" rel="noopener noreferrer" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
             </div>
 
             {/* FX */}
@@ -337,7 +337,7 @@ export default function SolutionsPage() {
                 <li>Cross-pair flow divergence signals</li>
                 <li>Session-segmented prediction (London, NY, Asian)</li>
               </ul>
-              <a href="mailto:hello@eagleailabs.com?subject=FX AI Solutions Enquiry" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
+              <a href="https://t.me/EAGLEAI_OFFICIAL" target="_blank" rel="noopener noreferrer" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
             </div>
 
             {/* Prediction Markets */}
@@ -370,7 +370,7 @@ export default function SolutionsPage() {
                 <li>Regulatory and policy decision probability scoring</li>
                 <li>Real-time calibration against market-implied probabilities</li>
               </ul>
-              <a href="mailto:hello@eagleailabs.com?subject=Prediction Markets AI Enquiry" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
+              <a href="https://t.me/EAGLEAI_OFFICIAL" target="_blank" rel="noopener noreferrer" className="btn btn-ghost sol-card-cta">Enquire About This Solution →</a>
             </div>
 
           </div>
@@ -397,8 +397,8 @@ export default function SolutionsPage() {
             we want to hear from you. Bring the market. We'll bring the infrastructure.
           </p>
           <div className="sol-cta-actions">
-            <a href="mailto:hello@eagleailabs.com?subject=Solutions Partnership Enquiry" className="btn btn-primary sol-cta-btn">
-              Get In Touch →
+            <a href="https://t.me/EAGLEAI_OFFICIAL" target="_blank" rel="noopener noreferrer" className="btn btn-primary sol-cta-btn">
+              Join The Community →
             </a>
             <a href="/technology" className="btn btn-ghost sol-cta-btn">
               View Our Technology

@@ -1,8 +1,8 @@
-import EnterpriseContactForm from "../components/enterprise-contact-form";
 import HeroIphoneMockup from "../components/hero-iphone-mockup";
 import HeroMonitorMockup from "../components/hero-monitor-mockup";
 import MobileNavDrawer from "../components/mobile-nav-drawer";
 import SiteFooter from "../components/site-footer";
+import { COMMUNITY_TELEGRAM } from "../lib/community-links";
 
 /**
  * /products, The CLAW Suite.
@@ -32,8 +32,8 @@ export default function ProductsPage() {
           <ul className="nav-links">
             <li><a href="/products" aria-current="page">Claw</a></li>
             <li><a href="/solutions">AI Solutions</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/how-to-access">How to Access</a></li>
+            <li><a href="/blog">Community</a></li>
             <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
@@ -103,10 +103,10 @@ export default function ProductsPage() {
               </h1>
 
               <p className="cs-hero-sub">
-                One predictive engine. Three distinct surfaces. A professional desktop
-                terminal for active traders, a mobile edition with a conversational AI
-                agent, and an enterprise deployment built around our multi-model Oracle
-                and proprietary research stack.
+                One predictive engine. Three distinct surfaces. CLAW serves as
+                the primary gateway into the Eagle AI Labs ecosystem, providing
+                community members with access to advanced AI-powered market
+                intelligence across desktop, mobile and enterprise deployments.
               </p>
             </div>
 
@@ -656,23 +656,31 @@ export default function ProductsPage() {
           {/* Contact form */}
           <div className="cs-contact reveal">
             <div className="cs-contact-head">
-              <div className="cs-contact-eyebrow">GET IN TOUCH</div>
+              <div className="cs-contact-eyebrow">GET INVOLVED</div>
               <h3 className="cs-contact-title">
-                Partner with Eagle AI Labs.
+                Enterprise access and ecosystem participation.
               </h3>
               <p className="cs-contact-sub">
-                Enterprise access is by invitation and scoped to fit your desk. Tell
-                us how you want to use CLAW and our partnerships team will be in
-                touch within 24 business hours.
+                Enterprise deployments, bespoke model access and ecosystem
+                partnerships are discussed through the community. Join Telegram
+                to connect with contributors and explore how CLAW fits your desk.
               </p>
               <ul className="cs-contact-assurances">
-                <li><span className="cs-ca-dot" aria-hidden="true" />Response within 24 business hours</li>
-                <li><span className="cs-ca-dot" aria-hidden="true" />NDA available on request</li>
-                <li><span className="cs-ca-dot" aria-hidden="true" />Pilot deployments supported</li>
+                <li><span className="cs-ca-dot" aria-hidden="true" />Active community support</li>
+                <li><span className="cs-ca-dot" aria-hidden="true" />Enterprise deployments available</li>
+                <li><span className="cs-ca-dot" aria-hidden="true" />Open ecosystem participation</li>
               </ul>
+              <a
+                href={COMMUNITY_TELEGRAM}
+                className="btn btn-primary btn-lg"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginTop: "24px" }}
+              >
+                Join The Community
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
             </div>
-
-            <EnterpriseContactForm />
           </div>
         </div>
       </section>

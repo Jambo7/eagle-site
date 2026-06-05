@@ -3,6 +3,7 @@ import HeroIphoneMockup from "./components/hero-iphone-mockup";
 import HeroMonitorMockup from "./components/hero-monitor-mockup";
 import MobileNavDrawer from "./components/mobile-nav-drawer";
 import SiteFooter from "./components/site-footer";
+import { COMMUNITY_TELEGRAM } from "./lib/community-links";
 
 export default function Home() {
   const signupHref =
@@ -20,8 +21,8 @@ export default function Home() {
           <ul className="nav-links">
             <li><a href="/products">Claw</a></li>
             <li><a href="/solutions">AI Solutions</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/how-to-access">How to Access</a></li>
+            <li><a href="/blog">Community</a></li>
             <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
@@ -295,17 +296,15 @@ export default function Home() {
           <div className="cs-section-head">
             <div className="cs-section-eyebrow">WHO WE ARE</div>
             <h2 className="cs-section-title">
-              Built by industry professionals.<br />
+              Predictive AI infrastructure.<br />
               <span className="cs-section-title-accent">Deployed at every scale.</span>
             </h2>
             <p className="cs-section-lead">
-              Eagle AI Labs is a predictive intelligence house. We build
-              custom AI architectures to specification for institutional
-              partners: hedge funds, trading desks, market makers and
-              data providers. The same production engines are embedded
-              inside CLAW, our suite for retail traders, so every user
-              gets the same research calibre of infrastructure regardless
-              of account size.
+              Eagle AI Labs is a community-owned ecosystem focused on predictive
+              AI infrastructure. We build custom architectures for institutional
+              partners and embed the same production engines inside CLAW, so
+              every user gets research-calibre infrastructure regardless of
+              account size.
             </p>
           </div>
 
@@ -456,10 +455,11 @@ export default function Home() {
             <p className="cs-section-lead">
               CLAW combines our full predictive model stack with
               blockchain-verified copy trading, an AI agent that builds
-              trade set-ups, the highest-quality market data delivery,
-              full DEX and CEX execution coverage and every pro indicator
-              serious operators expect. All under one roof, on desktop
-              and mobile.
+              trade set-ups, institutional-quality market data and full
+              DEX and CEX execution coverage. It serves as the primary
+              gateway into the Eagle AI Labs ecosystem, giving community
+              members access to advanced AI-powered market intelligence
+              on desktop and mobile.
             </p>
           </div>
 
@@ -732,6 +732,36 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
+          COMMUNITY  ·  supporting narrative, product remains primary
+      ══════════════════════════════════════════════════════════════════ */}
+      <section id="community" className="home-community">
+        <div className="section-wrap">
+          <div className="home-community-inner">
+            <div className="cs-section-eyebrow">ECOSYSTEM</div>
+            <h2 className="cs-section-title">
+              Built By Community.<br />
+              <span className="cs-section-title-accent">Powered By AI.</span>
+            </h2>
+            <p className="home-community-lead">
+              The Eagle AI Labs ecosystem combines predictive AI infrastructure
+              with community ownership. Contributors from around the world help
+              support growth, governance and adoption while benefiting from an
+              open and accessible ecosystem.
+            </p>
+            <a
+              href={COMMUNITY_TELEGRAM}
+              className="btn btn-primary btn-lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join The Community
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
           FINAL CTA
       ══════════════════════════════════════════════════════════════════ */}
       <section id="cta">
@@ -759,8 +789,14 @@ export default function Home() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
             </a>
             <a href="#claw-suite" className="btn btn-outline btn-lg">Explore the CLAW Suite</a>
-            {/* TODO: swap mailto for calendar booking URL once provisioned */}
-            <a href="mailto:hello@eagleailabs.com?subject=Book%20a%20Demo%20Eagle%20AI%20Labs" className="btn btn-ghost btn-lg">Book a demo</a>
+            <a
+              href={COMMUNITY_TELEGRAM}
+              className="btn btn-ghost btn-lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join The Community
+            </a>
           </div>
           <p className="cta-fine reveal">Free with a linked exchange UID &nbsp;·&nbsp; MEXC, ApeX, Binance live &nbsp;·&nbsp; Blofin coming soon</p>
         </div>

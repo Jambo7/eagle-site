@@ -3,7 +3,7 @@ import SiteFooter from "../components/site-footer";
 import AboutFaq from "../components/about-faq";
 
 /* ────────────────────────────────────────────────────────────────
-   Data, values, team, and long-view narrative.
+   Data, values, community ownership, and ecosystem narrative.
    ──────────────────────────────────────────────────────────────── */
 
 type ValueIcon =
@@ -133,23 +133,22 @@ function ValueIconSvg({ name }: { name: ValueIcon }) {
   }
 }
 
-type TeamMember = {
-  name: string;
-  role: string;
-  bio: string;
-  /** Optional headshot served from `public/team/`. Renders inside the circular
-   *  `.cs-team-avatar`; falls back to initials when omitted. */
-  photo?: string;
-};
-
-const TEAM: TeamMember[] = [
-  { name: "Jack Rockell",            role: "Global Product Development",  bio: "Leads a skilled team shipping the CLAW suite.", photo: "/team/jack-rockell.png" },
-  { name: "Darren Bishop",           role: "Global Operations Manager",    bio: "Expertise across the full operational stack of modern finance.", photo: "/team/darren-bishop.png" },
-  { name: "DK",                      role: "Product Development",          bio: "Builds and ships across the CLAW product surface, from spec to release." },
-  { name: "Lee Steer",               role: "Global Managing Director",     bio: "Sales and business leadership across crypto, TradFi and fintech.", photo: "/team/lee-steer.png" },
-  { name: "James Ratsma",            role: "Head of Marketing & Community",bio: "Retail and crypto market mastermind, connecting CLAW to traders.", photo: "/team/james-ratsma.png" },
-  { name: "Adam Johnson",            role: "Advisor",                      bio: "Drives commercial growth and partner relationships across CLAW and enterprise." },
-  { name: "Martin Costa",            role: "Advisor",                       bio: "Years of deep financial-market experience.", photo: "/team/martin-costa.png" },
+const COMMUNITY_CARDS = [
+  {
+    n: "01",
+    title: "Ownership",
+    desc: "The community plays an active role in shaping the direction of the ecosystem.",
+  },
+  {
+    n: "02",
+    title: "Governance",
+    desc: "Major initiatives and ecosystem decisions are guided through community participation.",
+  },
+  {
+    n: "03",
+    title: "Contribution",
+    desc: "Builders, marketers, developers and traders can contribute to ecosystem growth.",
+  },
 ];
 
 /**
@@ -172,8 +171,8 @@ export default function AboutPage() {
           <ul className="nav-links">
             <li><a href="/products">Claw</a></li>
             <li><a href="/solutions">AI Solutions</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/how-to-access">How to Access</a></li>
+            <li><a href="/blog">Community</a></li>
             <li><a href="/about" aria-current="page">About</a></li>
           </ul>
           <div className="nav-actions">
@@ -200,22 +199,23 @@ export default function AboutPage() {
           </div>
 
           <h1 className="cs-hero-title">
-            Empowering the next generation<br />
-            <span className="cs-hero-title-accent">of digital-asset decisions.</span>
+            Predictive AI infrastructure<br />
+            <span className="cs-hero-title-accent">for digital asset markets.</span>
           </h1>
 
           <p className="cs-hero-sub">
-            Eagle AI Labs is a technology company building advanced tools for
-            digital-asset traders. We combine predictive AI, real-time analytics
-            and institutional-grade UX to close the gap between how crypto
-            markets actually move and what most platforms can see.
+            Eagle AI Labs is a community-owned ecosystem focused on predictive
+            AI infrastructure for digital asset markets. We combine real-time
+            analytics, institutional-grade models and the CLAW product suite
+            to close the gap between how crypto markets move and what most
+            platforms can see.
           </p>
 
-          {/* Credentials rail, institutional at-a-glance context. */}
+          {/* Credentials rail */}
           <div className="cs-stat-rail cs-stat-rail-about">
             <div className="cs-sr-item">
               <div className="cs-sr-num">2022</div>
-              <div className="cs-sr-label cs-mono">FOUNDED</div>
+              <div className="cs-sr-label cs-mono">ORIGINS</div>
             </div>
             <div className="cs-sr-divider" aria-hidden="true" />
             <div className="cs-sr-item">
@@ -229,8 +229,8 @@ export default function AboutPage() {
             </div>
             <div className="cs-sr-divider" aria-hidden="true" />
             <div className="cs-sr-item">
-              <div className="cs-sr-num">B-Corp</div>
-              <div className="cs-sr-label cs-mono">IN APPLICATION</div>
+              <div className="cs-sr-num">OPEN</div>
+              <div className="cs-sr-label cs-mono">PARTICIPATION</div>
             </div>
           </div>
         </div>
@@ -243,57 +243,58 @@ export default function AboutPage() {
       <section className="cs-about-manifesto">
         <div className="section-wrap cs-tight-wrap">
           <div className="cs-section-head">
-            <div className="cs-section-eyebrow">OUR JOURNEY</div>
+            <div className="cs-section-eyebrow">OUR ECOSYSTEM</div>
             <h2 className="cs-section-title">
-              Redefining the landscape of digital-asset intelligence.
+              Built through research, development and community participation.
             </h2>
           </div>
 
-          {/* Editorial pull quote, sets the thesis in one breath. */}
           <blockquote className="cs-about-quote">
             <span className="cs-about-quote-mark" aria-hidden="true">&ldquo;</span>
             <p>
-              We don&apos;t build AI that replaces the trader. We build AI that
-              lets the trader see further, decide faster, and stay ahead of
-              a market that prices itself in seconds.
+              The Eagle AI Labs ecosystem was built through years of research,
+              development and community participation. Today, contributors and
+              token holders play an active role in helping steward the future
+              of the ecosystem.
             </p>
             <footer className="cs-about-quote-attr cs-mono">
-              EAGLE AI LABS &nbsp;/&nbsp; PRODUCT THESIS
+              EAGLE AI LABS &nbsp;/&nbsp; ECOSYSTEM THESIS
             </footer>
           </blockquote>
 
-          {/* 3-pillar arc: what we saw → what we built → where it goes */}
           <ol className="cs-about-pillars">
             <li className="cs-about-pillar">
-              <div className="cs-about-pillar-num cs-mono">01 &middot; WHAT WE SAW</div>
+              <div className="cs-about-pillar-num cs-mono">01 &middot; PREDICTIVE AI</div>
               <h3 className="cs-about-pillar-title">
-                A market that moves in seconds, on tools that move in minutes.
+                Models purpose-built for real market conditions.
               </h3>
               <p className="cs-about-pillar-desc">
-                Most platforms are either too simple to be useful at a
-                professional level, or too slow to capture moves as they happen.
+                Quantitative signals and behavioural patterns, trained on
+                live production data. Operator-grade intelligence designed
+                to augment human decisions.
               </p>
             </li>
             <li className="cs-about-pillar cs-about-pillar-arrow" aria-hidden="true" />
             <li className="cs-about-pillar">
-              <div className="cs-about-pillar-num cs-mono">02 &middot; WHAT WE BUILT</div>
+              <div className="cs-about-pillar-num cs-mono">02 &middot; DIGITAL ASSET TOOLS</div>
               <h3 className="cs-about-pillar-title">
-                Predictive AI, purpose-built for real market conditions.
+                CLAW delivers intelligence at every scale.
               </h3>
               <p className="cs-about-pillar-desc">
-                Models trained on quantitative signals and behavioural patterns.
-                Operator-grade. Designed to augment human decisions, not replace them.
+                A professional terminal, mobile companion and enterprise
+                deployment. The same predictive engine, accessible to every
+                trader and institution.
               </p>
             </li>
             <li className="cs-about-pillar cs-about-pillar-arrow" aria-hidden="true" />
             <li className="cs-about-pillar">
-              <div className="cs-about-pillar-num cs-mono">03 &middot; WHERE IT GOES</div>
+              <div className="cs-about-pillar-num cs-mono">03 &middot; OPEN PARTICIPATION</div>
               <h3 className="cs-about-pillar-title">
-                The Bloomberg Terminal for digital assets.
+                Community stewardship at the core.
               </h3>
               <p className="cs-about-pillar-desc">
-                AI-first, professional-grade. Crypto first. Then sports, macro
-                and every other high-stakes decision domain.
+                Traders, builders and contributors from around the world help
+                support growth, governance and adoption across the ecosystem.
               </p>
             </li>
           </ol>
@@ -308,7 +309,7 @@ export default function AboutPage() {
           <div className="cs-section-head">
             <div className="cs-section-eyebrow">OUR VALUES</div>
             <h2 className="cs-section-title">
-              Six principles that shape how we build, ship and operate.
+              Principles that guide how the ecosystem builds and ships.
             </h2>
           </div>
 
@@ -330,44 +331,28 @@ export default function AboutPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          TEAM, institutional roster
+          COMMUNITY OWNERSHIP
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="cs-about-team">
+      <section className="cs-about-community">
         <div className="section-wrap cs-tight-wrap">
           <div className="cs-section-head">
-            <div className="cs-section-eyebrow">OUR TEAM</div>
+            <div className="cs-section-eyebrow">COMMUNITY OWNERSHIP</div>
             <h2 className="cs-section-title">
-              The operators behind Eagle AI Labs.
+              Community-Owned. Community-Guided.
             </h2>
+            <p className="cs-section-lead">
+              The Eagle AI Labs ecosystem is stewarded by a global community of
+              traders, contributors, developers and token holders who help
+              shape its future.
+            </p>
           </div>
 
-          <div className="cs-team-grid">
-            {TEAM.map((p) => (
-              <article key={p.name} className="cs-team-card">
-                <div className="cs-team-avatar" aria-hidden="true">
-                  {p.photo ? (
-                    <img
-                      src={p.photo}
-                      alt=""
-                      className="cs-team-photo"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <span className="cs-team-initials">
-                      {p.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")
-                        .slice(0, 2)}
-                    </span>
-                  )}
-                </div>
-                <div className="cs-team-meta">
-                  <div className="cs-team-name">{p.name}</div>
-                  <div className="cs-team-role cs-mono">{p.role}</div>
-                  <p className="cs-team-bio">{p.bio}</p>
-                </div>
+          <div className="cs-community-cards">
+            {COMMUNITY_CARDS.map((c) => (
+              <article key={c.n} className="cs-community-card">
+                <div className="cs-community-card-num cs-mono">{c.n}</div>
+                <h3 className="cs-community-card-title">{c.title}</h3>
+                <p className="cs-community-card-desc">{c.desc}</p>
               </article>
             ))}
           </div>

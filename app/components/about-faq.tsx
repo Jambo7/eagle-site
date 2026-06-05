@@ -9,21 +9,22 @@ const FAQS: QA[] = [
     q: "What is Eagle AI Labs?",
     a: (
       <>
-        Eagle AI Labs is a technology company building advanced tools for
-        digital-asset traders. We combine predictive AI, real-time analytics
-        and institutional-grade UX to give traders an edge across crypto
-        markets, and, in the future, beyond.
+        Eagle AI Labs is a community-owned ecosystem focused on predictive AI
+        infrastructure for digital asset markets. We combine real-time
+        analytics, institutional-grade models and the CLAW product suite to
+        give traders an edge across crypto markets and beyond.
       </>
     ),
   },
   {
-    q: "Why did you start Eagle AI?",
+    q: "What does community ownership mean?",
     a: (
       <>
-        We saw a gap between the complexity of crypto markets and the quality
-        of the tools available. Most platforms were either too simple or too
-        slow. We built Eagle AI to close that gap with real intelligence,
-        not hype.
+        Contributors, token holders and ecosystem participants play an active
+        role in stewarding the platform&apos;s direction. Major initiatives
+        and ecosystem decisions are guided through open community
+        participation, while predictive AI and CLAW remain the core product
+        focus.
       </>
     ),
   },
@@ -32,21 +33,19 @@ const FAQS: QA[] = [
     a: (
       <>
         Precision. Our models are purpose-built for real market conditions,
-        trained on both quantitative signals and behavioural patterns. We
-        also reward our community directly for engaging, trading, and
-        helping improve the system.
+        trained on quantitative signals and behavioural patterns. CLAW
+        delivers that intelligence through a professional terminal and mobile
+        companion, backed by a global community of traders and builders.
       </>
     ),
   },
   {
-    q: "What&apos;s your long-term vision?",
+    q: "How can I get involved?",
     a: (
       <>
-        We&apos;re building the Bloomberg Terminal for digital assets, an
-        AI-first platform where professional traders, funds and communities
-        can analyse, execute and grow. Beyond crypto, we&apos;re exploring how
-        our models can power decision-making in sports, macro and other
-        high-stakes domains.
+        Join the community on Telegram, follow updates on X, explore CLAW,
+        and contribute as a trader, builder or marketer. The ecosystem is
+        designed for open participation at every level.
       </>
     ),
   },

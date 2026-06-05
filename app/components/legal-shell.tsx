@@ -46,8 +46,8 @@ export default function LegalShell({ title, lede, effectiveDate, draft = true, c
           <ul className="nav-links">
             <li><a href="/products">Claw</a></li>
             <li><a href="/solutions">AI Solutions</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/how-to-access">How to Access</a></li>
+            <li><a href="/blog">Community</a></li>
             <li><a href="/about">About</a></li>
           </ul>
           <div className="nav-actions">
