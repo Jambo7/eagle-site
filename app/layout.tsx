@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.eagleailabs.com"),
   title: "Eagle AI Labs has closed | How to unstake your EAI",
   description:
-    "Eagle AI Labs has closed. Staking has ended and no further rewards will be paid. You can unstake your EAI yourself at any time on Base. Steps and a stake checker are on this page.",
+    "Eagle AI Labs has closed and staking has ended. You can unstake your EAI yourself at any time on Base. Steps and a stake checker are on this page.",
   alternates: { canonical: "/" },
 };
 

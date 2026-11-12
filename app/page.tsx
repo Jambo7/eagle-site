@@ -27,7 +27,7 @@ export default function ClosureNotice() {
       <section aria-labelledby="means">
         <h2 id="means">What this means for you</h2>
         <ul className="facts">
-          <li>Staking has ended. No further rewards will be paid.</li>
+          <li>Staking has ended. The staking contracts stay on Base only so you can unstake.</li>
           <li>
             Your staked EAI is still yours. You can unstake it yourself at any time, straight from the contract
             on Base. You do not need us or anyone else to do it.
