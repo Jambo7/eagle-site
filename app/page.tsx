@@ -9,7 +9,7 @@ export default function ClosureNotice() {
     <main className="sheet">
       <header className="letterhead">
         <img src="/logo.png" alt="Eagle AI Labs" width={700} height={101} />
-        <time dateTime="2026-11-12">Updated 12 November 2026</time>
+        <time dateTime="2026-08-04">4 August 2026</time>
       </header>
 
       <article className="notice" aria-labelledby="title">
