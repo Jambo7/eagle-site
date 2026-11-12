@@ -1,37 +1,34 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Script from "next/script";
+import { Archivo, Sometype_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
+});
 
-// GitHub Pages serves this repo under https://jambo7.github.io/eagle-site/
-// (`NEXT_PUBLIC_BASE_PATH=/eagle-site`). Plain `/main.js` would 404 there —
-// the hero scroll-reveal CSS keeps `.reveal { opacity: 0 }` until main.js
-// runs, so a wrong script URL looks like an empty white screen.
-const mainJsSrc = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/main.js`;
+const mono = Sometype_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Eagle AI Labs | Predictive Intelligence for Crypto Markets",
-  description: "Eagle AI Labs deploys institutional-grade AI to forecast cryptocurrency price movements with unprecedented precision. 2+ years pioneering crypto market intelligence.",
+  metadataBase: new URL("https://www.eagleailabs.com"),
+  title: "Eagle AI Labs has closed | How to unstake your EAI",
+  description:
+    "Eagle AI Labs has closed. Staking has ended and no further rewards will be paid. You can unstake your EAI yourself at any time on Base. Steps and a stake checker are on this page.",
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.className}>
-      <body>
-        <noscript>
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `.reveal{opacity:1!important;transform:none!important}`,
-            }}
-          />
-        </noscript>
-        {children}
-        <Script src={mainJsSrc} strategy="afterInteractive" />
-      </body>
+    <html lang="en-GB" className={`${archivo.variable} ${mono.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
