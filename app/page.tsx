@@ -93,6 +93,26 @@ export default function ClosureNotice() {
         </div>
       </section>
 
+      <section aria-labelledby="video">
+        <h2 id="video">Video walkthrough</h2>
+        <video
+          className="walkthrough"
+          controls
+          playsInline
+          preload="none"
+          poster="/how-to-unstake-eai.jpg"
+          width={1280}
+          height={720}
+        >
+          <source src="/how-to-unstake-eai.mp4" type="video/mp4" />
+          <a href="/how-to-unstake-eai.mp4">Download the video (MP4, 1.2 MB)</a>
+        </video>
+        <p className="hint">
+          This walkthrough was recorded while app.eagleailabs.com was live. The app is now offline, so use the
+          BaseScan steps above to unstake.
+        </p>
+      </section>
+
       <section aria-labelledby="contracts">
         <h2 id="contracts">The contracts</h2>
         <p className="hint">All on Base. Check the address in BaseScan matches before you sign anything.</p>

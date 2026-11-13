@@ -98,6 +98,9 @@ h2 {
 .facts { margin: 0; padding-left: 1.2rem; }
 .facts li + li { margin-top: 0.5rem; }
 
+/* Video walkthrough */
+.walkthrough { display: block; width: 100%; height: auto; background: var(--ink); border: 1px solid var(--rule); }
+
 /* Contracts table */
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
